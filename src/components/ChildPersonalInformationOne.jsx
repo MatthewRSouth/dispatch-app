@@ -41,6 +41,18 @@ export default function ChildPersonalInfoOne({ onNext, onPrevious }) {
                     placeholder="00-0001 東京都千代田区千代田1-1-1 "
                 ></textarea>
             </div>
+            <div className="form-group">
+                <label htmlFor="childContactNumber">
+                    Contact Number 緊急連絡番号
+                </label>{' '}
+                <br />
+                <input
+                    type="tel"
+                    id="childContactNumber"
+                    name="childContactNumber"
+                    placeholder="例）090-1234-5678"
+                />
+            </div>
             <div className="button-group">
                 {' '}
                 <button onClick={onNext}>Next</button>

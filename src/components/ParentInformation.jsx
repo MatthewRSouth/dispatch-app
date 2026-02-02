@@ -54,6 +54,7 @@ export default function ParentInformation({ onNext, onPrevious }) {
                     placeholder="例）090-1234-5678"
                 />
             </div>
+
             <div className="button-group">
                 {' '}
                 <button onClick={onNext}>Next</button>
