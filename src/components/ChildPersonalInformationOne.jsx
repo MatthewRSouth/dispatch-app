@@ -9,7 +9,7 @@ export default function ChildPersonalInfoOne({ onNext, onPrevious }) {
                     type="text"
                     id="childNameEnglish"
                     name="childNameEnglish"
-                    placeholder="Yamda Taro"
+                    placeholder="Yamada Taro"
                 />
             </div>
             <div className="form-group">
@@ -31,7 +31,8 @@ export default function ChildPersonalInfoOne({ onNext, onPrevious }) {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="childAddress">Home Address 住所 </label>
+                <h4>Address and Contact Number 　住所と緊急連絡番号</h4>
+                <label htmlFor="childAddress">Address 住所 </label>
                 <br />
                 <textarea
                     type="text"
