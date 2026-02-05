@@ -28,6 +28,17 @@ function App() {
     const nextStep = () => setCurrentStep(currentStep + 1);
     const previousStep = () => setCurrentStep(currentStep - 1);
 
+    const handleInput = (e) => {
+        const { name, value, type, checked } = e.target;
+
+        const newValue = type === 'checkbox' ? checked : value;
+
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: newValue,
+        }));
+    };
+
     return (
         <div className="app-container">
             <Header />
@@ -38,6 +49,8 @@ function App() {
                 )}
                 {currentStep === 3 && (
                     <ParentInformation
+                        data={formData}
+                        handleChannge={handleInput}
                         onNext={nextStep}
                         onPrevious={previousStep}
                     />

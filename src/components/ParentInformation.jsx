@@ -9,6 +9,8 @@ export default function ParentInformation({ onNext, onPrevious }) {
                     type="text"
                     id="fatherNameFurigana"
                     name="fatherNameFurigana"
+                    value={data.fatherNameFurigana}
+                    onChange={handleChange}
                     placeholder="例)　ヤマダ　タロウ"
                 />
                 <label htmlFor="fatherNameKanji">漢字</label>
