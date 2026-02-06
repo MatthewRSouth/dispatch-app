@@ -1,0 +1,31 @@
+.button {
+    width: 70%;
+    height: 3.5rem;
+    background-color: var(--color-primary);
+    text-align: center;
+    border-radius: var(--radius-full);
+    margin: 10px;
+    font-family: 'Google Sans Flex', sans-serif;
+    font-weight: 600;
+    color: #fff;
+    font-size: 22px;
+    border: 1px solid transparent;
+}
+
+.button:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-1px);
+}
+.next-button,
+.previous-button {
+    width: 40%;
+    height: 3.5rem;
+    background-color: var(--color-primary);
+    text-align: center;
+    border-radius: var(--radius-full);
+    margin: 10px;
+    font-weight: 600;
+    color: #fff;
+    font-size: 22px;
+    border: 1px solid transparent;
+}

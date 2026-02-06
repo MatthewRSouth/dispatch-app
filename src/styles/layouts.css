@@ -1,0 +1,15 @@
+.app-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+.footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 240px;
+    padding-bottom: 20px;
+}

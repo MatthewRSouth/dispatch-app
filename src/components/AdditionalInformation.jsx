@@ -24,8 +24,12 @@ export default function AdditionalInformation({
 
             <div className="button-group">
                 {' '}
-                <button onClick={onPrevious}>Previous</button>
-                <button onClick={onNext}>Next</button>
+                <button className="btn-primary" onClick={onPrevious}>
+                    Previous
+                </button>
+                <button className="btn-primary" onClick={onNext}>
+                    Next
+                </button>
             </div>
         </div>
     );

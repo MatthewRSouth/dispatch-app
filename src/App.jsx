@@ -13,6 +13,11 @@ import SuccessMessage from './components/SuccessMessage';
 import Footer from './components/Footer';
 
 import './App.css';
+import './styles/variables.css';
+import './styles/forms.css';
+import './styles/layouts.css';
+import './styles/login.css';
+import './styles/buttons.css';
 
 function App() {
     //1. Current step/page state
