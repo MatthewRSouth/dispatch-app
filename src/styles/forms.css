@@ -1,0 +1,14 @@
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 20px auto;
+}
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}

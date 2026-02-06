@@ -1,0 +1,28 @@
+:root {
+    /* Brand Colors */
+    --color-bg: #f0efe9; /* Beige Background */
+    --color-primary: #f5ae4c; /* Hoshida Orange */
+    --color-primary-hover: #d9963e; /* Slightly darker orange for hover */
+    --color-text-main: #595854; /* Dark Grey Text */
+    --color-text-light: #8c8b88; /* Light Grey (for placeholders) */
+    --color-white: #ffffff;
+    --color-error: #e74c3c;
+
+    /* Spacing & Borders */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-full: 50px; /* For rounded buttons */
+
+    /* Shadows (adds depth like the "Card" look) */
+    --shadow-card: 0 4px 12px rgba(89, 88, 84, 0.08);
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
