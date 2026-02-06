@@ -39,7 +39,7 @@ export default function LogInScreen({ data, handleChange, onNext }) {
             </div>
             <div className="login-button-container">
                 {' '}
-                <button className="button" onClick={onNext}>
+                <button className="login-button button" onClick={onNext}>
                     Login
                 </button>
             </div>

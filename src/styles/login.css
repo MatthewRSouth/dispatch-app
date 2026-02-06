@@ -1,5 +1,5 @@
 .login-container {
-    width: 100%;
+    width: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -22,7 +22,6 @@
     font-weight: 600;
 }
 .login-button-container {
-    width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 50px;
@@ -44,5 +43,8 @@
 }
 .login-form-section,
 .form-group {
-    margin: 20px;
+    margin-top: 20px;
+}
+.login-button {
+    width: 20rem;
 }

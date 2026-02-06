@@ -11,6 +11,7 @@ export default function ChildPersonalInfoOne({
             <div className="form-group">
                 <label htmlFor="childNameEnglish">英語表記 </label>
                 <input
+                    autoComplete="off"
                     type="text"
                     id="childNameEnglish"
                     name="childNameEnglish"
@@ -22,6 +23,7 @@ export default function ChildPersonalInfoOne({
             <div className="form-group">
                 <label htmlFor="childNameFurigana">フリガナ </label>
                 <input
+                    autoComplete="off"
                     type="text"
                     id="childNameFurigana"
                     name="childNameFurigana"
@@ -33,6 +35,7 @@ export default function ChildPersonalInfoOne({
             <div className="form-group">
                 <label htmlFor="childNameKanji">漢字 </label>
                 <input
+                    autoComplete="off"
                     type="text"
                     id="childNameKanji"
                     name="childNameKanji"
@@ -46,6 +49,7 @@ export default function ChildPersonalInfoOne({
                 <label htmlFor="childAddress">Address 住所 </label>
                 <br />
                 <textarea
+                    autoComplete="street-address"
                     type="text"
                     id="childAddress"
                     name="childAddress"
@@ -69,10 +73,14 @@ export default function ChildPersonalInfoOne({
                     placeholder="例）090-1234-5678"
                 />
             </div>
-            <div className="button-group">
+            <div className="button-wrapper">
                 {' '}
-                <button onClick={onPrevious}>Previous</button>
-                <button onClick={onNext}>Next</button>
+                <button className="previous-button button" onClick={onPrevious}>
+                    Previous
+                </button>
+                <button className="next-button button" onClick={onNext}>
+                    Next
+                </button>
             </div>
         </div>
     );

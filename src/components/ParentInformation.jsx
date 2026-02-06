@@ -11,6 +11,7 @@ export default function ParentInformation({
             <div className="form-group">
                 <label htmlFor="fatherNameFurigana">フリガナ</label>
                 <input
+                    autoComplete="off"
                     type="text"
                     id="fatherNameFurigana"
                     name="fatherNameFurigana"
@@ -20,6 +21,7 @@ export default function ParentInformation({
                 />
                 <label htmlFor="fatherNameKanji">漢字</label>
                 <input
+                    autoComplete="name"
                     type="text"
                     id="fatherNameKanji"
                     name="fatherNameKanji"
@@ -31,6 +33,7 @@ export default function ParentInformation({
             <div className="form-group">
                 <label htmlFor="fatherPhoneNumber">Cell Phone携帯電話</label>
                 <input
+                    autoComplete="tel"
                     type="tel"
                     id="fatherPhoneNumber"
                     name="fatherPhoneNumber"
@@ -43,6 +46,7 @@ export default function ParentInformation({
             <div className="form-group">
                 <label htmlFor="motherNameFurigana">フリガナ</label>
                 <input
+                    autoComplete="off"
                     type="text"
                     id="motherNameFurigana"
                     name="motherNameFurigana"
@@ -52,6 +56,7 @@ export default function ParentInformation({
                 />
                 <label htmlFor="motherNameKanji">漢字</label>
                 <input
+                    autoComplete="name"
                     type="text"
                     id="motherNameKanji"
                     name="motherNameKanji"
@@ -63,6 +68,7 @@ export default function ParentInformation({
             <div className="form-group">
                 <label htmlFor="motherPhoneNumber">Cell Phone携帯電話</label>
                 <input
+                    autoComplete="tel"
                     type="tel"
                     id="motherPhoneNumber"
                     name="motherPhoneNumber"
@@ -72,10 +78,14 @@ export default function ParentInformation({
                 />
             </div>
 
-            <div className="button-group">
+            <div className="button-wrapper">
                 {' '}
-                <button onClick={onPrevious}>Previous</button>
-                <button onClick={onNext}>Next</button>
+                <button className="previous-button button" onClick={onPrevious}>
+                    Previous
+                </button>
+                <button className="next-button button" onClick={onNext}>
+                    Next
+                </button>
             </div>
         </div>
     );

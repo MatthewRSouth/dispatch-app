@@ -22,12 +22,12 @@ export default function AdditionalInformation({
                 ></textarea>
             </div>
 
-            <div className="button-group">
+            <div className="button-wrapper">
                 {' '}
-                <button className="btn-primary" onClick={onPrevious}>
+                <button className="previous-button button" onClick={onPrevious}>
                     Previous
                 </button>
-                <button className="btn-primary" onClick={onNext}>
+                <button className="next-button button" onClick={onNext}>
                     Next
                 </button>
             </div>

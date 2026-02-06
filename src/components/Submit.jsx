@@ -1,32 +1,69 @@
 import { useState } from 'react';
 
-const GOOGLE_SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbyHBeXHo3Qsvk0fGj8IQO8z1m7IfsmIAaLOeV3e_6rx-4YW2YnTZDIr22glYoFhUc5X/exec';
+// 1. Point to your new API route (Internal Server)
+const SUBMIT_URL = '/api/submit';
+
+// Helper: Converts a file to a Base64 string
+const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => resolve(fileReader.result);
+        fileReader.onerror = (error) => reject(error);
+    });
+};
 
 export default function Submit({ data, onNext, onPrevious }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleSubmit = async () => {
+    // Note: You had 'isLoading' and 'isSubmitting'. I combined them to keep it simple.
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         setIsSubmitting(true);
         setError(null);
 
         try {
-            await fetch(GOOGLE_SCRIPT_URL, {
+            // STEP A: Convert the image (if one was uploaded)
+            let base64Image = null;
+            // check if childImage exists and is actually a File object
+            if (data.childImage && data.childImage instanceof File) {
+                base64Image = await convertToBase64(data.childImage);
+            }
+
+            // STEP B: Prepare the data
+            // We separate the heavy 'file' object from the text data
+            const payload = {
+                ...data,
+                image: base64Image, // Send the string, not the file object
+            };
+
+            // STEP C: Send to your Server
+            const response = await fetch(SUBMIT_URL, {
                 method: 'POST',
-                mode: 'no-cors',
+                // We REMOVED 'no-cors' so we can actually see if it succeeds!
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(payload),
             });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Server upload failed');
+            }
+
+            // If we get here, it worked!
             onNext();
         } catch (err) {
             console.error('Submission Error', err);
             setError('Something went wrong. Please try again.');
+        } finally {
             setIsSubmitting(false);
         }
     };
+
     return (
         <div>
             <h1>Review and Submit</h1>
@@ -45,6 +82,11 @@ export default function Submit({ data, onNext, onPrevious }) {
                     <p>{data.motherPhoneNumber}</p>
 
                     <h3>Child Information</h3>
+                    {/* Added logic to show "Image Uploaded" if a file exists */}
+                    <p>
+                        <strong>Photo:</strong>{' '}
+                        {data.childImage ? '✅ Image Attached' : '❌ No Image'}
+                    </p>
                     <p>{data.childNameEnglish}</p>
                     <p>{data.childNameFurigana}</p>
                     <p>{data.childNameKanji}</p>
@@ -52,13 +94,13 @@ export default function Submit({ data, onNext, onPrevious }) {
                     <p>{data.childAddress}</p>
                     <h4>Emergency Contact</h4>
                     <p>{data.childContactNumber}</p>
-                    <p>sex: {data.childSex}</p>
+                    <p>Sex: {data.childSex}</p>
                     <p>Date of Birth: {data.childDateOfBirth}</p>
                     <p>Nationality: {data.childNationality}</p>
                     <p>Blood Type: {data.childBloodType}</p>
 
                     <h3>Allergy Information</h3>
-                    <p>Alergies: {data.hasAllergies}</p>
+                    <p>Allergies: {data.hasAllergies}</p>
                     <p>Details: {data.allergyDetails}</p>
 
                     <h3>Additional Information</h3>
@@ -107,18 +149,26 @@ export default function Submit({ data, onNext, onPrevious }) {
                         {error}
                     </p>
                 )}
-                <button
-                    className="form"
-                    onClick={handleSubmit}
-                    disabled={isSubmitting}
-                    style={{
-                        backgroundColor: isSubmitting ? '#ccc' : 'orange',
-                        color: 'white',
-                    }}
-                >
-                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
-                </button>
-                <button onClick={onPrevious}>Previous</button>
+                <div className="button-wrapper">
+                    {' '}
+                    <button
+                        onClick={onPrevious}
+                        className="previous-button button"
+                    >
+                        Previous
+                    </button>
+                    <button
+                        className="form button submit"
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                        style={{
+                            backgroundColor: isSubmitting ? '#ccc' : 'orange',
+                            color: 'white',
+                        }}
+                    >
+                        {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                    </button>
+                </div>
             </div>
         </div>
     );
