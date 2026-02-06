@@ -1,9 +1,125 @@
-export default function Submit({ onNext, onPrevious }) {
+import { useState } from 'react';
+
+const GOOGLE_SCRIPT_URL =
+    'https://script.google.com/macros/s/AKfycbyHBeXHo3Qsvk0fGj8IQO8z1m7IfsmIAaLOeV3e_6rx-4YW2YnTZDIr22glYoFhUc5X/exec';
+
+export default function Submit({ data, onNext, onPrevious }) {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState(null);
+
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+        setError(null);
+
+        try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+            onNext();
+        } catch (err) {
+            console.error('Submission Error', err);
+            setError('Something went wrong. Please try again.');
+            setIsSubmitting(false);
+        }
+    };
     return (
         <div>
             <h1>Review and Submit</h1>
-            <button onClick={onNext}>Next</button>
-            <button onClick={onPrevious}>Previous</button>
+            <p>Please confirm all information is correct before submitting</p>
+            <div className="summary-card">
+                <div className="parent-summary">
+                    <h2>Parent Information</h2>
+                    <h3>Father Information</h3>
+                    <p>{data.fatherNameFurigana}</p>
+                    <p>{data.fatherNameKanji}</p>
+                    <p>{data.fatherPhoneNumber}</p>
+
+                    <h3>Mother Information</h3>
+                    <p>{data.motherNameFurigana}</p>
+                    <p>{data.motherNameKanji}</p>
+                    <p>{data.motherPhoneNumber}</p>
+
+                    <h3>Child Information</h3>
+                    <p>{data.childNameEnglish}</p>
+                    <p>{data.childNameFurigana}</p>
+                    <p>{data.childNameKanji}</p>
+                    <h4>Address</h4>
+                    <p>{data.childAddress}</p>
+                    <h4>Emergency Contact</h4>
+                    <p>{data.childContactNumber}</p>
+                    <p>sex: {data.childSex}</p>
+                    <p>Date of Birth: {data.childDateOfBirth}</p>
+                    <p>Nationality: {data.childNationality}</p>
+                    <p>Blood Type: {data.childBloodType}</p>
+
+                    <h3>Allergy Information</h3>
+                    <p>Alergies: {data.hasAllergies}</p>
+                    <p>Details: {data.allergyDetails}</p>
+
+                    <h3>Additional Information</h3>
+                    <p>{data.additionalInformation}</p>
+
+                    <h3>
+                        Acknowledgement:{' '}
+                        {data.agreesToAcknowledgement ? '✔️ Yes' : '❌ No'}
+                    </h3>
+                    <p>
+                        I understand and accept that under no circumstances
+                        shall refunds be given. <br />
+                        私は入学の申し込みに関して発生する費用は、返還されないことを理解します。
+                        <br />
+                        <br />
+                        I understand and accept that under no circumstances I
+                        shall receive refunds when the government forces the
+                        school to close down for a certain period. <br />
+                        私は役所の指示で休園する場合に関して授業料等の費用は、返還されないことを理解します。
+                        <br /> <br /> I declare that the information given in
+                        this application form is true and accurate <br />
+                        私はこの入学願書に記述した内容について事実と相違ないことを誓います。
+                    </p>
+                    <p className="achknowledgement-legal-text">
+                        By typing my name below, I electronically sign this
+                        application and attest that all information provided is
+                        true and accurate.
+                    </p>
+
+                    <p>
+                        <strong>Signature: {data.signature}</strong>
+                    </p>
+                    <p>
+                        <strong>Date: {data.signDate}</strong>
+                    </p>
+                </div>
+
+                {error && (
+                    <p
+                        style={{
+                            color: 'red',
+                            fontWeight: 'bold',
+                            marginBottom: '1rem',
+                        }}
+                    >
+                        {error}
+                    </p>
+                )}
+                <button
+                    className="form"
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                    style={{
+                        backgroundColor: isSubmitting ? '#ccc' : 'orange',
+                        color: 'white',
+                    }}
+                >
+                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                </button>
+                <button onClick={onPrevious}>Previous</button>
+            </div>
         </div>
     );
 }

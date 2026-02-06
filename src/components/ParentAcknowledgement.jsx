@@ -27,6 +27,7 @@ export default function ParentAcknoledgement({
                         type="checkbox"
                         name="agreesToAcknowledgement"
                         checked={data.agreesToAcknowledgement}
+                        value="yes"
                         onChange={handleChange}
                     />{' '}
                     I acknowledge
