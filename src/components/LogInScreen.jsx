@@ -1,4 +1,4 @@
-export default function LogInScreen({ onNext }) {
+export default function LogInScreen({ data, handleChange, onNext }) {
     return (
         <div className="login-container">
             <div className="login-image">
@@ -16,6 +16,8 @@ export default function LogInScreen({ onNext }) {
                     type="text"
                     id="username"
                     name="username"
+                    value={data.username}
+                    onChange={handleChange}
                     placeholder="Enter username"
                 />
             </div>
@@ -25,6 +27,8 @@ export default function LogInScreen({ onNext }) {
                     type="password"
                     id="password"
                     name="password"
+                    value={data.password}
+                    onChange={handleChange}
                     placeholder="Enter Password"
                 />
             </div>

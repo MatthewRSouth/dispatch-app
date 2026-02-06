@@ -20,8 +20,42 @@ function App() {
 
     //2. Master Data save
     const [formData, setFormData] = useState({
-        parentName: '',
-        childName: '',
+        // Step 1: Login
+        username: '',
+        password: '',
+
+        // Step 3: Parent Information
+        fatherNameFurigana: '',
+        fatherNameKanji: '',
+        fatherPhoneNumber: '',
+        motherNameFurigana: '',
+        motherNameKanji: '',
+        motherPhoneNumber: '',
+
+        // Step 4: Child Personal Info One
+        childNameEnglish: '',
+        childNameFurigana: '',
+        childNameKanji: '',
+        childAddress: '',
+        childContactNumber: '',
+
+        // Step 5: Child Personal Info Two
+        childSex: '',
+        childDateOfBirth: '',
+        childNationality: '',
+        childBloodType: '',
+
+        // Step 6: Allergies
+        hasAllergies: '',
+        allergyDetails: '',
+
+        // Step 7: Additional Info
+        additionalInformation: '',
+
+        // Step 8: Acknowledgement
+        agreesToAcknowledgement: false, // Checkbox defaults to boolean
+        signature: '',
+        signDate: '',
     });
 
     //Helper function to advance
@@ -43,47 +77,71 @@ function App() {
         <div className="app-container">
             <Header />
             <main>
-                {currentStep === 1 && <LogInScreen onNext={nextStep} />}
+                {currentStep === 1 && (
+                    <LogInScreen
+                        onNext={nextStep}
+                        data={formData}
+                        handleChange={handleInput}
+                    />
+                )}
                 {currentStep === 2 && (
                     <ImageUpload onNext={nextStep} onPrevious={previousStep} />
                 )}
                 {currentStep === 3 && (
                     <ParentInformation
                         data={formData}
-                        handleChannge={handleInput}
+                        handleChange={handleInput}
                         onNext={nextStep}
                         onPrevious={previousStep}
                     />
                 )}
                 {currentStep === 4 && (
                     <ChildPersonalInfoOne
+                        data={formData}
+                        handleChange={handleInput}
                         onNext={nextStep}
                         onPrevious={previousStep}
                     />
                 )}
                 {currentStep === 5 && (
                     <ChildPersonalInfoTwo
+                        data={formData}
+                        handleChange={handleInput}
                         onNext={nextStep}
                         onPrevious={previousStep}
                     />
                 )}
                 {currentStep === 6 && (
-                    <Allergies onNext={nextStep} onPrevious={previousStep} />
+                    <Allergies
+                        data={formData}
+                        handleChange={handleInput}
+                        onNext={nextStep}
+                        onPrevious={previousStep}
+                    />
                 )}
                 {currentStep === 7 && (
                     <AdditionalInformation
+                        data={formData}
+                        handleChange={handleInput}
                         onNext={nextStep}
                         onPrevious={previousStep}
                     />
                 )}
                 {currentStep === 8 && (
                     <ParentAcknoledgement
+                        data={formData}
+                        handleChange={handleInput}
                         onNext={nextStep}
                         onPrevious={previousStep}
                     />
                 )}
                 {currentStep === 9 && (
-                    <Submit onNext={nextStep} onPrevious={previousStep} />
+                    <Submit
+                        data={formData}
+                        handleChange={handleInput}
+                        onNext={nextStep}
+                        onPrevious={previousStep}
+                    />
                 )}
                 {currentStep === 10 && (
                     <SuccessMessage onPrevious={previousStep} />

@@ -1,4 +1,9 @@
-export default function ParentInformation({ onNext, onPrevious }) {
+export default function ParentInformation({
+    data,
+    handleChange,
+    onNext,
+    onPrevious,
+}) {
     return (
         <div>
             <h1>Parent/Guardian Information ご両親の内容</h1>
@@ -18,6 +23,8 @@ export default function ParentInformation({ onNext, onPrevious }) {
                     type="text"
                     id="fatherNameKanji"
                     name="fatherNameKanji"
+                    value={data.fatherNameKanji}
+                    onChange={handleChange}
                     placeholder="例)　山田　太郎"
                 />
             </div>
@@ -27,6 +34,8 @@ export default function ParentInformation({ onNext, onPrevious }) {
                     type="tel"
                     id="fatherPhoneNumber"
                     name="fatherPhoneNumber"
+                    value={data.fatherPhoneNumber}
+                    onChange={handleChange}
                     placeholder="例）090-1234-5678"
                 />
             </div>
@@ -37,6 +46,8 @@ export default function ParentInformation({ onNext, onPrevious }) {
                     type="text"
                     id="motherNameFurigana"
                     name="motherNameFurigana"
+                    value={data.motherNameFurigana}
+                    onChange={handleChange}
                     placeholder="例)　ヤマダ　ハナコ"
                 />
                 <label htmlFor="motherNameKanji">漢字</label>
@@ -44,6 +55,8 @@ export default function ParentInformation({ onNext, onPrevious }) {
                     type="text"
                     id="motherNameKanji"
                     name="motherNameKanji"
+                    value={data.motherNameKanji}
+                    onChange={handleChange}
                     placeholder="例)　山田　花子"
                 />
             </div>
@@ -53,14 +66,16 @@ export default function ParentInformation({ onNext, onPrevious }) {
                     type="tel"
                     id="motherPhoneNumber"
                     name="motherPhoneNumber"
+                    value={data.motherPhoneNumber}
+                    onChange={handleChange}
                     placeholder="例）090-1234-5678"
                 />
             </div>
 
             <div className="button-group">
                 {' '}
-                <button onClick={onNext}>Next</button>
                 <button onClick={onPrevious}>Previous</button>
+                <button onClick={onNext}>Next</button>
             </div>
         </div>
     );

@@ -1,4 +1,9 @@
-export default function ParentAcknoledgement({ onNext, onPrevious }) {
+export default function ParentAcknoledgement({
+    data,
+    handleChange,
+    onNext,
+    onPrevious,
+}) {
     return (
         <div>
             <h1>Parent Acknowledgement 保護者の承諾</h1>
@@ -18,8 +23,13 @@ export default function ParentAcknoledgement({ onNext, onPrevious }) {
                         this application form is true and accurate <br />
                         私はこの入学願書に記述した内容について事実と相違ないことを誓います。
                     </p>
-                    <input type="checkbox" name="agreesToAcknowledgement" /> I
-                    acknowledge
+                    <input
+                        type="checkbox"
+                        name="agreesToAcknowledgement"
+                        checked={data.agreesToAcknowledgement}
+                        onChange={handleChange}
+                    />{' '}
+                    I acknowledge
                 </label>
             </div>
             <div className="form-group">
@@ -33,6 +43,8 @@ export default function ParentAcknoledgement({ onNext, onPrevious }) {
                     type="text"
                     id="signature"
                     name="signature"
+                    value={data.signature}
+                    onChange={handleChange}
                     placeholder="Type your full name here"
                 />
             </div>
@@ -40,13 +52,19 @@ export default function ParentAcknoledgement({ onNext, onPrevious }) {
                 <label htmlFor="signDate">
                     Date of Application 願書記入日{' '}
                 </label>
-                <input type="date" id="signDate" name="signDate" />
+                <input
+                    type="date"
+                    id="signDate"
+                    name="signDate"
+                    value={data.signDate}
+                    onChange={handleChange}
+                />
             </div>
 
             <div className="button-group">
                 {' '}
-                <button onClick={onNext}>Next</button>
                 <button onClick={onPrevious}>Previous</button>
+                <button onClick={onNext}>Next</button>
             </div>
         </div>
     );

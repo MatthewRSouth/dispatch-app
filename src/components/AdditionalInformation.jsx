@@ -1,4 +1,9 @@
-export default function AdditionalInformation({ onNext, onPrevious }) {
+export default function AdditionalInformation({
+    data,
+    handleChange,
+    onNext,
+    onPrevious,
+}) {
     return (
         <div>
             <h1>Additional Information</h1>
@@ -10,6 +15,8 @@ export default function AdditionalInformation({ onNext, onPrevious }) {
                 <textarea
                     name="additionalInformation"
                     id="additionalInformation"
+                    value={data.additionalInformation}
+                    onChange={handleChange}
                     cols="30"
                     rows="10"
                 ></textarea>
@@ -17,8 +24,8 @@ export default function AdditionalInformation({ onNext, onPrevious }) {
 
             <div className="button-group">
                 {' '}
-                <button onClick={onNext}>Next</button>
                 <button onClick={onPrevious}>Previous</button>
+                <button onClick={onNext}>Next</button>
             </div>
         </div>
     );
