@@ -62,10 +62,14 @@ export default function ParentAcknoledgement({
                 />
             </div>
 
-            <div className="button-group">
+            <div className="button-wrapper">
                 {' '}
-                <button onClick={onPrevious}>Previous</button>
-                <button onClick={onNext}>Next</button>
+                <button className="previous-button button" onClick={onPrevious}>
+                    Previous
+                </button>
+                <button className="next-button button" onClick={onNext}>
+                    Next
+                </button>
             </div>
         </div>
     );

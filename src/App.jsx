@@ -29,6 +29,9 @@ function App() {
         username: '',
         password: '',
 
+        //Step 2: image upload
+        childImage: null,
+
         // Step 3: Parent Information
         fatherNameFurigana: '',
         fatherNameKanji: '',
@@ -90,7 +93,16 @@ function App() {
                     />
                 )}
                 {currentStep === 2 && (
-                    <ImageUpload onNext={nextStep} onPrevious={previousStep} />
+                    <ImageUpload
+                        onImageSelect={(file) =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                childImage: file,
+                            }))
+                        }
+                        onNext={nextStep}
+                        onPrevious={previousStep}
+                    />
                 )}
                 {currentStep === 3 && (
                     <ParentInformation

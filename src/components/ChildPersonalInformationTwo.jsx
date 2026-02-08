@@ -9,8 +9,8 @@ export default function ChildPersonalInfoTwo({
             <div>
                 <h1>Child Information お子様の内容</h1>
                 <div className="form-group">
-                    <h4></h4>
-                    <label htmlFor="childSexMale">Sex 性別: Male 男 </label>
+                    <h4>Sex 性別：</h4>
+                    <label htmlFor="childSexMale">Male 男 </label>
                     <input
                         type="radio"
                         id="childSexMale"
@@ -70,10 +70,14 @@ export default function ChildPersonalInfoTwo({
                     </select>
                 </div>
             </div>
-            <div className="button-group">
+            <div className="button-wrapper">
                 {' '}
-                <button onClick={onPrevious}>Previous</button>
-                <button onClick={onNext}>Next</button>
+                <button className="previous-button button" onClick={onPrevious}>
+                    Previous
+                </button>
+                <button className="next-button button" onClick={onNext}>
+                    Next
+                </button>
             </div>
         </div>
     );
