@@ -10,20 +10,15 @@ export default async function handler(req, res) {
     const { image, ...data } = req.body;
 
     try {
-        // 2. Authenticate with Google
-        // We use the environment variables from Vercel/Local .env
-        const auth = new google.auth.GoogleAuth({
-            credentials: {
-                client_email: process.env.GOOGLE_CLIENT_EMAIL,
-                private_key: (process.env.GOOGLE_PRIVATE_KEY || '').replace(
-                    /\\n/g,
-                    '\n'
-                ),
-            },
-            scopes: [
-                'https://www.googleapis.com/auth/spreadsheets',
-                'https://www.googleapis.com/auth/drive',
-            ],
+        // 2. Authenticate with OAuth 2.0 (The New Way)
+        const auth = new google.auth.OAuth2(
+            process.env.GOOGLE_CLIENT_ID,
+            process.env.GOOGLE_CLIENT_SECRET
+        );
+
+        // This effectively "logs in" as you using the refresh token
+        auth.setCredentials({
+            refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
         });
 
         // 3. Handle Image Upload (If exists)
@@ -38,7 +33,7 @@ export default async function handler(req, res) {
 
             const fileMetadata = {
                 name: `${data.childNameEnglish || 'Child'}_Photo.jpg`,
-                parents: [process.env.GOOGLE_DRIVE_FOLDER_ID], // We will set this ID in your .env
+                parents: [process.env.GOOGLE_DRIVE_FOLDER_ID],
             };
 
             const media = {
@@ -55,44 +50,54 @@ export default async function handler(req, res) {
             fileLink = file.data.webViewLink;
         }
 
-        // 4. Save to Sheets (Mapping your REAL fields)
+        // 4. Save to Sheets (Corrected to match your Sheet Headers)
         const sheets = google.sheets({ version: 'v4', auth });
 
-        // This array determines the order of columns in your Google Sheet
         const rowValues = [
-            data.fatherNameKanji || '', // Col A
-            data.fatherNameFurigana || '', // Col B
-            data.fatherPhoneNumber || '', // Col C
+            // 1. Account Info (Cols A & B)
+            data.username || '', // Col A (username)
+            data.password || '', // Col B (password)
 
-            data.motherNameKanji || '', // Col D
-            data.motherNameFurigana || '', // Col E
-            data.motherPhoneNumber || '', // Col F
+            // 2. Father Info (Furigana FIRST in your sheet)
+            data.fatherNameFurigana || '', // Col C
+            data.fatherNameKanji || '', // Col D
+            data.fatherPhoneNumber || '', // Col E
 
-            data.childNameEnglish || '', // Col G
-            data.childNameFurigana || '', // Col H
-            data.childNameKanji || '', // Col I
-            data.childDateOfBirth || '', // Col J
-            data.childSex || '', // Col K
-            data.childNationality || '', // Col L
-            data.childBloodType || '', // Col M
-            data.childAddress || '', // Col N
-            data.childContactNumber || '', // Col O (Emergency)
+            // 3. Mother Info (Furigana FIRST in your sheet)
+            data.motherNameFurigana || '', // Col F
+            data.motherNameKanji || '', // Col G
+            data.motherPhoneNumber || '', // Col H
 
-            data.hasAllergies || 'No', // Col P
-            data.allergyDetails || '', // Col Q
-            data.additionalInformation || '', // Col R
+            // 4. Child Info
+            data.childNameEnglish || '', // Col I
+            data.childNameFurigana || '', // Col J
+            data.childNameKanji || '', // Col K
+            data.childAddress || '', // Col L
+            data.childContactNumber || '', // Col M
+            data.childSex || '', // Col N
+            data.childDateOfBirth || '', // Col O
+            data.childNationality || '', // Col P
+            data.childBloodType || '', // Col Q
 
-            data.agreesToAcknowledgement ? 'Yes' : 'No', // Col S
-            data.signature || '', // Col T
-            data.signDate || '', // Col U
+            // 5. Medical & Extras
+            data.hasAllergies || 'No', // Col R
+            data.allergyDetails || '', // Col S
+            data.additionalInformation || '', // Col T
 
-            fileLink, // Col V (The Image Link)
-            new Date().toISOString(), // Col W (Timestamp)
+            // 6. Agreement
+            data.agreesToAcknowledgement ? 'Yes' : 'No', // Col U
+            data.signature || '', // Col V
+            data.signDate || '', // Col W
+
+            // 7. Admin / System Cols
+            '', // Col X (Spacer for "adminn1234")
+            new Date().toISOString(), // Col Y (Timestamp)
+            fileLink, // Col Z (Image Link)
         ];
 
         await sheets.spreadsheets.values.append({
             spreadsheetId: process.env.GOOGLE_SHEET_ID,
-            range: 'Sheet1!A2', // Start appending from row 2 (assuming row 1 is headers)
+            range: 'Sheet1!A2',
             valueInputOption: 'USER_ENTERED',
             requestBody: {
                 values: [rowValues],
