@@ -1,47 +1,56 @@
 export default function Allergies({ data, handleChange, onNext, onPrevious }) {
     return (
-        <div>
-            <h1>Allergies</h1>
-            <div className="form-group">
-                <label htmlFor="">Does your child have any allergies?</label>
-                <div className="allergies-radio-group">
+        <>
+            <div className="form-wrapper">
+                <div className="header-wrapper">
+                    <h1 className="main-header">Allergies</h1>
+                </div>
+
+                <div className="form-group">
                     <label htmlFor="">
-                        <input
-                            type="radio"
-                            name="hasAllergies"
-                            value="yes"
-                            onChange={handleChange}
-                            checked={data.hasAllergies === 'yes'}
-                        />
-                        Yes　有り
+                        Does your child have any allergies?
                     </label>
-                    <label htmlFor="">
-                        <input
-                            type="radio"
-                            name="hasAllergies"
-                            value="no"
-                            onChange={handleChange}
-                            checked={data.hasAllergies === 'no'}
-                        />
-                        No　無い
+                    <div className="radio-group">
+                        <div className="radio-options">
+                            <label className="allergy-option" htmlFor="">
+                                <input
+                                    type="radio"
+                                    name="hasAllergies"
+                                    value="yes"
+                                    onChange={handleChange}
+                                    checked={data.hasAllergies === 'yes'}
+                                />
+                                Yes　有り
+                            </label>
+                            <label className="allergy-option" htmlFor="">
+                                <input
+                                    type="radio"
+                                    name="hasAllergies"
+                                    value="no"
+                                    onChange={handleChange}
+                                    checked={data.hasAllergies === 'no'}
+                                />
+                                No　無い
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="allergyDetails">
+                        If yes, please provide details:
                     </label>
+                    <br />
+                    <textarea
+                        name="allergyDetails"
+                        id="allergyDetails"
+                        onChange={handleChange}
+                        value={data.allergyDetails}
+                        cols="30"
+                        rows="4"
+                    ></textarea>
                 </div>
             </div>
-            <div className="form-group">
-                <label htmlFor="allergyDetails">
-                    If yes, please provide details:
-                </label>
-                <br />
-                <textarea
-                    name="allergyDetails"
-                    id="allergyDetails"
-                    onChange={handleChange}
-                    value={data.allergyDetails}
-                    cols="30"
-                    rows="4"
-                ></textarea>
-            </div>
-            <div className="button-wrapper">
+            <div className="button-wrapper allergy-button-wrapper">
                 {' '}
                 <button className="previous-button button" onClick={onPrevious}>
                     Previous
@@ -50,6 +59,6 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
                     Next
                 </button>
             </div>
-        </div>
+        </>
     );
 }

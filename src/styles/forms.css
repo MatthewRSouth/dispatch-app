@@ -14,6 +14,9 @@
     max-width: 380px;
     margin: 0 auto 20px auto;
 }
+.allergy-button-wrapper {
+    margin-top: 20px;
+}
 /* inputs */
 input,
 select {
@@ -40,7 +43,33 @@ select:focus {
     border-color: var(--color-primary);
     box-shadow: 0 0 10 3px var(--color-primary);
 }
+textarea {
+    /* 1. Sizing & Box Model */
+    width: 100%;
+    min-height: 120px; /* Give it decent height by default */
+    padding: 12px 16px; /* Match your input padding */
+    box-sizing: border-box; /* Keeps padding inside the width */
 
+    /* 2. Typography (CRITICAL) */
+    font-family: inherit; /* Fixes the default "Courier" font */
+    font-size: 16px; /* Prevents iOS zoom */
+    line-height: 1.5; /* Makes paragraphs easier to read */
+    color: #333;
+
+    /* 3. Borders */
+    border: 1px solid #ccc; /* Match your input border */
+    border-radius: 8px; /* Match your input radius */
+
+    /* 4. Interaction */
+    resize: vertical; /* ⚠️ VITAL: See below */
+    transition: border-color 0.2s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--color-primary); /* Your Orange/Blue brand color */
+    box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.2); /* Soft glow */
+}
 /* headers */
 .header-wrapper {
     display: flex;
@@ -75,13 +104,22 @@ label {
 /* radio-buttons */
 .radio-group {
     display: flex;
-    flex-direction: column;
     align-items: flex-start; /* Align everything to the left */
     width: 100%;
 }
 .radio-options {
     display: flex;
-    gap: 30px; /* Space between "Male" and "Female" groups */
+    gap: 20px; /* Space between "Male" and "Female" groups */
+}
+.child-gender-options {
+    margin-top: 27px;
+}
+.allergy-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin: 0;
 }
 input[type='radio'] {
     width: 20px; /* Make it easier to tap */
@@ -89,4 +127,53 @@ input[type='radio'] {
     accent-color: var(--color-primary);
     margin: 0; /* Remove default browser margin */
     cursor: pointer;
+}
+/* Parent Acknowledgement */
+/* Makes the legal text look like a "document" */
+.legal-text-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #555;
+    max-height: 200px; /* Optional: Makes it scrollable if too long */
+    overflow-y: auto; /* Scroll bar if needed */
+}
+
+.legal-text-box p {
+    margin-bottom: 15px; /* Space between paragraphs */
+}
+
+/* Wrapper for Checkbox + Text */
+.checkbox-wrapper {
+    display: flex; /* 1. Aligns box and text side-by-side */
+    align-items: flex-start; /* 2. Aligns to top (better for multi-line text) */
+    gap: 12px; /* 3. Space between box and text */
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid transparent; /* Prevents jumping on hover */
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.checkbox-wrapper:hover {
+    background-color: #fff7ed; /* Very light orange hover background */
+}
+
+/* The actual checkbox square */
+.checkbox-wrapper input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-primary); /* Your Orange! */
+    margin-top: 3px; /* visual tweak to align with text top */
+    flex-shrink: 0; /* Prevents checkbox from getting squished */
+}
+
+.checkbox-text {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.5;
 }

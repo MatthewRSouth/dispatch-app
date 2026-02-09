@@ -6,7 +6,10 @@ export default function AdditionalInformation({
 }) {
     return (
         <div>
-            <h1>Additional Information</h1>
+            <div className="header-wrapper">
+                <h1 className="main-header">Additional Information</h1>
+            </div>
+
             <div className="form-group">
                 <label htmlFor="AdditionalInformation">
                     Any Other Additional Information その他
