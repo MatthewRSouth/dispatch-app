@@ -1,28 +1,56 @@
 import { useState } from 'react';
 import '../styles/buttons.css';
 import '../styles/image-upload.css';
+// ✅ 1. Import is already here, perfect.
+import imageCompression from 'browser-image-compression';
 
 export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
     const [preview, setPreview] = useState(null);
-    //create handle function
-    const handleFileChange = (e) => {
-        //make file variable
+
+    // ✅ 2. Make this function 'async' so we can wait for compression
+    const handleFileChange = async (e) => {
         const file = e.target.files[0];
-        //if file is uploaded, display from memory usinng fake local url
+
         if (file) {
-            //create url
-            const objectUrl = URL.createObjectURL(file);
-            //set state to url to preview it
-            setPreview(objectUrl);
-            //send actual file to backend
-            if (onImageSelect) {
-                onImageSelect(file);
+            // Show a "loading" state if you want, or just let it process (it's fast)
+            console.log(`Original size: ${file.size / 1024 / 1024} MB`);
+
+            try {
+                // ✅ 3. Configure Compression (0.5MB limit, 1024px width)
+                const options = {
+                    maxSizeMB: 0.5,
+                    maxWidthOrHeight: 1024,
+                    useWebWorker: true,
+                };
+
+                // ✅ 4. Compress the file
+                const compressedFile = await imageCompression(file, options);
+                console.log(
+                    `Compressed size: ${compressedFile.size / 1024 / 1024} MB`
+                );
+
+                // ✅ 5. Create Preview (using the small file saves memory!)
+                const objectUrl = URL.createObjectURL(compressedFile);
+                setPreview(objectUrl);
+
+                // ✅ 6. Convert to Base64 String
+                // We do this HERE so your 'formData' state gets the final text string,
+                // ready to send to Vercel without crashing.
+                const reader = new FileReader();
+                reader.readAsDataURL(compressedFile);
+                reader.onloadend = () => {
+                    if (onImageSelect) {
+                        // Pass the TEXT string, not the file object
+                        onImageSelect(reader.result);
+                    }
+                };
+            } catch (error) {
+                console.error('Compression Error:', error);
             }
         }
     };
 
     const handleRemove = (e) => {
-        //this function hanldes the case where they want to remove and add a new photo.
         e.preventDefault();
         setPreview(null);
         if (onImageSelect) {
@@ -35,6 +63,7 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
             <div className="image-upload-wrapper">
                 <h1>Image Uploader</h1>
                 <div className="image-upload-container">
+                    {/* The rest of your JSX is perfect, no changes needed below! */}
                     <label className="image-upload-box">
                         <input
                             type="file"
@@ -42,7 +71,6 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
                             onChange={handleFileChange}
                             className="hidden-input"
                         />
-                        {/* visual preview */}
                         {preview ? (
                             <img
                                 src={preview}
@@ -63,7 +91,6 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
                         )}
                     </label>
 
-                    {/* remove button */}
                     {preview && (
                         <button className="remove-btn" onClick={handleRemove}>
                             Upload Again
