@@ -6,28 +6,36 @@ export default function ChildPersonalInfoTwo({
 }) {
     return (
         <div>
-            <div>
-                <h1>Child Information お子様の内容</h1>
+            <div className="form-wrapper">
+                <h1 className="main-header">
+                    Child Information
+                    <br></br> お子様の内容
+                </h1>
                 <div className="form-group">
-                    <h4>Sex 性別：</h4>
-                    <label htmlFor="childSexMale">Male 男 </label>
-                    <input
-                        type="radio"
-                        id="childSexMale"
-                        name="childSex"
-                        value="male"
-                        onChange={handleChange}
-                        checked={data.childSex === 'male'}
-                    />
-                    <label htmlFor="childSexFemale">Female　女 </label>
-                    <input
-                        type="radio"
-                        id="childSexFemale"
-                        name="childSex"
-                        value="female"
-                        onChange={handleChange}
-                        checked={data.childSex === 'female'}
-                    />
+                    <div className="radio-group">
+                        {' '}
+                        <h4 className="sub-header">Sex 性別：</h4>
+                        <div className="radio-options">
+                            <label htmlFor="childSexMale">Male 男 </label>
+                            <input
+                                type="radio"
+                                id="childSexMale"
+                                name="childSex"
+                                value="male"
+                                onChange={handleChange}
+                                checked={data.childSex === 'male'}
+                            />
+                            <label htmlFor="childSexFemale">Female 女 </label>
+                            <input
+                                type="radio"
+                                id="childSexFemale"
+                                name="childSex"
+                                value="female"
+                                onChange={handleChange}
+                                checked={data.childSex === 'female'}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div className="form-group">
                     <label htmlFor="childDateOfBirth">
