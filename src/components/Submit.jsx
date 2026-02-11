@@ -2,6 +2,24 @@ import { useState } from 'react';
 
 // 1. Point to your new API route (Internal Server)
 const SUBMIT_URL = '/api/submit';
+//Helper: ReviewRow Component
+function ReviewRow({ label, value }) {
+    return (
+        <div className="review-row">
+            <span className="review-label">{label}</span>
+            <span className="review-value">
+                {' '}
+                {value ? (
+                    value
+                ) : (
+                    <span style={{ color: '#aaa', fontStyle: 'Italic' }}>
+                        Not Provided
+                    </span>
+                )}
+            </span>
+        </div>
+    );
+}
 
 // Helper: Converts a file to a Base64 string
 const convertToBase64 = (file) => {
@@ -67,80 +85,159 @@ export default function Submit({ data, onNext, onPrevious }) {
         }
     };
 
+    //Helper component:
+
     return (
-        <div>
-            <h1>Review and Submit</h1>
-            <p>Please confirm all information is correct before submitting</p>
-            <div className="summary-card">
-                <div className="parent-summary">
-                    <h2>Parent Information</h2>
-                    <h3>Father Information</h3>
-                    <p>{data.fatherNameFurigana}</p>
-                    <p>{data.fatherNameKanji}</p>
-                    <p>{data.fatherPhoneNumber}</p>
-
-                    <h3>Mother Information</h3>
-                    <p>{data.motherNameFurigana}</p>
-                    <p>{data.motherNameKanji}</p>
-                    <p>{data.motherPhoneNumber}</p>
-
-                    <h3>Child Information</h3>
-                    {/* Added logic to show "Image Uploaded" if a file exists */}
+        <>
+            <div className="review-wrapper">
+                <div className="header-wrapper">
+                    <h1 className="main-header">Review and Submit</h1>
                     <p>
-                        <strong>Photo:</strong>{' '}
-                        {data.childImage ? '✅ Image Attached' : '❌ No Image'}
-                    </p>
-                    <p>{data.childNameEnglish}</p>
-                    <p>{data.childNameFurigana}</p>
-                    <p>{data.childNameKanji}</p>
-                    <h4>Address</h4>
-                    <p>{data.childAddress}</p>
-                    <h4>Emergency Contact</h4>
-                    <p>{data.childContactNumber}</p>
-                    <p>Sex: {data.childSex}</p>
-                    <p>Date of Birth: {data.childDateOfBirth}</p>
-                    <p>Nationality: {data.childNationality}</p>
-                    <p>Blood Type: {data.childBloodType}</p>
-
-                    <h3>Allergy Information</h3>
-                    <p>Allergies: {data.hasAllergies}</p>
-                    <p>Details: {data.allergyDetails}</p>
-
-                    <h3>Additional Information</h3>
-                    <p>{data.additionalInformation}</p>
-
-                    <h3>
-                        Acknowledgement:{' '}
-                        {data.agreesToAcknowledgement ? '✔️ Yes' : '❌ No'}
-                    </h3>
-                    <p>
-                        I understand and accept that under no circumstances
-                        shall refunds be given. <br />
-                        私は入学の申し込みに関して発生する費用は、返還されないことを理解します。
-                        <br />
-                        <br />
-                        I understand and accept that under no circumstances I
-                        shall receive refunds when the government forces the
-                        school to close down for a certain period. <br />
-                        私は役所の指示で休園する場合に関して授業料等の費用は、返還されないことを理解します。
-                        <br /> <br /> I declare that the information given in
-                        this application form is true and accurate <br />
-                        私はこの入学願書に記述した内容について事実と相違ないことを誓います。
-                    </p>
-                    <p className="achknowledgement-legal-text">
-                        By typing my name below, I electronically sign this
-                        application and attest that all information provided is
-                        true and accurate.
-                    </p>
-
-                    <p>
-                        <strong>Signature: {data.signature}</strong>
-                    </p>
-                    <p>
-                        <strong>Date: {data.signDate}</strong>
+                        Please confirm all information is correct before
+                        submitting
                     </p>
                 </div>
 
+                <div className="review-card">
+                    <div className="review-card-header">
+                        <h2 className="card-header">Parent Information</h2>
+                        <button className="edit-button">Edit</button>
+                    </div>
+                    <ReviewRow
+                        label="Father (Furigana)"
+                        value={data.fatherNameFurigana}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Father Kanji"
+                        value={data.fatherNameKanji}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Father Phone Number"
+                        value={data.fatherPhoneNumber}
+                    ></ReviewRow>
+                    <div className="review-spacer"></div>
+                    <ReviewRow
+                        label="Mother (Furigana)"
+                        value={data.motherNameFurigana}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Mother Kanji"
+                        value={data.motherNameKanji}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Mother Phone Number"
+                        value={data.motherPhoneNumber}
+                    ></ReviewRow>
+                </div>
+
+                <div className="review-card">
+                    <div className="review-card-header">
+                        <h2>Child Information</h2>
+                        <button className="edit-button">Edit ✏️</button>
+                    </div>
+
+                    <div className="review-row">
+                        <span className="review-label">Photo</span>
+                        <span className="review-value">
+                            {data.childImage ? '✅ Uploaded' : '❌ None'}
+                        </span>
+                    </div>
+                    <div className="review-row">
+                        <span className="review-label">English Name</span>
+                        <span className="review-value">
+                            {data.childNameEnglish}
+                        </span>
+                    </div>
+                    <div className="review-row">
+                        <span className="review-label">Sex</span>
+                        <span className="review-value">{data.childSex}</span>
+                    </div>
+                    <div className="review-row">
+                        <span className="review-label">Date of Birth</span>
+                        <span className="review-value">
+                            {data.childDateOfBirth}
+                        </span>
+                    </div>
+                    <div className="review-row">
+                        <span className="review-label">Address</span>
+                        <span className="review-value">
+                            {data.childAddress}
+                        </span>
+                    </div>
+                    <div className="review-row">
+                        <span className="review-label">Nationality</span>
+                        <span className="review-value">
+                            {data.childNationality}
+                        </span>
+                    </div>
+                    <div className="review-row">
+                        <span className="review-label">Blood Type</span>
+                        <span className="review-value">
+                            {data.childBloodType}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Child Information</h3>
+            {/* Added logic to show "Image Uploaded" if a file exists */}
+            <p>
+                <strong>Photo:</strong>{' '}
+                {data.childImage ? '✅ Image Attached' : '❌ No Image'}
+            </p>
+            <p>{data.childNameEnglish}</p>
+            <p>{data.childNameFurigana}</p>
+            <p>{data.childNameKanji}</p>
+            <h4>Address</h4>
+            <p>{data.childAddress}</p>
+            <h4>Emergency Contact</h4>
+            <p>{data.childContactNumber}</p>
+            <p>Sex: {data.childSex}</p>
+            <p>Date of Birth: {data.childDateOfBirth}</p>
+            <p>Nationality: {data.childNationality}</p>
+            <p>Blood Type: {data.childBloodType}</p>
+
+            <h3>Allergy Information</h3>
+            <p>Allergies: {data.hasAllergies}</p>
+            <p>Details: {data.allergyDetails}</p>
+
+            <h3>Additional Information</h3>
+            <p>{data.additionalInformation}</p>
+
+            <h3>
+                Acknowledgement:{' '}
+                {data.agreesToAcknowledgement ? '✔️ Yes' : '❌ No'}
+            </h3>
+            <div className="legal-text-box">
+                {' '}
+                <p>
+                    I understand and accept that under no circumstances shall
+                    refunds be given. <br />
+                    私は入学の申し込みに関して発生する費用は、返還されないことを理解します。
+                    <br />
+                    <br />I understand and accept that under no circumstances I
+                    shall receive refunds when the government forces the school
+                    to close down for a certain period. <br />
+                    私は役所の指示で休園する場合に関して授業料等の費用は、返還されないことを理解します。
+                    <br /> <br /> I declare that the information given in this
+                    application form is true and accurate <br />
+                    私はこの入学願書に記述した内容について事実と相違ないことを誓います。
+                </p>
+            </div>
+
+            <p className="achknowledgement-legal-text">
+                By typing my name below, I electronically sign this application
+                and attest that all information provided is true and accurate.
+            </p>
+
+            <p>
+                <strong>Signature: {data.signature}</strong>
+            </p>
+            <p>
+                <strong>Date: {data.signDate}</strong>
+            </p>
+
+            <div>
                 {error && (
                     <p
                         style={{
@@ -152,27 +249,24 @@ export default function Submit({ data, onNext, onPrevious }) {
                         {error}
                     </p>
                 )}
-                <div className="button-wrapper">
-                    {' '}
-                    <button
-                        onClick={onPrevious}
-                        className="previous-button button"
-                    >
-                        Previous
-                    </button>
-                    <button
-                        className="form button submit"
-                        onClick={handleSubmit}
-                        disabled={isSubmitting}
-                        style={{
-                            backgroundColor: isSubmitting ? '#ccc' : 'orange',
-                            color: 'white',
-                        }}
-                    >
-                        {isSubmitting ? 'Submitting...' : 'Submit Application'}
-                    </button>
-                </div>
             </div>
-        </div>
+            <div className="button-wrapper">
+                {' '}
+                <button onClick={onPrevious} className="previous-button button">
+                    Previous
+                </button>
+                <button
+                    className="form button submit"
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                    style={{
+                        backgroundColor: isSubmitting ? '#ccc' : 'orange',
+                        color: 'white',
+                    }}
+                >
+                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                </button>
+            </div>
+        </>
     );
 }

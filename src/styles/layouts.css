@@ -1,15 +1,75 @@
-.app-wrapper {
-    min-height: 100vh;
-    width: 100%;
+/* Container for the whole review page */
+.review-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 40px;
 }
-.footer {
+
+/* The Card itself */
+.review-card {
+    background-color: #fff;
+    border: 1px solid #eaeaea; /* Soft premium border */
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px; /* Prevents it from getting too wide on desktop */
+    margin-bottom: 24px; /* Space between cards */
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02); /* Barely visible drop shadow */
+    text-align: left;
+}
+
+/* The Top of the Card (Title + Edit Button) */
+.review-card-header {
     display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 240px;
-    padding-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+}
+
+.review-card-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    color: var(--color-primary); /* Your orange */
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* The Reusable Row Pattern */
+.review-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f9f9f9; /* Super faint separator */
+}
+
+/* Removes the bottom border on the very last row in a card */
+.review-row:last-child {
+    border-bottom: none;
+}
+
+.review-label {
+    color: #666; /* Gray text for labels */
+    font-size: 0.95rem;
+    flex: 1; /* Takes up left half */
+}
+
+.review-value {
+    color: #111; /* Dark text for answers */
+    font-weight: 500;
+    text-align: right;
+    flex: 1; /* Takes up right half */
+}
+.review-spacer {
+    margin-top: 20px;
 }

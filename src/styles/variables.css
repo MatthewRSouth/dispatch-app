@@ -1,6 +1,7 @@
 :root {
     /* Brand Colors */
     --color-bg: #f0efe9; /* Beige Background */
+    --color-light-bg: #f9f7ec;
     --color-primary: #f5ae4c; /* Hoshida Orange */
     --color-primary-hover: #cb8b37; /* Slightly darker orange for hover */
     --color-text-main: #595854; /* Dark Grey Text */
