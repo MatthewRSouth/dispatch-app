@@ -6,9 +6,12 @@ export default function ChildPersonalInfoOne({
 }) {
     return (
         <div>
-            <h1>Child Information お子様の内容</h1>
-            <h4>Child’s Name お子様のお名前　</h4>
+            <div className="header-wrapper">
+                <h1>Child Information お子様の内容</h1>
+            </div>
+
             <div className="form-group">
+                <h4 className="sub-header">Child’s Name お子様のお名前　</h4>
                 <label htmlFor="childNameEnglish">英語表記 </label>
                 <input
                     autoComplete="off"
@@ -45,7 +48,9 @@ export default function ChildPersonalInfoOne({
                 />
             </div>
             <div className="form-group">
-                <h4>Address and Contact Number 　住所と緊急連絡番号</h4>
+                <h4 className="sub-header">
+                    Address and Contact Number <br></br> 　住所と緊急連絡番号
+                </h4>
                 <label htmlFor="childAddress">Address 住所 </label>
                 <br />
                 <textarea
