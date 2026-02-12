@@ -20,7 +20,13 @@ function ReviewRow({ label, value }) {
         </div>
     );
 }
-
+//Helper: Edit button functionality
+function handleEdit() {
+    //1.Press the Edit button of a certain area
+    setCurrentStep(2);
+    //2.it changes the step
+    //3. The parents are taken to that step
+}
 // Helper: Converts a file to a Base64 string
 const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -31,7 +37,7 @@ const convertToBase64 = (file) => {
     });
 };
 
-export default function Submit({ data, onNext, onPrevious }) {
+export default function Submit({ data, onNext, onPrevious, onEdit }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
 
@@ -101,7 +107,9 @@ export default function Submit({ data, onNext, onPrevious }) {
                 <div className="review-card">
                     <div className="review-card-header">
                         <h2 className="card-header">Parent Information</h2>
-                        <button className="edit-button">Edit</button>
+                        <button className="edit-button" onClick={handleEdit}>
+                            Edit ✏️
+                        </button>
                     </div>
                     <ReviewRow
                         label="Father (Furigana)"
@@ -135,107 +143,77 @@ export default function Submit({ data, onNext, onPrevious }) {
                         <h2>Child Information</h2>
                         <button className="edit-button">Edit ✏️</button>
                     </div>
-
-                    <div className="review-row">
-                        <span className="review-label">Photo</span>
-                        <span className="review-value">
-                            {data.childImage ? '✅ Uploaded' : '❌ None'}
-                        </span>
+                    <ReviewRow
+                        label="Mother Phone Number"
+                        value={
+                            data.childImage ? '✅Uploaded' : '❌Not Uploaded'
+                        }
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Child Name"
+                        value={data.childNameEnglish}
+                    ></ReviewRow>
+                    <ReviewRow label="Sex" value={data.childSex}></ReviewRow>
+                    <ReviewRow
+                        label="Date of Birth"
+                        value={data.childDateOfBirth}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Address"
+                        value={data.childAddress}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Nationality"
+                        value={data.childNationality}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Blood Type"
+                        value={data.childBloodType}
+                    ></ReviewRow>
+                </div>
+                <div className="review-card">
+                    <div className="review-card-header">
+                        <h2>Allergy Information</h2>
+                        <button className="edit-button">Edit ✏️</button>
                     </div>
-                    <div className="review-row">
-                        <span className="review-label">English Name</span>
-                        <span className="review-value">
-                            {data.childNameEnglish}
-                        </span>
+                    <ReviewRow
+                        label="Allergies"
+                        value={data.hasAllergies}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Allergie Details"
+                        value={data.allergyDetails}
+                    ></ReviewRow>
+                </div>
+                <div className="review-card">
+                    <div className="review-card-header">
+                        <h2>Additional Information</h2>
+                        <button className="edit-button">Edit ✏️</button>
                     </div>
-                    <div className="review-row">
-                        <span className="review-label">Sex</span>
-                        <span className="review-value">{data.childSex}</span>
-                    </div>
-                    <div className="review-row">
-                        <span className="review-label">Date of Birth</span>
-                        <span className="review-value">
-                            {data.childDateOfBirth}
-                        </span>
-                    </div>
-                    <div className="review-row">
-                        <span className="review-label">Address</span>
-                        <span className="review-value">
-                            {data.childAddress}
-                        </span>
-                    </div>
-                    <div className="review-row">
-                        <span className="review-label">Nationality</span>
-                        <span className="review-value">
-                            {data.childNationality}
-                        </span>
-                    </div>
-                    <div className="review-row">
-                        <span className="review-label">Blood Type</span>
-                        <span className="review-value">
-                            {data.childBloodType}
-                        </span>
+                    <ReviewRow
+                        label="Additional information"
+                        value={data.additionalInformation}
+                    ></ReviewRow>
+                </div>
+                <div className="review-card">
+                    <div className="review-card-header">
+                        <h2>Acknowledgement</h2>
+                        {data.agreesToAcknowledgement ? '✅ Yes' : '❌ No'}
+                        <button className="edit-button">Edit ✏️</button>
                     </div>
                 </div>
+                <div className="review-card">
+                    <div className="review-card-header">
+                        <h2>Signature and Date</h2>
+                        <button className="edit-button">Edit ✏️</button>
+                    </div>
+                    <ReviewRow
+                        label="Siganture"
+                        value={data.signature}
+                    ></ReviewRow>
+                    <ReviewRow label="Date" value={data.signDate}></ReviewRow>
+                </div>
             </div>
-
-            <h3>Child Information</h3>
-            {/* Added logic to show "Image Uploaded" if a file exists */}
-            <p>
-                <strong>Photo:</strong>{' '}
-                {data.childImage ? '✅ Image Attached' : '❌ No Image'}
-            </p>
-            <p>{data.childNameEnglish}</p>
-            <p>{data.childNameFurigana}</p>
-            <p>{data.childNameKanji}</p>
-            <h4>Address</h4>
-            <p>{data.childAddress}</p>
-            <h4>Emergency Contact</h4>
-            <p>{data.childContactNumber}</p>
-            <p>Sex: {data.childSex}</p>
-            <p>Date of Birth: {data.childDateOfBirth}</p>
-            <p>Nationality: {data.childNationality}</p>
-            <p>Blood Type: {data.childBloodType}</p>
-
-            <h3>Allergy Information</h3>
-            <p>Allergies: {data.hasAllergies}</p>
-            <p>Details: {data.allergyDetails}</p>
-
-            <h3>Additional Information</h3>
-            <p>{data.additionalInformation}</p>
-
-            <h3>
-                Acknowledgement:{' '}
-                {data.agreesToAcknowledgement ? '✔️ Yes' : '❌ No'}
-            </h3>
-            <div className="legal-text-box">
-                {' '}
-                <p>
-                    I understand and accept that under no circumstances shall
-                    refunds be given. <br />
-                    私は入学の申し込みに関して発生する費用は、返還されないことを理解します。
-                    <br />
-                    <br />I understand and accept that under no circumstances I
-                    shall receive refunds when the government forces the school
-                    to close down for a certain period. <br />
-                    私は役所の指示で休園する場合に関して授業料等の費用は、返還されないことを理解します。
-                    <br /> <br /> I declare that the information given in this
-                    application form is true and accurate <br />
-                    私はこの入学願書に記述した内容について事実と相違ないことを誓います。
-                </p>
-            </div>
-
-            <p className="achknowledgement-legal-text">
-                By typing my name below, I electronically sign this application
-                and attest that all information provided is true and accurate.
-            </p>
-
-            <p>
-                <strong>Signature: {data.signature}</strong>
-            </p>
-            <p>
-                <strong>Date: {data.signDate}</strong>
-            </p>
 
             <div>
                 {error && (
@@ -260,7 +238,7 @@ export default function Submit({ data, onNext, onPrevious }) {
                     onClick={handleSubmit}
                     disabled={isSubmitting}
                     style={{
-                        backgroundColor: isSubmitting ? '#ccc' : 'orange',
+                        backgroundColor: isSubmitting ? '#ccc' : '#6fc276',
                         color: 'white',
                     }}
                 >

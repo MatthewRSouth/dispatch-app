@@ -16,6 +16,7 @@
     border: 1px solid transparent;
     transition: all 0.2s ease;
     cursor: pointer;
+    max-width: 250px;
 }
 
 .button:hover {
@@ -37,6 +38,7 @@
     color: #fff;
     font-size: 22px;
     border: 1px solid transparent;
+    max-width: 250px;
 }
 .submit {
     width: 70%;
