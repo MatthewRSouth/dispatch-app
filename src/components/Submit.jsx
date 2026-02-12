@@ -134,12 +134,11 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                         value={data.motherPhoneNumber}
                     ></ReviewRow>
                 </div>
-
                 <div className="review-card">
                     <div className="review-card-header">
-                        <h2>Child Information</h2>
+                        <h2>Picture</h2>
                         <button
-                            onClick={() => onEdit(4)}
+                            onClick={() => onEdit(2)}
                             className="edit-button"
                         >
                             Edit ✏️
@@ -151,18 +150,47 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                             data.childImage ? '✅Uploaded' : '❌Not Uploaded'
                         }
                     ></ReviewRow>
+                </div>
+                <div className="review-card">
+                    <div className="review-card-header">
+                        <h2>Child Information one</h2>
+                        <button
+                            onClick={() => onEdit(4)}
+                            className="edit-button"
+                        >
+                            Edit ✏️
+                        </button>
+                    </div>
                     <ReviewRow
                         label="Child Name"
                         value={data.childNameEnglish}
                     ></ReviewRow>
-                    <ReviewRow label="Sex" value={data.childSex}></ReviewRow>
-                    <ReviewRow
-                        label="Date of Birth"
-                        value={data.childDateOfBirth}
-                    ></ReviewRow>
                     <ReviewRow
                         label="Address"
                         value={data.childAddress}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Contact Number"
+                        value={data.childContactNumber}
+                    ></ReviewRow>
+                </div>
+                <div className="review-card">
+                    <div className="review-card-header">
+                        <h2>Child Information Two</h2>
+                        <button
+                            className="edit-button"
+                            onClick={() => onEdit(5)}
+                        >
+                            Edit ✏️
+                        </button>
+                    </div>
+                    <ReviewRow
+                        label="Child Sex"
+                        value={data.childSex}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="Date of Birth"
+                        value={data.childDateOfBirth}
                     ></ReviewRow>
                     <ReviewRow
                         label="Nationality"
@@ -210,7 +238,6 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                 <div className="review-card">
                     <div className="review-card-header">
                         <h2>Acknowledgement</h2>
-                        {data.agreesToAcknowledgement ? '✅ Yes' : '❌ No'}
                         <button
                             onClick={() => onEdit(8)}
                             className="edit-button"
@@ -218,17 +245,12 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                             Edit ✏️
                         </button>
                     </div>
-                </div>
-                <div className="review-card">
-                    <div className="review-card-header">
-                        <h2>Signature and Date</h2>
-                        <button
-                            onClick={() => onEdit(8)}
-                            className="edit-button"
-                        >
-                            Edit ✏️
-                        </button>
-                    </div>
+                    <ReviewRow
+                        label="Acknowledged"
+                        value={
+                            data.agreesToAcknowledgement ? '✅ Yes' : '❌ No'
+                        }
+                    ></ReviewRow>
                     <ReviewRow
                         label="Siganture"
                         value={data.signature}
