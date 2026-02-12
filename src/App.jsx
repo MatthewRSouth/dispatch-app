@@ -22,6 +22,7 @@ import './styles/buttons.css';
 function App() {
     //1. Current step/page state
     const [currentStep, setCurrentStep] = useState(1);
+    const [isEditMode, setIsEditMode] = useState(false);
 
     //2. Master Data save
     const [formData, setFormData] = useState({
@@ -67,8 +68,32 @@ function App() {
     });
 
     //Helper function to advance
-    const nextStep = () => setCurrentStep(currentStep + 1);
-    const previousStep = () => setCurrentStep(currentStep - 1);
+    // const nextStep = () =>
+    //     setCurrentStep(() => {
+    //         if (isEditMode === true) {
+    //             setCurrentStep(9);
+    //             setIsEditMode(false);
+    //         } else {
+    //             setCurrentStep(currentStep + 1);
+    //         }
+    //     });
+    function nextStep() {
+        if (isEditMode) {
+            setCurrentStep(9);
+            setIsEditMode(false);
+        } else {
+            setCurrentStep(currentStep + 1);
+        }
+    }
+    // const previousStep = () => setCurrentStep(currentStep - 1);
+    function previousStep() {
+        if (isEditMode) setIsEditMode(false);
+        setCurrentStep(currentStep - 1);
+    }
+    const edit = (step) => {
+        setCurrentStep(step);
+        setIsEditMode(true);
+    };
 
     const handleInput = (e) => {
         const { name, value, type, checked } = e.target;
@@ -158,6 +183,7 @@ function App() {
                         handleChange={handleInput}
                         onNext={nextStep}
                         onPrevious={previousStep}
+                        onEdit={edit}
                     />
                 )}
                 {currentStep === 10 && (

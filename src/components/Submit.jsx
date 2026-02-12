@@ -20,13 +20,7 @@ function ReviewRow({ label, value }) {
         </div>
     );
 }
-//Helper: Edit button functionality
-function handleEdit() {
-    //1.Press the Edit button of a certain area
-    setCurrentStep(2);
-    //2.it changes the step
-    //3. The parents are taken to that step
-}
+
 // Helper: Converts a file to a Base64 string
 const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -107,7 +101,10 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                 <div className="review-card">
                     <div className="review-card-header">
                         <h2 className="card-header">Parent Information</h2>
-                        <button className="edit-button" onClick={handleEdit}>
+                        <button
+                            className="edit-button"
+                            onClick={() => onEdit(3)}
+                        >
                             Edit ✏️
                         </button>
                     </div>
@@ -141,10 +138,15 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                 <div className="review-card">
                     <div className="review-card-header">
                         <h2>Child Information</h2>
-                        <button className="edit-button">Edit ✏️</button>
+                        <button
+                            onClick={() => onEdit(4)}
+                            className="edit-button"
+                        >
+                            Edit ✏️
+                        </button>
                     </div>
                     <ReviewRow
-                        label="Mother Phone Number"
+                        label="Child Photo"
                         value={
                             data.childImage ? '✅Uploaded' : '❌Not Uploaded'
                         }
@@ -174,7 +176,12 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                 <div className="review-card">
                     <div className="review-card-header">
                         <h2>Allergy Information</h2>
-                        <button className="edit-button">Edit ✏️</button>
+                        <button
+                            onClick={() => onEdit(6)}
+                            className="edit-button"
+                        >
+                            Edit ✏️
+                        </button>
                     </div>
                     <ReviewRow
                         label="Allergies"
@@ -188,7 +195,12 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                 <div className="review-card">
                     <div className="review-card-header">
                         <h2>Additional Information</h2>
-                        <button className="edit-button">Edit ✏️</button>
+                        <button
+                            onClick={() => onEdit(7)}
+                            className="edit-button"
+                        >
+                            Edit ✏️
+                        </button>
                     </div>
                     <ReviewRow
                         label="Additional information"
@@ -199,13 +211,23 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                     <div className="review-card-header">
                         <h2>Acknowledgement</h2>
                         {data.agreesToAcknowledgement ? '✅ Yes' : '❌ No'}
-                        <button className="edit-button">Edit ✏️</button>
+                        <button
+                            onClick={() => onEdit(8)}
+                            className="edit-button"
+                        >
+                            Edit ✏️
+                        </button>
                     </div>
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
                         <h2>Signature and Date</h2>
-                        <button className="edit-button">Edit ✏️</button>
+                        <button
+                            onClick={() => onEdit(8)}
+                            className="edit-button"
+                        >
+                            Edit ✏️
+                        </button>
                     </div>
                     <ReviewRow
                         label="Siganture"
