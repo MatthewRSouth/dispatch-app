@@ -7,3 +7,9 @@
     font-weight: 400;
     font-style: normal;
 }
+footer {
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
+    margin-top: 40px;
+}
