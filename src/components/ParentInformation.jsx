@@ -4,6 +4,16 @@ export default function ParentInformation({
     onNext,
     onPrevious,
 }) {
+    const isFatherComplete =
+        data.fatherNameFurigana.length > 0 &&
+        data.fatherNameKanji.length > 0 &&
+        data.fatherPhoneNumber.length > 0;
+    const isMotherComplete =
+        data.motherNameFurigana.length > 0 &&
+        data.motherNameKanji.length > 0 &&
+        data.motherPhoneNumber.length > 0;
+
+    const canProceed = isFatherComplete || isMotherComplete;
     return (
         <>
             <div className="form-wrapper">
@@ -95,7 +105,11 @@ export default function ParentInformation({
                 <button className="previous-button button" onClick={onPrevious}>
                     Previous
                 </button>
-                <button className="next-button button" onClick={onNext}>
+                <button
+                    className="next-button button"
+                    onClick={onNext}
+                    disabled={!canProceed}
+                >
                     Next
                 </button>
             </div>

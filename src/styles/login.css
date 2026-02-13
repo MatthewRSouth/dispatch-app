@@ -1,12 +1,9 @@
 .login-container {
-    width: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 80%;
+    height: 100%;
     font-size: 1.5rem;
-    position: relative;
-    top: 7rem;
     color: var(--color-text-main);
 }
 .login-image {
@@ -14,10 +11,13 @@
     height: 0;
 }
 .login-form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-items: center;
 }
 .login-instruction {
-    width: 100%;
+    width: 80%;
     text-align: center;
     font-weight: 600;
 }
