@@ -42,7 +42,7 @@ export default function LogInScreen({ data, handleChange, onNext }) {
             onNext();
         } catch (error) {
             console.error('Login Error', error);
-            setError('Something went wrong. Please try again.');
+            setError('Wrong Username or Password. Please try again.');
         } finally {
             setIsLoading(false);
         }
