@@ -4,6 +4,11 @@ export default function ChildPersonalInfoTwo({
     onNext,
     onPrevious,
 }) {
+    const isFormComplete =
+        data.childSex?.length > 0 &&
+        data.childDateOfBirth?.length > 0 &&
+        data.childNationality?.length > 0 &&
+        data.childBloodType?.length > 0;
     return (
         <div>
             <div className="form-wrapper">
@@ -83,7 +88,11 @@ export default function ChildPersonalInfoTwo({
                 <button className="previous-button button" onClick={onPrevious}>
                     Previous
                 </button>
-                <button className="next-button button" onClick={onNext}>
+                <button
+                    className="next-button button"
+                    onClick={onNext}
+                    disabled={!isFormComplete}
+                >
                     Next
                 </button>
             </div>

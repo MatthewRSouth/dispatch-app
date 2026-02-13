@@ -5,13 +5,13 @@ export default function ParentInformation({
     onPrevious,
 }) {
     const isFatherComplete =
-        data.fatherNameFurigana.length > 0 &&
-        data.fatherNameKanji.length > 0 &&
-        data.fatherPhoneNumber.length > 0;
+        data.fatherNameFurigana?.length > 0 &&
+        data.fatherNameKanji?.length > 0 &&
+        data.fatherPhoneNumber?.length > 5;
     const isMotherComplete =
-        data.motherNameFurigana.length > 0 &&
-        data.motherNameKanji.length > 0 &&
-        data.motherPhoneNumber.length > 0;
+        data.motherNameFurigana?.length > 0 &&
+        data.motherNameKanji?.length > 0 &&
+        data.motherPhoneNumber?.length > 5;
 
     const canProceed = isFatherComplete || isMotherComplete;
     return (

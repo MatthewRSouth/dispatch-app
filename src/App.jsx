@@ -6,7 +6,7 @@ import ChildPersonalInfoOne from './components/ChildPersonalInformationOne';
 import ChildPersonalInfoTwo from './components/ChildPersonalInformationTwo';
 import ImageUpload from './components/ImageUpload';
 import LogInScreen from './components/LogInScreen';
-import ParentAcknoledgement from './components/ParentAcknowledgement';
+import ParentAcknowledgement from './components/ParentAcknowledgement';
 import ParentInformation from './components/ParentInformation';
 import Submit from './components/Submit';
 import SuccessMessage from './components/SuccessMessage';
@@ -170,7 +170,7 @@ function App() {
                     />
                 )}
                 {currentStep === 8 && (
-                    <ParentAcknoledgement
+                    <ParentAcknowledgement
                         data={formData}
                         handleChange={handleInput}
                         onNext={nextStep}
