@@ -7,9 +7,18 @@
     font-weight: 400;
     font-style: normal;
 }
-footer {
+.footer {
     display: flex;
     justify-content: center;
     align-content: flex-end;
-    margin-top: 40px;
+    margin-top: 50px;
+}
+@media screen and (max-width: 375px) {
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 90%;
+        max-width: none;
+        font-size: 16px;
+    }
 }
