@@ -48,3 +48,8 @@
 .login-button {
     width: 20rem;
 }
+.login-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
