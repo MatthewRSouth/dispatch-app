@@ -1,4 +1,7 @@
 export default function Allergies({ data, handleChange, onNext, onPrevious }) {
+    const isFormComplete =
+        data.hasAllergies === 'no' ||
+        (data.hasAllergies === 'yes' && data.allergyDetails?.length > 0);
     return (
         <>
             <div className="form-wrapper">
@@ -55,7 +58,11 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
                 <button className="previous-button button" onClick={onPrevious}>
                     Previous
                 </button>
-                <button className="next-button button" onClick={onNext}>
+                <button
+                    className="next-button button"
+                    onClick={onNext}
+                    disabled={!isFormComplete}
+                >
                     Next
                 </button>
             </div>

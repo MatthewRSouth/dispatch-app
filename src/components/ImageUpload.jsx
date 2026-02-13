@@ -100,7 +100,11 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
                 <button className="previous-button button" onClick={onPrevious}>
                     Previous
                 </button>
-                <button className="next-button button" onClick={onNext}>
+                <button
+                    className="next-button button"
+                    onClick={onNext}
+                    disabled={!preview}
+                >
                     Next
                 </button>
             </div>

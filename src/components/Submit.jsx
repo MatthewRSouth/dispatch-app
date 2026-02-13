@@ -39,8 +39,6 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // 👇 ADD THIS LOG HERE
-        console.log('📦 PACKAGE CHECK:', data.childImage);
 
         setIsSubmitting(true);
         setError(null);

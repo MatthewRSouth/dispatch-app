@@ -4,6 +4,12 @@ export default function ChildPersonalInfoOne({
     onNext,
     onPrevious,
 }) {
+    const childFormComplete =
+        data.childNameEnglish?.length > 0 &&
+        data.childNameFurigana?.length > 0 &&
+        data.childNameKanji?.length > 0 &&
+        data.childAddress?.length > 0 &&
+        data.childContactNumber?.length > 8;
     return (
         <div>
             <div className="header-wrapper">
@@ -83,7 +89,11 @@ export default function ChildPersonalInfoOne({
                 <button className="previous-button button" onClick={onPrevious}>
                     Previous
                 </button>
-                <button className="next-button button" onClick={onNext}>
+                <button
+                    className="next-button button"
+                    onClick={onNext}
+                    disabled={!childFormComplete}
+                >
                     Next
                 </button>
             </div>

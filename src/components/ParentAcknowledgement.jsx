@@ -1,9 +1,13 @@
-export default function ParentAcknoledgement({
+export default function ParentAcknowledgement({
     data,
     handleChange,
     onNext,
     onPrevious,
 }) {
+    const isFormComplete =
+        data.agreesToAcknowledgement === true &&
+        data.signature?.length > 0 &&
+        data.signDate?.length > 0;
     return (
         <>
             <div>
@@ -53,7 +57,7 @@ export default function ParentAcknoledgement({
                     </label>
                 </div>
                 <div className="form-group">
-                    <p className="achknowledgement-legal-text">
+                    <p className="acknowledgement-legal-text">
                         By typing my name below, I electronically sign this
                         application and attest that all information provided is
                         true and accurate.
@@ -91,7 +95,11 @@ export default function ParentAcknoledgement({
                     >
                         Previous
                     </button>
-                    <button className="next-button button" onClick={onNext}>
+                    <button
+                        className="next-button button"
+                        onClick={onNext}
+                        disabled={!isFormComplete}
+                    >
                         Next
                     </button>
                 </div>
