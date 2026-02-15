@@ -24,6 +24,10 @@ function App() {
     const [currentStep, setCurrentStep] = useState(1);
     const [isEditMode, setIsEditMode] = useState(false);
 
+    const handleSkip = () => {
+        setCurrentStep(10);
+    };
+
     //2. Master Data save
     const [formData, setFormData] = useState({
         // Step 1: Login
@@ -115,6 +119,7 @@ function App() {
                         onNext={nextStep}
                         data={formData}
                         handleChange={handleInput}
+                        skipToEnd={handleSkip}
                     />
                 )}
                 {currentStep === 2 && (

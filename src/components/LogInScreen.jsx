@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const SUBMIT_URL = '/api/verify';
 
-export default function LogInScreen({ data, handleChange, onNext }) {
+export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -120,6 +120,7 @@ export default function LogInScreen({ data, handleChange, onNext }) {
                         ? 'Verifying'
                         : 'Login'}
                 </button>
+                <button onClick={skipToEnd}>skip</button>
             </div>
         </div>
     );
