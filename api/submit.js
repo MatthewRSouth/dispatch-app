@@ -68,6 +68,8 @@ export default async function handler(req, res) {
             data.motherNameKanji || '', // Col G
             data.motherPhoneNumber || '', // Col H
 
+            data.emailAddress || '',
+
             // 4. Child Info
             data.childNameEnglish || '', // Col I
             data.childNameFurigana || '', // Col J
