@@ -7,7 +7,7 @@
 .header-line {
     width: 100%;
     height: 0.5rem;
-    background-color: orange;
+    background-color: #6fc276;
 }
 .next-steps-container {
     display: flex;
@@ -20,4 +20,14 @@
     flex-direction: column;
     text-align: center;
     width: 90%;
+}
+.header-image {
+    width: 150px;
+}
+.header-text {
+    color: #6fc276;
+}
+.card-image {
+    width: 100px;
+    margin: 0;
 }

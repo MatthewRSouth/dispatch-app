@@ -8,6 +8,7 @@
     --color-text-light: #8c8b88; /* Light Grey (for placeholders) */
     --color-white: #ffffff;
     --color-error: #e74c3c;
+    --success-color:#6fc276
 
     /* Spacing & Borders */
     --radius-sm: 8px;
