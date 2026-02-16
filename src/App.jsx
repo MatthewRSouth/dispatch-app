@@ -45,6 +45,8 @@ function App() {
         motherNameKanji: '',
         motherPhoneNumber: '',
 
+        emailAddress: '',
+
         // Step 4: Child Personal Info One
         childNameEnglish: '',
         childNameFurigana: '',

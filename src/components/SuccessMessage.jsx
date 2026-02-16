@@ -1,5 +1,4 @@
 import '../styles/success.css';
-import '..//styles/variables.css';
 import './Footer';
 
 function Card({ image, title, description, alt }) {
@@ -23,7 +22,7 @@ export default function SuccessMessage({ onPrevious }) {
                     alt=""
                     className="header-image"
                 />
-                <h1 className="header-text">Submission Succesful</h1>
+                <h1 className="header-text">Submission Successful</h1>
                 <hr className="header-line" />
             </header>
             <div className="next-steps-container">
@@ -36,7 +35,7 @@ export default function SuccessMessage({ onPrevious }) {
                 <Card
                     image="src/assets/yen-circle-svgrepo-com.svg"
                     title="Payment"
-                    description="Please make your payment at this bank"
+                    description="Bank transfer details have been sent to your email."
                 ></Card>
                 <Card
                     image="src/assets/hoshida-dispatch-qr-code.png"

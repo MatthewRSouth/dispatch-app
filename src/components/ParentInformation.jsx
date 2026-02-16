@@ -12,8 +12,9 @@ export default function ParentInformation({
         data.motherNameFurigana?.length > 0 &&
         data.motherNameKanji?.length > 0 &&
         data.motherPhoneNumber?.length > 5;
-
-    const canProceed = isFatherComplete || isMotherComplete;
+    const isEmailComplete = data.emailAddress?.includes('@');
+    const canProceed =
+        (isFatherComplete || isMotherComplete) && isEmailComplete;
     return (
         <>
             <div className="form-wrapper">
@@ -24,7 +25,6 @@ export default function ParentInformation({
                         ご両親の内容
                     </h1>
                 </div>
-
                 <h4 className="sub-header">Father’s Information 父親の情報</h4>
                 <div className="form-group">
                     <label htmlFor="fatherNameFurigana">フリガナ</label>
@@ -97,6 +97,18 @@ export default function ParentInformation({
                         value={data.motherPhoneNumber}
                         onChange={handleChange}
                         placeholder="例）090-1234-5678"
+                    />
+                </div>{' '}
+                <div className="form-group">
+                    <h4 htmlFor="" className="sub-header">
+                        Email Address　メール <span className="required"></span>
+                    </h4>
+                    <input
+                        type="email"
+                        name="emailAddress"
+                        value={data.emailAddress}
+                        onChange={handleChange}
+                        placeholder="example@email.com"
                     />
                 </div>
             </div>
