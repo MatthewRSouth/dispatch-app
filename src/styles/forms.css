@@ -177,3 +177,10 @@ input[type='radio'] {
     color: #333;
     line-height: 1.5;
 }
+
+input[type='date'] {
+    max-width: 200px;
+    align-self: flex-start;
+    margin-left: 2px;
+    cursor: pointer;
+}
