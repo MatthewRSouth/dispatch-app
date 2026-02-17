@@ -41,7 +41,7 @@ export default function SuccessMessage({ onPrevious }) {
                     description="Bank transfer details have been sent to your email."
                 ></Card>
                 <Card
-                    image="src/assets/hoshida-dispatch-qr-code.png"
+                    image={websiteQrCode}
                     alt="website qr code"
                     title="Website"
                     description="Please see our website for any other information you need."
