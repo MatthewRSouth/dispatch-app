@@ -62,6 +62,7 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
                         Username{' '}
                     </label>
                     <input
+                        autoCapitalize="none"
                         type="text"
                         id="username"
                         name="username"
@@ -76,6 +77,7 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
                         Password{' '}
                     </label>
                     <input
+                        autoCapitalize="none"
                         type="password"
                         id="password"
                         name="password"
