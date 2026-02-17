@@ -179,7 +179,7 @@ input[type='radio'] {
 }
 
 input[type='date'] {
-    max-width: 200px;
+    max-width: 300px;
     align-self: flex-start;
     margin-left: 2px;
     cursor: pointer;
