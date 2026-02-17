@@ -179,8 +179,8 @@ input[type='radio'] {
 }
 
 input[type='date'] {
-    max-width: 300px;
-    align-self: flex-start;
-    margin-left: 2px;
+    width: 100%;
+    max-width: 350px;
     cursor: pointer;
+    align-self: flex-start;
 }
