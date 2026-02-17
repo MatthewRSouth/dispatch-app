@@ -1,5 +1,8 @@
 import '../styles/success.css';
 import './Footer';
+import successMark from '../assets/check-circle-svgrepo-com (2).svg';
+import yenMark from '../assets/yen-circle-svgrepo-com.svg';
+import websiteQrCode from '../assets/hoshida-dispatch-qr-code.png';
 
 function Card({ image, title, description, alt }) {
     return (
@@ -18,8 +21,8 @@ export default function SuccessMessage({ onPrevious }) {
         <>
             <header className="header-container">
                 <img
-                    src="src/assets/check-circle-svgrepo-com (2).svg"
-                    alt=""
+                    src={successMark}
+                    alt="success check mark"
                     className="header-image"
                 />
                 <h1 className="header-text">Submission Successful</h1>
@@ -33,7 +36,7 @@ export default function SuccessMessage({ onPrevious }) {
                     description="Please follow us on Line so we can give you the most up-to-date information"
                 ></Card>
                 <Card
-                    image="src/assets/yen-circle-svgrepo-com.svg"
+                    image={yenMark}
                     title="Payment"
                     description="Bank transfer details have been sent to your email."
                 ></Card>
