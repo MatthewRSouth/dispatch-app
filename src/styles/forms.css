@@ -181,6 +181,7 @@ input[type='radio'] {
 input[type='date'] {
     width: 100%;
     max-width: 350px;
+    padding-right: 40px;
     cursor: pointer;
     align-self: flex-start;
 }
