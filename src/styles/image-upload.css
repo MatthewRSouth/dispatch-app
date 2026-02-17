@@ -8,7 +8,9 @@
 }
 
 .image-upload-box {
-    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 95%;
     max-width: 300px;
     height: 300px; /* Square box */
     background-color: #e0e0e0;
