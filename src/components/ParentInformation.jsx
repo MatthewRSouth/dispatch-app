@@ -55,6 +55,8 @@ export default function ParentInformation({
                     <input
                         autoComplete="tel"
                         type="tel"
+                        inputMode="numeric"
+                        pattern="[0-9]"
                         id="fatherPhoneNumber"
                         name="fatherPhoneNumber"
                         value={data.fatherPhoneNumber}
@@ -92,6 +94,8 @@ export default function ParentInformation({
                     <input
                         autoComplete="tel"
                         type="tel"
+                        inputMode="numeric"
+                        pattern="[0-9]"
                         id="motherPhoneNumber"
                         name="motherPhoneNumber"
                         value={data.motherPhoneNumber}
@@ -105,6 +109,7 @@ export default function ParentInformation({
                     </h4>
                     <input
                         type="email"
+                        autoCapitalize="none"
                         name="emailAddress"
                         value={data.emailAddress}
                         onChange={handleChange}
