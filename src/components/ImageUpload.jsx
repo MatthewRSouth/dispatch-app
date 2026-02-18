@@ -58,7 +58,7 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
     return (
         <>
             <div className="image-upload-wrapper">
-                <h1>Image Uploader</h1>
+                <h1>写真のアップロード</h1>
                 <div className="image-upload-container">
                     <label className="image-upload-box">
                         <input
@@ -79,10 +79,10 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
                             <div className="placeholder-content">
                                 <span className="upload-icon">📸</span>
                                 <p className="upload-text">
-                                    Tap to upload a photo
+                                    タップして<br></br>写真を選択下さい
                                 </p>
                                 <small className="upload-hint">
-                                    Face clearly displayed
+                                    顔がはっきり見える写真
                                 </small>
                             </div>
                         )}
@@ -91,21 +91,21 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
                     {/* Remove Button */}
                     {preview && (
                         <button className="remove-btn" onClick={handleRemove}>
-                            Upload Again
+                            再アップロード
                         </button>
                     )}
                 </div>
             </div>
             <div className="button-wrapper">
                 <button className="previous-button button" onClick={onPrevious}>
-                    Previous
+                    戻る
                 </button>
                 <button
                     className="next-button button"
                     onClick={onNext}
                     disabled={!preview}
                 >
-                    Next
+                    次へ
                 </button>
             </div>
         </>

@@ -21,11 +21,11 @@ export default function ParentInformation({
                 <div className="header-wrapper">
                     {' '}
                     <h1 className="main-header">
-                        Parent/Guardian Information <br />
-                        ご両親の内容
+                        Guardian Information <br />
+                        保護者情報
                     </h1>
                 </div>
-                <h4 className="sub-header">Father’s Information 父親の情報</h4>
+                <h4 className="sub-header">Guardian Information 保護者情報</h4>
                 <div className="form-group">
                     <label htmlFor="fatherNameFurigana">フリガナ</label>
                     <input
@@ -64,7 +64,7 @@ export default function ParentInformation({
                         placeholder="例）090-1234-5678"
                     />
                 </div>
-                <h4 className="sub-header">Mother’s Information 母親の情報</h4>
+                <h4 className="sub-header">Guardian Information 保護者情報</h4>
                 <div className="form-group">
                     <label htmlFor="motherNameFurigana">フリガナ</label>
                     <input
@@ -105,7 +105,8 @@ export default function ParentInformation({
                 </div>{' '}
                 <div className="form-group">
                     <h4 htmlFor="" className="sub-header">
-                        Email Address　メール <span className="required"></span>
+                        Email Address　Eメール{' '}
+                        <span className="required"></span>
                     </h4>
                     <input
                         type="email"
@@ -120,14 +121,14 @@ export default function ParentInformation({
             <div className="button-wrapper">
                 {' '}
                 <button className="previous-button button" onClick={onPrevious}>
-                    Previous
+                    戻る
                 </button>
                 <button
                     className="next-button button"
                     onClick={onNext}
                     disabled={!canProceed}
                 >
-                    Next
+                    次へ
                 </button>
             </div>
         </>

@@ -89,171 +89,164 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
         <>
             <div className="review-wrapper">
                 <div className="header-wrapper">
-                    <h1 className="main-header">Review and Submit</h1>
-                    <p>
-                        Please confirm all information is correct before
-                        submitting
-                    </p>
+                    <h1 className="main-header">確認</h1>
+                    <p>提出する前に、情報を確認してください</p>
                 </div>
 
                 <div className="review-card">
                     <div className="review-card-header">
-                        <h2 className="card-header">Parent Information</h2>
+                        <h2 className="card-header">保護者情報</h2>
                         <button
                             className="edit-button"
                             onClick={() => onEdit(3)}
                         >
-                            Edit ✏️
+                            編集 ✏️
                         </button>
                     </div>
                     <ReviewRow
-                        label="Father (Furigana)"
+                        label="保護者氏名 (フリガナ）"
                         value={data.fatherNameFurigana}
                     ></ReviewRow>
                     <ReviewRow
-                        label="Father Kanji"
+                        label="保護者氏名　（漢字）"
                         value={data.fatherNameKanji}
                     ></ReviewRow>
                     <ReviewRow
-                        label="Father Phone Number"
+                        label="保護者電話番号"
                         value={data.fatherPhoneNumber}
                     ></ReviewRow>
                     <div className="review-spacer"></div>
                     <ReviewRow
-                        label="Mother (Furigana)"
+                        label="保護者氏名 (フリガナ）"
                         value={data.motherNameFurigana}
                     ></ReviewRow>
                     <ReviewRow
-                        label="Mother Kanji"
+                        label="保護者氏名　（漢字）"
                         value={data.motherNameKanji}
                     ></ReviewRow>
                     <ReviewRow
-                        label="Mother Phone Number"
+                        label="保護者電話番号"
                         value={data.motherPhoneNumber}
                     ></ReviewRow>
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
-                        <h2>Picture</h2>
+                        <h2>写真</h2>
                         <button
                             onClick={() => onEdit(2)}
                             className="edit-button"
                         >
-                            Edit ✏️
+                            編集 ✏️
                         </button>
                     </div>
                     <ReviewRow
-                        label="Child Photo"
+                        label="お子様の写真"
                         value={
-                            data.childImage ? '✅Uploaded' : '❌Not Uploaded'
+                            data.childImage
+                                ? '✅アップロード済'
+                                : '❌アップロード未'
                         }
                     ></ReviewRow>
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
-                        <h2>Child Information one</h2>
+                        <h2>連絡先</h2>
                         <button
                             onClick={() => onEdit(4)}
                             className="edit-button"
                         >
-                            Edit ✏️
+                            編集 ✏️
                         </button>
                     </div>
                     <ReviewRow
-                        label="Child Name"
+                        label="お子様の氏名"
                         value={data.childNameEnglish}
                     ></ReviewRow>
                     <ReviewRow
-                        label="Address"
+                        label="住所"
                         value={data.childAddress}
                     ></ReviewRow>
                     <ReviewRow
-                        label="Contact Number"
+                        label="緊急連絡先"
                         value={data.childContactNumber}
                     ></ReviewRow>
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
-                        <h2>Child Information Two</h2>
+                        <h2>お子様情報</h2>
                         <button
                             className="edit-button"
                             onClick={() => onEdit(5)}
                         >
-                            Edit ✏️
+                            編集 ✏️
                         </button>
                     </div>
+                    <ReviewRow label="性別" value={data.childSex}></ReviewRow>
                     <ReviewRow
-                        label="Child Sex"
-                        value={data.childSex}
-                    ></ReviewRow>
-                    <ReviewRow
-                        label="Date of Birth"
+                        label="生年月日"
                         value={data.childDateOfBirth}
                     ></ReviewRow>
                     <ReviewRow
-                        label="Nationality"
+                        label="国籍"
                         value={data.childNationality}
                     ></ReviewRow>
                     <ReviewRow
-                        label="Blood Type"
+                        label="血液型"
                         value={data.childBloodType}
                     ></ReviewRow>
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
-                        <h2>Allergy Information</h2>
+                        <h2>アレルギー</h2>
                         <button
                             onClick={() => onEdit(6)}
                             className="edit-button"
                         >
-                            Edit ✏️
+                            編集 ✏️
                         </button>
                     </div>
                     <ReviewRow
-                        label="Allergies"
+                        label="アレルギー"
                         value={data.hasAllergies}
                     ></ReviewRow>
                     <ReviewRow
-                        label="Allergie Details"
+                        label="アレルギー詳細"
                         value={data.allergyDetails}
                     ></ReviewRow>
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
-                        <h2>Additional Information</h2>
+                        <h2>その他</h2>
                         <button
                             onClick={() => onEdit(7)}
                             className="edit-button"
                         >
-                            Edit ✏️
+                            編集 ✏️
                         </button>
                     </div>
                     <ReviewRow
-                        label="Additional information"
+                        label="その他"
                         value={data.additionalInformation}
                     ></ReviewRow>
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
-                        <h2>Acknowledgement</h2>
+                        <h2>保護者の承諾</h2>
                         <button
                             onClick={() => onEdit(8)}
                             className="edit-button"
                         >
-                            Edit ✏️
+                            編集 ✏️
                         </button>
                     </div>
                     <ReviewRow
-                        label="Acknowledged"
+                        label="承諾"
                         value={
                             data.agreesToAcknowledgement ? '✅ Yes' : '❌ No'
                         }
                     ></ReviewRow>
-                    <ReviewRow
-                        label="Siganture"
-                        value={data.signature}
-                    ></ReviewRow>
-                    <ReviewRow label="Date" value={data.signDate}></ReviewRow>
+                    <ReviewRow label="署名" value={data.signature}></ReviewRow>
+                    <ReviewRow label="日付" value={data.signDate}></ReviewRow>
                 </div>
             </div>
 
