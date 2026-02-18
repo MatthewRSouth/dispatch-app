@@ -8,7 +8,9 @@ export default function ChildPersonalInfoTwo({
         data.childSex?.length > 0 &&
         data.childDateOfBirth?.length > 0 &&
         data.childNationality?.length > 0 &&
-        data.childBloodType?.length > 0;
+        data.childBloodType?.length > 0 &&
+        data.childSchool?.length > 0 &&
+        data.childCourse?.length > 0;
     return (
         <div>
             <div className="form-wrapper">
@@ -80,6 +82,30 @@ export default function ChildPersonalInfoTwo({
                         <option value="O">O型</option>
                         <option value="AB">AB型</option>
                         <option value="Unknown　不明">Unknown 不明</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="childSchool">School Name 学校名 </label>
+                    <input
+                        type="text"
+                        value={data.childSchool}
+                        onChange={handleChange}
+                        name="childSchool"
+                        id="childSchool"
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="childCourse">Course コース </label>
+                    <select
+                        name="childCourse"
+                        id="childCourse"
+                        value={data.childCourse}
+                        onChange={handleChange}
+                    >
+                        <option value="">-- Select --</option>
+                        <option value="40回">40回</option>
+                        <option value="60回">60回</option>
+                        <option value="80回">80回</option>
                     </select>
                 </div>
             </div>

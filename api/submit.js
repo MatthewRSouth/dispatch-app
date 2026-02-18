@@ -95,6 +95,8 @@ export default async function handler(req, res) {
             '', // Col X (Spacer for "adminn1234")
             new Date().toISOString(), // Col Y (Timestamp)
             fileLink, // Col Z (Image Link)
+            data.childCourse || '', //col AB
+            data.childSchool || '', //col AC
         ];
 
         await sheets.spreadsheets.values.append({
