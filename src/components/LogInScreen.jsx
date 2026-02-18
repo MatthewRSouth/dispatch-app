@@ -53,13 +53,14 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
                 <div className="image-overlay"></div>
             </div>
             <form className="login-form-section">
+                <p className="login-title">入会申込書ログイン</p>
                 <p className="login-instruction">
-                    The username and password are provided on the sign-up forms.
+                    ユーザーネームとパスワードは、星田インターナショナルの担当者がお伝えします。
                 </p>
 
                 <div className="form-group">
                     <label className="label" htmlFor="username">
-                        Username{' '}
+                        ユーザーネーム{' '}
                     </label>
                     <input
                         autoCapitalize="none"
@@ -74,7 +75,7 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
                 </div>
                 <div className="form-group">
                     <label className="label" htmlFor="password">
-                        Password{' '}
+                        パスワード{' '}
                     </label>
                     <input
                         autoCapitalize="none"

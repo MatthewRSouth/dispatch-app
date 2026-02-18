@@ -24,19 +24,19 @@ export default function ParentAcknowledgement({
                         <p>
                             I understand and accept that under no circumstances
                             shall refunds be given. <br />
-                            私は入学の申し込みに関して発生する費用は、返還されないことを理解します。
+                            私は入会の申し込みに関して発生する費用は、返還されないことを理解し、同意します。
                         </p>
                         <p>
                             I understand and accept that under no circumstances
                             I shall receive refunds when the government forces
                             the school to close down for a certain period.{' '}
                             <br />
-                            私は役所の指示で休園する場合に関して授業料等の費用は、返還されないことを理解します。
+                            私は行政の指導や園の判断によって臨時休業になった際、授業が行われない期間の返金はいたしかねる旨を理解し、同意します。
                         </p>
                         <p>
                             I declare that the information given in this
                             application form is true and accurate <br />
-                            私はこの入学願書に記述した内容について事実と相違ないことを誓います。
+                            私はこの入会申込書に記述した内容について事実と相違ないことを誓います。
                         </p>
                     </div>
 
@@ -58,9 +58,7 @@ export default function ParentAcknowledgement({
                 </div>
                 <div className="form-group">
                     <p className="acknowledgement-legal-text">
-                        By typing my name below, I electronically sign this
-                        application and attest that all information provided is
-                        true and accurate.
+                        署名に代えて氏名を入力することで、上記内容が事実である事を誓約します。
                     </p>
                     <label htmlFor="signature">
                         Parents Signature 保護者署名{' '}

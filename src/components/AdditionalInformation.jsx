@@ -7,12 +7,12 @@ export default function AdditionalInformation({
     return (
         <div>
             <div className="header-wrapper">
-                <h1 className="main-header">Additional Information</h1>
+                <h1 className="main-header">Additional Information　その他</h1>
             </div>
 
             <div className="form-group">
                 <label htmlFor="AdditionalInformation">
-                    Any Other Additional Information その他
+                    連絡事項があれば記載ください
                 </label>{' '}
                 <br />
                 <textarea

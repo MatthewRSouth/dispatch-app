@@ -14,7 +14,7 @@ export default function ChildPersonalInfoTwo({
             <div className="form-wrapper">
                 <h1 className="main-header">
                     Child Information
-                    <br></br> お子様の内容
+                    <br></br> お子様情報
                 </h1>
                 <div className="form-group">
                     <div className="radio-group">
@@ -26,18 +26,18 @@ export default function ChildPersonalInfoTwo({
                                 type="radio"
                                 id="childSexMale"
                                 name="childSex"
-                                value="male"
+                                value="男子"
                                 onChange={handleChange}
-                                checked={data.childSex === 'male'}
+                                checked={data.childSex === '男子'}
                             />
                             <label htmlFor="childSexFemale">Female 女 </label>
                             <input
                                 type="radio"
                                 id="childSexFemale"
                                 name="childSex"
-                                value="female"
+                                value="女子"
                                 onChange={handleChange}
-                                checked={data.childSex === 'female'}
+                                checked={data.childSex === '女子'}
                             />
                         </div>
                     </div>
@@ -79,7 +79,7 @@ export default function ChildPersonalInfoTwo({
                         <option value="B">B型</option>
                         <option value="O">O型</option>
                         <option value="AB">AB型</option>
-                        <option value="Unknown">Unknown わからない</option>
+                        <option value="Unknown　不明">Unknown 不明</option>
                     </select>
                 </div>
             </div>

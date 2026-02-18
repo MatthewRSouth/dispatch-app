@@ -11,6 +11,7 @@
     box-sizing: border-box;
     margin: 0 auto;
     width: 95%;
+    width: 250px;
     max-width: 300px;
     height: 300px; /* Square box */
     background-color: #e0e0e0;
