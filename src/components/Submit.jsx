@@ -194,6 +194,14 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                         label="血液型"
                         value={data.childBloodType}
                     ></ReviewRow>
+                    <ReviewRow
+                        label="コース回数"
+                        value={data.childCourse}
+                    ></ReviewRow>
+                    <ReviewRow
+                        label="学校名"
+                        value={data.childSchool}
+                    ></ReviewRow>
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">

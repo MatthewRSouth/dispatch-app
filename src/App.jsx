@@ -59,6 +59,8 @@ function App() {
         childDateOfBirth: '',
         childNationality: '',
         childBloodType: '',
+        childSchool: '',
+        childCourse: '',
 
         // Step 6: Allergies
         hasAllergies: '',
