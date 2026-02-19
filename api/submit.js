@@ -1,4 +1,5 @@
 import { google } from 'googleapis';
+import { resolve } from 'path';
 import { Readable } from 'stream';
 
 export default async function handler(req, res) {
@@ -8,6 +9,10 @@ export default async function handler(req, res) {
     }
 
     const { image, ...data } = req.body;
+
+    //stagger
+    const initalDelay = Math.floor(Math.random() * 1300) + 200;
+    await new Promise((resolve) => setTimeout(resolve, initalDelay));
 
     try {
         // 2. Authenticate with OAuth 2.0 (The New Way)
@@ -40,14 +45,27 @@ export default async function handler(req, res) {
                 mimeType: 'image/jpeg',
                 body: Readable.from(buffer),
             };
+            let driveSuccess = false;
 
-            const file = await drive.files.create({
-                resource: fileMetadata,
-                media: media,
-                fields: 'webViewLink',
-            });
+            for (let attempt = 1; attempt <= 2; attempt++) {
+                try {
+                    const file = await drive.files.create({
+                        resource: fileMetadata,
+                        media: media,
+                        fields: 'webViewLink',
+                    });
 
-            fileLink = file.data.webViewLink;
+                    fileLink = file.data.webViewLink;
+                    break;
+                } catch (error) {
+                    console.warn(
+                        `Drive upload attempt ${attempt} failed: `,
+                        error.message
+                    );
+                    if (attempt === 2) throw new Error('Google drive is busy.');
+                    await new Promise((res) => setTimeout(res, 1000));
+                }
+            }
         }
 
         // 4. Save to Sheets (Corrected to match your Sheet Headers)

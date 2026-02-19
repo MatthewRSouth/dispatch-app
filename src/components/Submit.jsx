@@ -77,7 +77,7 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
             onNext();
         } catch (err) {
             console.error('Submission Error', err);
-            setError('Something went wrong. Please try again.');
+            setError(err.message || 'Something went wrong. Please try again.');
         } finally {
             setIsSubmitting(false);
         }
