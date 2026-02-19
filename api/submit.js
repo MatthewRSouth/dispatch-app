@@ -68,7 +68,7 @@ export default async function handler(req, res) {
             data.motherNameKanji || '', // Col G
             data.motherPhoneNumber || '', // Col H
 
-            data.emailAddress || '',
+            data.emailAddress || '', //Col I
 
             // 4. Child Info
             data.childNameEnglish || '', // Col I
@@ -98,16 +98,38 @@ export default async function handler(req, res) {
             data.childCourse || '', //col AB
             data.childSchool || '', //col AC
         ];
+        const MAX_RETRIES = 3;
+        let success = false;
+        for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+            try {
+                await sheets.spreadsheets.values.append({
+                    spreadsheetId: process.env.GOOGLE_SHEET_ID,
+                    range: 'Sheet1!A2',
+                    valueInputOption: 'USER_ENTERED',
+                    requestBody: {
+                        values: [rowValues],
+                    },
+                });
+                success = true;
+                break;
+            } catch (error) {
+                console.warn(
+                    `sheets API Attempt ${attempt} failed`,
+                    error.message
+                );
+                if (attempt === MAX_RETRIES) {
+                    throw new Error(
+                        'Google Sheets is extremely busy. Please try submitting again.'
+                    );
+                }
 
-        await sheets.spreadsheets.values.append({
-            spreadsheetId: process.env.GOOGLE_SHEET_ID,
-            range: 'Sheet1!A2',
-            valueInputOption: 'USER_ENTERED',
-            requestBody: {
-                values: [rowValues],
-            },
-        });
-
+                const waitTime = Math.floor(Math.random() * 1500) + 1000;
+                await new Promise((resolve) => setTimeout(resolve, waitTime));
+            }
+        }
+        if (!success) {
+            throw new Error('Failed to save data after multiple attempts.');
+        }
         return res.status(200).json({ success: true, link: fileLink });
     } catch (error) {
         console.error('API Error:', error);
