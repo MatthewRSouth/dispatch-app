@@ -9,6 +9,29 @@ export default async function handler(req, res) {
     }
 
     const { image, ...data } = req.body;
+    //email Check
+    const emailToTest = data.emailAddress;
+
+    if (emailToTest) {
+        try {
+            const apiKey = process.env.BIGDATACLOUD_API_KEY;
+            const verifyUrl = `https://api.bigdatacloud.net/data/email-verify?emailAddress=${encodeURIComponent(
+                emailToTest
+            )}&key=${apiKey}`;
+
+            const response = await fetch(verifyUrl);
+            const verifyData = await response.json();
+
+            if (!verifyData.isValid || verifyData.isDisposable) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Eメールを確認してください',
+                });
+            }
+        } catch (error) {
+            console.warn('BigDataCloud API Failed, but continuing submission');
+        }
+    }
 
     //stagger
     const initalDelay = Math.floor(Math.random() * 1300) + 200;

@@ -1,3 +1,4 @@
+import { use } from 'react';
 import { useState } from 'react';
 
 export default function ParentInformation({
@@ -9,6 +10,25 @@ export default function ParentInformation({
     //Phone Number
     const [fatherPhoneError, setFatherPhoneError] = useState('');
     const [motherPhoneError, setMotherPhoneError] = useState('');
+    const [emailError, setEmailError] = useState('');
+
+    const handleEmailBlur = (e) => {
+        const value = e.target.value;
+
+        if (!value) {
+            setEmailError('');
+            return;
+        }
+
+        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+        if (!isValid) {
+            setEmailError('Please enter a valid email address');
+        } else {
+            setEmailError('');
+        }
+    };
+
     const handlePhoneBlur = (e) => {
         const { name, value } = e.target;
 
@@ -39,7 +59,7 @@ export default function ParentInformation({
         data.motherNameKanji?.length > 0 &&
         data.motherPhoneNumber?.length > 5 &&
         !motherPhoneError;
-    const isEmailComplete = data.emailAddress?.includes('@');
+    const isEmailComplete = data.emailAddress?.includes('@') && !emailError;
     const canProceed =
         (isFatherComplete || isMotherComplete) && isEmailComplete;
 
@@ -89,6 +109,7 @@ export default function ParentInformation({
                         name="fatherPhoneNumber"
                         value={data.fatherPhoneNumber}
                         onChange={handleChange}
+                        maxLength="15"
                         onBlur={handlePhoneBlur}
                         style={{ borderColor: fatherPhoneError ? 'red' : '' }}
                         placeholder="例）090-1234-5678"
@@ -126,6 +147,7 @@ export default function ParentInformation({
                         type="tel"
                         inputMode="numeric"
                         pattern="[0-9]"
+                        maxLength="15"
                         id="motherPhoneNumber"
                         name="motherPhoneNumber"
                         value={data.motherPhoneNumber}
@@ -144,6 +166,7 @@ export default function ParentInformation({
                         type="email"
                         autoCapitalize="none"
                         name="emailAddress"
+                        onBlur={handleEmailBlur}
                         value={data.emailAddress}
                         onChange={handleChange}
                         placeholder="example@email.com"
@@ -151,7 +174,21 @@ export default function ParentInformation({
                 </div>
             </div>
             <div className="button-wrapper">
-                {' '}
+                {emailError && (
+                    <span
+                        style={{
+                            color: 'red',
+                            fontSize: '0.8rem',
+                            marginTop: '5px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            textAlign: 'center',
+                            width: '90%',
+                        }}
+                    >
+                        {emailError}
+                    </span>
+                )}{' '}
                 <button className="previous-button button" onClick={onPrevious}>
                     戻る
                 </button>

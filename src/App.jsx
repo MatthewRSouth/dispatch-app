@@ -25,7 +25,7 @@ function App() {
     const [isEditMode, setIsEditMode] = useState(false);
 
     const handleSkip = () => {
-        setCurrentStep(10);
+        setCurrentStep(currentStep + 1);
     };
 
     //2. Master Data save
