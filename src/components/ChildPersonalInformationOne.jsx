@@ -104,6 +104,7 @@ export default function ChildPersonalInfoOne({
                     value={data.childContactNumber}
                     onChange={handleChange}
                     onBlur={handlePhoneBlur}
+                    maxLength="15"
                     style={{ borderColor: contactPhoneError ? 'red' : '' }}
                     placeholder="例）090-1234-5678"
                 />
