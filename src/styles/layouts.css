@@ -52,7 +52,6 @@
     padding: 10px 0;
     border-bottom: 1px solid #f9f9f9; /* Super faint separator */
 }
-
 /* Removes the bottom border on the very last row in a card */
 .review-row:last-child {
     border-bottom: none;
@@ -69,6 +68,9 @@
     font-weight: 500;
     text-align: right;
     flex: 1; /* Takes up right half */
+    overflow: auto;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 .review-spacer {
     margin-top: 20px;

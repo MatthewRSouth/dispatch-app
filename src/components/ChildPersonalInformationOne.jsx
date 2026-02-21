@@ -1,15 +1,35 @@
+import { useState } from 'react';
 export default function ChildPersonalInfoOne({
     data,
     handleChange,
     onNext,
     onPrevious,
 }) {
+    const [contactPhoneError, setContactPhoneError] = useState('');
+    const handlePhoneBlur = (e) => {
+        const { name, value } = e.target;
+
+        if (!value) {
+            if (name === 'childContactNumber') setContactPhoneError('');
+            return;
+        }
+
+        const isValid = /^[0-9\-\s]+$/.test(value);
+        const errorMessage = isValid
+            ? ''
+            : 'Please enter a valid phone number(0-9 and -)';
+        if (name === 'childContactNumber') {
+            setContactPhoneError(errorMessage);
+        }
+    };
+
     const childFormComplete =
         data.childNameEnglish?.length > 0 &&
         data.childNameFurigana?.length > 0 &&
         data.childNameKanji?.length > 0 &&
         data.childAddress?.length > 0 &&
-        data.childContactNumber?.length > 8;
+        data.childContactNumber?.length > 8 &&
+        !contactPhoneError;
     return (
         <div>
             <div className="header-wrapper">
@@ -83,6 +103,8 @@ export default function ChildPersonalInfoOne({
                     name="childContactNumber"
                     value={data.childContactNumber}
                     onChange={handleChange}
+                    onBlur={handlePhoneBlur}
+                    style={{ borderColor: contactPhoneError ? 'red' : '' }}
                     placeholder="例）090-1234-5678"
                 />
             </div>

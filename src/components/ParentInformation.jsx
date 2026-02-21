@@ -1,20 +1,48 @@
+import { useState } from 'react';
+
 export default function ParentInformation({
     data,
     handleChange,
     onNext,
     onPrevious,
 }) {
+    //Phone Number
+    const [fatherPhoneError, setFatherPhoneError] = useState('');
+    const [motherPhoneError, setMotherPhoneError] = useState('');
+    const handlePhoneBlur = (e) => {
+        const { name, value } = e.target;
+
+        if (!value) {
+            if (name === 'fatherPhoneNumber') setFatherPhoneError('');
+            if (name === 'motherPhoneNumber') setMotherPhoneError('');
+            return;
+        }
+
+        const isValid = /^[0-9\-\s]+$/.test(value);
+        const errorMessage = isValid
+            ? ''
+            : 'Please enter a valid phone number(0-9 and -)';
+        if (name === 'fatherPhoneNumber') {
+            setFatherPhoneError(errorMessage);
+        } else if (name === 'motherPhoneNumber') {
+            setMotherPhoneError(errorMessage);
+        }
+    };
+
     const isFatherComplete =
         data.fatherNameFurigana?.length > 0 &&
         data.fatherNameKanji?.length > 0 &&
-        data.fatherPhoneNumber?.length > 5;
+        data.fatherPhoneNumber?.length > 5 &&
+        !fatherPhoneError;
     const isMotherComplete =
         data.motherNameFurigana?.length > 0 &&
         data.motherNameKanji?.length > 0 &&
-        data.motherPhoneNumber?.length > 5;
+        data.motherPhoneNumber?.length > 5 &&
+        !motherPhoneError;
     const isEmailComplete = data.emailAddress?.includes('@');
     const canProceed =
         (isFatherComplete || isMotherComplete) && isEmailComplete;
+
     return (
         <>
             <div className="form-wrapper">
@@ -61,6 +89,8 @@ export default function ParentInformation({
                         name="fatherPhoneNumber"
                         value={data.fatherPhoneNumber}
                         onChange={handleChange}
+                        onBlur={handlePhoneBlur}
+                        style={{ borderColor: fatherPhoneError ? 'red' : '' }}
                         placeholder="例）090-1234-5678"
                     />
                 </div>
@@ -99,6 +129,8 @@ export default function ParentInformation({
                         id="motherPhoneNumber"
                         name="motherPhoneNumber"
                         value={data.motherPhoneNumber}
+                        onBlur={handlePhoneBlur}
+                        style={{ borderColor: motherPhoneError ? 'red' : '' }}
                         onChange={handleChange}
                         placeholder="例）090-1234-5678"
                     />
