@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import AdditionalInformation from './components/AdditionalInformation';
 import Allergies from './components/Allergies';
@@ -113,7 +113,9 @@ function App() {
             [name]: newValue,
         }));
     };
-
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [currentStep]);
     return (
         <div className="app-container">
             <Header />
