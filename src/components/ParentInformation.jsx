@@ -63,6 +63,40 @@ export default function ParentInformation({
     const canProceed =
         (isFatherComplete || isMotherComplete) && isEmailComplete;
 
+    function handleLocalChange(e) {
+        handleChange(e);
+
+        const { name, value } = e.target;
+
+        //Email Check
+        if (name === 'emailAddress' && emailError) {
+            if (value === '') {
+                setEmailError('');
+            } else {
+                const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                if (isValid) setEmailError('');
+            }
+        }
+        //father phone
+        if (name === 'fatherPhoneNumber' && fatherPhoneError) {
+            if (value === '') {
+                setFatherPhoneError('');
+            } else {
+                const isValid = /^[0-9\-\s]+$/.test(value);
+                if (isValid) setFatherPhoneError('');
+            }
+        }
+        //Mother Phone
+        if (name === 'motherPhoneNumber' && motherPhoneError) {
+            if (value === '') {
+                setMotherPhoneError('');
+            } else {
+                const isValid = /^[0-9\-\s]+$/.test(value);
+                if (isValid) setMotherPhoneError('');
+            }
+        }
+    }
+
     return (
         <>
             <div className="form-wrapper">
@@ -108,7 +142,7 @@ export default function ParentInformation({
                         id="fatherPhoneNumber"
                         name="fatherPhoneNumber"
                         value={data.fatherPhoneNumber}
-                        onChange={handleChange}
+                        onChange={handleLocalChange}
                         maxLength="15"
                         onBlur={handlePhoneBlur}
                         style={{
@@ -157,7 +191,7 @@ export default function ParentInformation({
                         id="motherNameKanji"
                         name="motherNameKanji"
                         value={data.motherNameKanji}
-                        onChange={handleChange}
+                        onChange={handleLocalChange}
                         placeholder="例)　山田　花子"
                     />
                 </div>
@@ -214,7 +248,7 @@ export default function ParentInformation({
                         name="emailAddress"
                         onBlur={handleEmailBlur}
                         value={data.emailAddress}
-                        onChange={handleChange}
+                        onChange={handleLocalChange}
                         placeholder="example@email.com"
                         style={{
                             borderColor: emailError ? '#ff0f0f' : '',

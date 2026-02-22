@@ -7,7 +7,7 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
     const [error, setError] = useState(null);
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleLoginVerfication = async (e) => {
+    const handleLoginVerification = async (e) => {
         e.preventDefault();
 
         setIsLoading(true);
@@ -106,7 +106,7 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
                 {' '}
                 <button
                     className="login-button button"
-                    onClick={handleLoginVerfication}
+                    onClick={handleLoginVerification}
                     disabled={isLoading || isSuccess}
                     style={{
                         backgroundColor: isSuccess

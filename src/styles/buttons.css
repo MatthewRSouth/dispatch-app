@@ -29,11 +29,14 @@
 .next-button,
 .previous-button {
     width: 40%;
-    height: 3.5rem;
+    height: auto;
+    min-height: 44px;
+    padding: 12px 24px;
+    white-space: normal;
+    line-height: 1.3;
     background-color: var(--color-primary);
     text-align: center;
     border-radius: var(--radius-full);
-    margin: 10px;
     font-weight: 600;
     color: #fff;
     font-size: 22px;
@@ -42,6 +45,10 @@
 }
 .submit {
     width: 70%;
+    height: auto;
+    min-height: 44px;
+    padding: 12px 24px;
+    white-space: normal;
     background-color: aquamarine;
 }
 .button:disabled,

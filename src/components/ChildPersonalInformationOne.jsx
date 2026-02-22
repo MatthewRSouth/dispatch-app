@@ -50,6 +50,33 @@ export default function ChildPersonalInfoOne({
         data.childContactNumber?.length > 8 &&
         !contactPhoneError &&
         !englishNameError;
+
+    function handleLocalChange(e) {
+        handleChange(e);
+
+        const { name, value } = e.target;
+
+        //English Name Check
+        if (name === 'childNameEnglish' && englishNameError) {
+            if (value === '') {
+                setEnglishNameError('');
+            } else {
+                const isValid = /^[a-zA-Z\s]+$/.test(value);
+                if (isValid) setEnglishNameError('');
+            }
+        }
+
+        //Contact Check
+        if (name === 'childContactNumber' && contactPhoneError) {
+            if (value === '') {
+                setEnglishNameError('');
+            } else {
+                const isValid = /^[0-9\-\s]+$/.test(value);
+                if (isValid) setContactPhoneError('');
+            }
+        }
+    }
+
     return (
         <div>
             <div className="header-wrapper">
@@ -72,7 +99,7 @@ export default function ChildPersonalInfoOne({
                         borderColor: englishNameError ? '#ff0f0f' : '',
                         backgroundColor: englishNameError ? '#fee2e2' : '',
                     }}
-                    onChange={handleChange}
+                    onChange={handleLocalChange}
                     placeholder="Yamada Taro"
                 />
             </div>
@@ -148,7 +175,7 @@ export default function ChildPersonalInfoOne({
                     id="childContactNumber"
                     name="childContactNumber"
                     value={data.childContactNumber}
-                    onChange={handleChange}
+                    onChange={handleLocalChange}
                     onBlur={handlePhoneBlur}
                     maxLength="15"
                     style={{
@@ -182,14 +209,14 @@ export default function ChildPersonalInfoOne({
             <div className="button-wrapper">
                 {' '}
                 <button className="previous-button button" onClick={onPrevious}>
-                    Previous
+                    戻る
                 </button>
                 <button
                     className="next-button button"
                     onClick={onNext}
                     disabled={!childFormComplete}
                 >
-                    Next
+                    次へ
                 </button>
             </div>
         </div>

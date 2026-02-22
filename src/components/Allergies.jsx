@@ -62,14 +62,14 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
             <div className="button-wrapper allergy-button-wrapper">
                 {' '}
                 <button className="previous-button button" onClick={onPrevious}>
-                    Previous
+                    戻る
                 </button>
                 <button
                     className="next-button button"
                     onClick={onNext}
                     disabled={!isFormComplete}
                 >
-                    Next
+                    次へ
                 </button>
             </div>
         </>
