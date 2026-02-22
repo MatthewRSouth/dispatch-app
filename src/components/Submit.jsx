@@ -128,6 +128,11 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                         label="保護者電話番号"
                         value={data.motherPhoneNumber}
                     ></ReviewRow>
+                    <div className="review-spacer"></div>
+                    <ReviewRow
+                        label="Eメール"
+                        value={data.emailAddress}
+                    ></ReviewRow>
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">

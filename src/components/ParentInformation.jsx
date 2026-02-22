@@ -23,7 +23,7 @@ export default function ParentInformation({
         const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
         if (!isValid) {
-            setEmailError('Please enter a valid email address');
+            setEmailError('有効なEメールを入力してください');
         } else {
             setEmailError('');
         }
@@ -41,7 +41,7 @@ export default function ParentInformation({
         const isValid = /^[0-9\-\s]+$/.test(value);
         const errorMessage = isValid
             ? ''
-            : 'Please enter a valid phone number(0-9 and -)';
+            : '有効な電話番号を入力してください（0-9と-）';
         if (name === 'fatherPhoneNumber') {
             setFatherPhoneError(errorMessage);
         } else if (name === 'motherPhoneNumber') {
@@ -111,9 +111,32 @@ export default function ParentInformation({
                         onChange={handleChange}
                         maxLength="15"
                         onBlur={handlePhoneBlur}
-                        style={{ borderColor: fatherPhoneError ? 'red' : '' }}
+                        style={{
+                            borderColor: fatherPhoneError ? '#ff0f0f' : '',
+                            backgroundColor: fatherPhoneError ? '#fee2e2' : '',
+                        }}
                         placeholder="例）090-1234-5678"
                     />
+                    {fatherPhoneError && (
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                width: '90%',
+                            }}
+                        >
+                            {' '}
+                            <span
+                                style={{
+                                    color: 'red',
+                                    fontSize: '0.8rem',
+                                }}
+                            >
+                                {fatherPhoneError}
+                            </span>{' '}
+                        </div>
+                    )}
                 </div>
                 <h4 className="sub-header">Guardian Information 保護者情報</h4>
                 <div className="form-group">
@@ -152,10 +175,33 @@ export default function ParentInformation({
                         name="motherPhoneNumber"
                         value={data.motherPhoneNumber}
                         onBlur={handlePhoneBlur}
-                        style={{ borderColor: motherPhoneError ? 'red' : '' }}
+                        style={{
+                            borderColor: motherPhoneError ? '#ff0f0f' : '',
+                            backgroundColor: motherPhoneError ? '#fee2e2' : '',
+                        }}
                         onChange={handleChange}
                         placeholder="例）090-1234-5678"
                     />
+                    {motherPhoneError && (
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                width: '90%',
+                            }}
+                        >
+                            {' '}
+                            <span
+                                style={{
+                                    color: 'red',
+                                    fontSize: '0.8rem',
+                                }}
+                            >
+                                {motherPhoneError}
+                            </span>{' '}
+                        </div>
+                    )}
                 </div>{' '}
                 <div className="form-group">
                     <h4 htmlFor="" className="sub-header">
@@ -170,25 +216,35 @@ export default function ParentInformation({
                         value={data.emailAddress}
                         onChange={handleChange}
                         placeholder="example@email.com"
+                        style={{
+                            borderColor: emailError ? '#ff0f0f' : '',
+                            backgroundColor: emailError ? '#fee2e2' : '',
+                        }}
                     />
                 </div>
-            </div>
-            <div className="button-wrapper">
                 {emailError && (
-                    <span
+                    <div
                         style={{
-                            color: 'red',
-                            fontSize: '0.8rem',
-                            marginTop: '5px',
                             display: 'flex',
                             justifyContent: 'center',
                             textAlign: 'center',
                             width: '90%',
                         }}
                     >
-                        {emailError}
-                    </span>
-                )}{' '}
+                        {' '}
+                        <span
+                            style={{
+                                color: 'red',
+                                fontSize: '0.8rem',
+                            }}
+                        >
+                            {emailError}
+                        </span>{' '}
+                    </div>
+                )}
+            </div>
+
+            <div className="button-wrapper">
                 <button className="previous-button button" onClick={onPrevious}>
                     戻る
                 </button>

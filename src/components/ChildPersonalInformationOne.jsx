@@ -6,6 +6,25 @@ export default function ChildPersonalInfoOne({
     onPrevious,
 }) {
     const [contactPhoneError, setContactPhoneError] = useState('');
+    const [englishNameError, setEnglishNameError] = useState('');
+
+    const handleEnglishNameBlur = (e) => {
+        const value = e.target.value;
+
+        if (!value) {
+            setEnglishNameError('');
+            return;
+        }
+
+        const isValid = /^[a-zA-Z\s]+$/.test(value);
+
+        if (!isValid) {
+            setEnglishNameError('英語文字のみを入力してください');
+        } else {
+            setEnglishNameError('');
+        }
+    };
+
     const handlePhoneBlur = (e) => {
         const { name, value } = e.target;
 
@@ -17,7 +36,7 @@ export default function ChildPersonalInfoOne({
         const isValid = /^[0-9\-\s]+$/.test(value);
         const errorMessage = isValid
             ? ''
-            : 'Please enter a valid phone number(0-9 and -)';
+            : '有効な電話番号を入力してください（0-9と-）';
         if (name === 'childContactNumber') {
             setContactPhoneError(errorMessage);
         }
@@ -29,7 +48,8 @@ export default function ChildPersonalInfoOne({
         data.childNameKanji?.length > 0 &&
         data.childAddress?.length > 0 &&
         data.childContactNumber?.length > 8 &&
-        !contactPhoneError;
+        !contactPhoneError &&
+        !englishNameError;
     return (
         <div>
             <div className="header-wrapper">
@@ -47,10 +67,36 @@ export default function ChildPersonalInfoOne({
                     id="childNameEnglish"
                     name="childNameEnglish"
                     value={data.childNameEnglish}
+                    onBlur={handleEnglishNameBlur}
+                    style={{
+                        borderColor: englishNameError ? '#ff0f0f' : '',
+                        backgroundColor: englishNameError ? '#fee2e2' : '',
+                    }}
                     onChange={handleChange}
                     placeholder="Yamada Taro"
                 />
             </div>
+            {englishNameError && (
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        width: '100%',
+                        marginTop: '0',
+                    }}
+                >
+                    {' '}
+                    <span
+                        style={{
+                            color: 'red',
+                            fontSize: '0.8rem',
+                        }}
+                    >
+                        {englishNameError}
+                    </span>{' '}
+                </div>
+            )}
             <div className="form-group">
                 <label htmlFor="childNameFurigana">フリガナ </label>
                 <input
@@ -105,9 +151,33 @@ export default function ChildPersonalInfoOne({
                     onChange={handleChange}
                     onBlur={handlePhoneBlur}
                     maxLength="15"
-                    style={{ borderColor: contactPhoneError ? 'red' : '' }}
+                    style={{
+                        borderColor: contactPhoneError ? '#ff0f0f' : '',
+                        backgroundColor: contactPhoneError ? '#fee2e2' : '',
+                    }}
                     placeholder="例）090-1234-5678"
                 />
+                {contactPhoneError && (
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            textAlign: 'center',
+                            width: '100%',
+                            marginTop: '0',
+                        }}
+                    >
+                        {' '}
+                        <span
+                            style={{
+                                color: 'red',
+                                fontSize: '0.8rem',
+                            }}
+                        >
+                            {contactPhoneError}
+                        </span>{' '}
+                    </div>
+                )}
             </div>
             <div className="button-wrapper">
                 {' '}
