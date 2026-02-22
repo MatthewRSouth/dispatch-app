@@ -8,6 +8,8 @@ export default function ParentAcknowledgement({
         data.agreesToAcknowledgement === true &&
         data.signature?.length > 0 &&
         data.signDate?.length > 0;
+
+    const today = new Date().toISOString().split('T')[0];
     return (
         <>
             <div>
@@ -80,6 +82,8 @@ export default function ParentAcknowledgement({
                         type="date"
                         id="signDate"
                         name="signDate"
+                        min={today}
+                        max={today}
                         value={data.signDate}
                         onChange={handleChange}
                     />
@@ -91,14 +95,14 @@ export default function ParentAcknowledgement({
                         className="previous-button button"
                         onClick={onPrevious}
                     >
-                        Previous
+                        戻る
                     </button>
                     <button
                         className="next-button button"
                         onClick={onNext}
                         disabled={!isFormComplete}
                     >
-                        Next
+                        次へ
                     </button>
                 </div>
             </div>

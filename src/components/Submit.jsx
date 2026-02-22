@@ -12,7 +12,7 @@ function ReviewRow({ label, value }) {
                 {value ? (
                     value
                 ) : (
-                    <span style={{ color: '#aaa', fontStyle: 'Italic' }}>
+                    <span style={{ color: '#aaa', fontStyle: 'italic' }}>
                         Not Provided
                     </span>
                 )}
@@ -35,8 +35,6 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
 
-    // Note: You had 'isLoading' and 'isSubmitting'. I combined them to keep it simple.
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -51,10 +49,9 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                 base64Image = await convertToBase64(data.childImage);
             }
 
-            // STEP B: Prepare the data
-            // We separate the heavy 'file' object from the text data
+            const { childImage, ...rest } = data;
             const payload = {
-                ...data,
+                ...rest,
                 image: base64Image, // Send the string, not the file object
             };
 
@@ -83,8 +80,6 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
         }
     };
 
-    //Helper component:
-
     return (
         <>
             <div className="review-wrapper">
@@ -106,33 +101,30 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                     <ReviewRow
                         label="保護者氏名 (フリガナ）"
                         value={data.fatherNameFurigana}
-                    ></ReviewRow>
+                    />
                     <ReviewRow
                         label="保護者氏名　（漢字）"
                         value={data.fatherNameKanji}
-                    ></ReviewRow>
+                    />
                     <ReviewRow
                         label="保護者電話番号"
                         value={data.fatherPhoneNumber}
-                    ></ReviewRow>
+                    />
                     <div className="review-spacer"></div>
                     <ReviewRow
                         label="保護者氏名 (フリガナ）"
                         value={data.motherNameFurigana}
-                    ></ReviewRow>
+                    />
                     <ReviewRow
                         label="保護者氏名　（漢字）"
                         value={data.motherNameKanji}
-                    ></ReviewRow>
+                    />
                     <ReviewRow
                         label="保護者電話番号"
                         value={data.motherPhoneNumber}
-                    ></ReviewRow>
+                    />
                     <div className="review-spacer"></div>
-                    <ReviewRow
-                        label="Eメール"
-                        value={data.emailAddress}
-                    ></ReviewRow>
+                    <ReviewRow label="Eメール" value={data.emailAddress} />
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
@@ -151,7 +143,7 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                                 ? '✅アップロード済'
                                 : '❌アップロード未'
                         }
-                    ></ReviewRow>
+                    />
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
@@ -166,15 +158,12 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                     <ReviewRow
                         label="お子様の氏名"
                         value={data.childNameEnglish}
-                    ></ReviewRow>
-                    <ReviewRow
-                        label="住所"
-                        value={data.childAddress}
-                    ></ReviewRow>
+                    />
+                    <ReviewRow label="住所" value={data.childAddress} />
                     <ReviewRow
                         label="緊急連絡先"
                         value={data.childContactNumber}
-                    ></ReviewRow>
+                    />
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
@@ -186,27 +175,12 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                             編集 ✏️
                         </button>
                     </div>
-                    <ReviewRow label="性別" value={data.childSex}></ReviewRow>
-                    <ReviewRow
-                        label="生年月日"
-                        value={data.childDateOfBirth}
-                    ></ReviewRow>
-                    <ReviewRow
-                        label="国籍"
-                        value={data.childNationality}
-                    ></ReviewRow>
-                    <ReviewRow
-                        label="血液型"
-                        value={data.childBloodType}
-                    ></ReviewRow>
-                    <ReviewRow
-                        label="コース回数"
-                        value={data.childCourse}
-                    ></ReviewRow>
-                    <ReviewRow
-                        label="学校名"
-                        value={data.childSchool}
-                    ></ReviewRow>
+                    <ReviewRow label="性別" value={data.childSex} />
+                    <ReviewRow label="生年月日" value={data.childDateOfBirth} />
+                    <ReviewRow label="国籍" value={data.childNationality} />
+                    <ReviewRow label="血液型" value={data.childBloodType} />
+                    <ReviewRow label="コース回数" value={data.childCourse} />
+                    <ReviewRow label="学校名" value={data.childSchool} />
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
@@ -218,14 +192,11 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                             編集 ✏️
                         </button>
                     </div>
-                    <ReviewRow
-                        label="アレルギー"
-                        value={data.hasAllergies}
-                    ></ReviewRow>
+                    <ReviewRow label="アレルギー" value={data.hasAllergies} />
                     <ReviewRow
                         label="アレルギー詳細"
                         value={data.allergyDetails}
-                    ></ReviewRow>
+                    />
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
@@ -240,7 +211,7 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                     <ReviewRow
                         label="その他"
                         value={data.additionalInformation}
-                    ></ReviewRow>
+                    />
                 </div>
                 <div className="review-card">
                     <div className="review-card-header">
@@ -257,9 +228,9 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                         value={
                             data.agreesToAcknowledgement ? '✅ Yes' : '❌ No'
                         }
-                    ></ReviewRow>
-                    <ReviewRow label="署名" value={data.signature}></ReviewRow>
-                    <ReviewRow label="日付" value={data.signDate}></ReviewRow>
+                    />
+                    <ReviewRow label="署名" value={data.signature} />
+                    <ReviewRow label="日付" value={data.signDate} />
                 </div>
             </div>
 

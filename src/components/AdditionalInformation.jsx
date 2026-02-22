@@ -7,7 +7,9 @@ export default function AdditionalInformation({
     return (
         <div>
             <div className="header-wrapper">
-                <h1 className="main-header">Additional Information　その他</h1>
+                <h1 className="main-header">
+                    Additional Information<br></br>　その他
+                </h1>
             </div>
 
             <div className="form-group">
@@ -28,10 +30,10 @@ export default function AdditionalInformation({
             <div className="button-wrapper">
                 {' '}
                 <button className="previous-button button" onClick={onPrevious}>
-                    Previous
+                    戻る
                 </button>
                 <button className="next-button button" onClick={onNext}>
-                    Next
+                    次へ
                 </button>
             </div>
         </div>

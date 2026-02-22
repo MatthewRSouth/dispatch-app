@@ -11,6 +11,8 @@ export default function ChildPersonalInfoTwo({
         data.childBloodType?.length > 0 &&
         data.childSchool?.length > 0 &&
         data.childCourse?.length > 0;
+
+    const today = new Date().toISOString().split('T')[0];
     return (
         <div>
             <div className="form-wrapper">
@@ -55,7 +57,7 @@ export default function ChildPersonalInfoTwo({
                         value={data.childDateOfBirth}
                         onChange={handleChange}
                         min="2010-01-01"
-                        max={new Date().toISOString().split('T')[0]}
+                        max={today}
                     />
                 </div>
                 <div className="form-group">
@@ -112,14 +114,14 @@ export default function ChildPersonalInfoTwo({
             <div className="button-wrapper">
                 {' '}
                 <button className="previous-button button" onClick={onPrevious}>
-                    Previous
+                    戻る
                 </button>
                 <button
                     className="next-button button"
                     onClick={onNext}
                     disabled={!isFormComplete}
                 >
-                    Next
+                    次へ
                 </button>
             </div>
         </div>

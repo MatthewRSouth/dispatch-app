@@ -25,7 +25,7 @@ function App() {
     const [isEditMode, setIsEditMode] = useState(false);
 
     const handleSkip = () => {
-        setCurrentStep(currentStep + 1);
+        setCurrentStep(8);
     };
 
     //2. Master Data save
@@ -75,28 +75,19 @@ function App() {
         signDate: '',
     });
 
-    //Helper function to advance
-    // const nextStep = () =>
-    //     setCurrentStep(() => {
-    //         if (isEditMode === true) {
-    //             setCurrentStep(9);
-    //             setIsEditMode(false);
-    //         } else {
-    //             setCurrentStep(currentStep + 1);
-    //         }
-    //     });
+    const SUBMIT_STEP = 9;
     function nextStep() {
         if (isEditMode) {
-            setCurrentStep(9);
+            setCurrentStep(SUBMIT_STEP);
             setIsEditMode(false);
         } else {
-            setCurrentStep(currentStep + 1);
+            setCurrentStep((next) => next + 1);
         }
     }
-    // const previousStep = () => setCurrentStep(currentStep - 1);
+
     function previousStep() {
         if (isEditMode) setIsEditMode(false);
-        setCurrentStep(currentStep - 1);
+        setCurrentStep((prev) => prev - 1);
     }
     const edit = (step) => {
         setCurrentStep(step);
@@ -113,9 +104,11 @@ function App() {
             [name]: newValue,
         }));
     };
+
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [currentStep]);
+
     return (
         <div className="app-container">
             <Header />

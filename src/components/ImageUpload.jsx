@@ -10,8 +10,6 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
         const file = e.target.files[0];
 
         if (file) {
-            console.log(`Original size: ${file.size / 1024 / 1024} MB`);
-
             try {
                 // 1. Configure Compression
                 const options = {
@@ -29,13 +27,11 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
                     type: file.type,
                 });
 
-                console.log(
-                    `Compressed size: ${compressedFile.size / 1024 / 1024} MB`
-                );
-
                 // 4. Preview
-                const objectUrl = URL.createObjectURL(compressedFile);
-                setPreview(objectUrl);
+                setPreview((prevUrl) => {
+                    if (prevUrl) URL.revokeObjectURL(prevUrl);
+                    return URL.createObjectURL(compressedFile);
+                });
 
                 // 5. Send the proper File object up
                 if (onImageSelect) {
@@ -49,10 +45,8 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
 
     const handleRemove = (e) => {
         e.preventDefault();
+        if (preview) URL.revokeObjectURL(preview);
         setPreview(null);
-        if (onImageSelect) {
-            onImageSelect(null);
-        }
     };
 
     return (
