@@ -261,7 +261,7 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                         color: 'white',
                     }}
                 >
-                    {isSubmitting ? '提出しています...' : '提出する'}
+                    {isSubmitting ? '提出...' : '提出する'}
                 </button>
             </div>
         </>
