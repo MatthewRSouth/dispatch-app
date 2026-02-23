@@ -42,7 +42,9 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
             onNext();
         } catch (error) {
             console.error('Login Error', error);
-            setError('Wrong Username or Password. Please try again.');
+            setError(
+                'ユーザーネームまたはパスワード間違いています。恐れ入りますがやり直してください'
+            );
         } finally {
             setIsLoading(false);
         }
@@ -53,11 +55,15 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
                 <div className="image-overlay"></div>
             </div>
             <form className="login-form-section">
-                <p className="login-title">入会申込書ログイン</p>
-                <p className="login-instruction">
-                    ユーザーネームとパスワードは、星田インターナショナルの担当者がお伝えします。
+                <p className="login-title">
+                    入会申込書<br></br>ログイン
                 </p>
-
+                <p className="login-instruction">
+                    <strong>
+                        ユーザーネームとパスワードは、星田 インターナショナル
+                        の担当者がお伝えします。
+                    </strong>
+                </p>
                 <div className="form-group">
                     <label className="label" htmlFor="username">
                         ユーザーネーム{' '}
@@ -87,21 +93,22 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
                         onChange={handleChange}
                         placeholder="Enter Password"
                     />
+                </div>{' '}
+                <div className="login-error">
+                    {error && (
+                        <p
+                            style={{
+                                color: 'red',
+                                fontWeight: 'bold',
+                                marginBottom: '1rem',
+                            }}
+                        >
+                            {error}
+                        </p>
+                    )}
                 </div>
             </form>
-            <div className="login-error">
-                {error && (
-                    <p
-                        style={{
-                            color: 'red',
-                            fontWeight: 'bold',
-                            marginBottom: '1rem',
-                        }}
-                    >
-                        {error}
-                    </p>
-                )}
-            </div>
+
             <div className="login-button-container">
                 {' '}
                 <button
@@ -123,7 +130,6 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
                         ? 'Verifying'
                         : 'Login'}
                 </button>
-                <button onClick={skipToEnd}>skip</button>
             </div>
         </div>
     );

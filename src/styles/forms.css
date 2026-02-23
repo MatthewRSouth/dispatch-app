@@ -28,13 +28,13 @@ select {
     font-family: inherit;
     background-color: #fff;
     color: #333;
-    transition: all 0.2s ease; /* Smooth hover/focus effects */
-    box-sizing: border-box; /* Keeps padding inside width */
+    transition: all 0.2s ease;
+    box-sizing: border-box;
 }
 input:hover,
 select:hover,
 textarea:hover {
-    border-color: var(--color-primary-hover); /* Slightly darker border */
+    border-color: var(--color-primary-hover);
 }
 
 input:focus,
@@ -44,31 +44,24 @@ select:focus {
     box-shadow: 0 0 10 3px var(--color-primary);
 }
 textarea {
-    /* 1. Sizing & Box Model */
     width: 100%;
-    min-height: 120px; /* Give it decent height by default */
-    padding: 12px 16px; /* Match your input padding */
-    box-sizing: border-box; /* Keeps padding inside the width */
-
-    /* 2. Typography (CRITICAL) */
-    font-family: inherit; /* Fixes the default "Courier" font */
-    font-size: 16px; /* Prevents iOS zoom */
-    line-height: 1.5; /* Makes paragraphs easier to read */
+    min-height: 120px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
     color: #333;
-
-    /* 3. Borders */
-    border: 1px solid #ccc; /* Match your input border */
-    border-radius: 8px; /* Match your input radius */
-
-    /* 4. Interaction */
-    resize: vertical; /* ⚠️ VITAL: See below */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
     transition: border-color 0.2s ease;
 }
 
 textarea:focus {
     outline: none;
-    border-color: var(--color-primary); /* Your Orange/Blue brand color */
-    box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.2); /* Soft glow */
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.2);
 }
 /* headers */
 .header-wrapper {
@@ -88,8 +81,8 @@ textarea:focus {
     margin-bottom: 0px;
 }
 ::placeholder {
-    color: #9ca3af; /* Lighter gray for hints */
-    opacity: 1; /* Firefox fix */
+    color: #9ca3af;
+    opacity: 1;
 }
 /* labels */
 label {
@@ -103,12 +96,13 @@ label {
 /* radio-buttons */
 .radio-group {
     display: flex;
-    align-items: flex-start; /* Align everything to the left */
+    align-items: flex-start;
+
     width: 100%;
 }
 .radio-options {
     display: flex;
-    gap: 20px; /* Space between "Male" and "Female" groups */
+    gap: 20px;
 }
 .child-gender-options {
     margin-top: 27px;
@@ -119,16 +113,17 @@ label {
     gap: 10px;
     cursor: pointer;
     margin: 0;
+    text-align: center;
 }
 input[type='radio'] {
-    width: 20px; /* Make it easier to tap */
+    width: 20px;
     height: 20px;
     accent-color: var(--color-primary);
-    margin: 0; /* Remove default browser margin */
+    margin: 0;
     cursor: pointer;
 }
 /* Parent Acknowledgement */
-/* Makes the legal text look like a "document" */
+
 .legal-text-box {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -137,37 +132,37 @@ input[type='radio'] {
     margin-bottom: 20px;
     font-size: 0.9rem;
     color: #555;
-    max-height: 200px; /* Optional: Makes it scrollable if too long */
-    overflow-y: auto; /* Scroll bar if needed */
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .legal-text-box p {
-    margin-bottom: 15px; /* Space between paragraphs */
+    margin-bottom: 15px;
 }
 
 /* Wrapper for Checkbox + Text */
 .checkbox-wrapper {
-    display: flex; /* 1. Aligns box and text side-by-side */
-    align-items: flex-start; /* 2. Aligns to top (better for multi-line text) */
-    gap: 12px; /* 3. Space between box and text */
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
     cursor: pointer;
     padding: 10px;
-    border: 1px solid transparent; /* Prevents jumping on hover */
+    border: 1px solid transparent;
     border-radius: 8px;
     transition: background 0.2s;
 }
 
 .checkbox-wrapper:hover {
-    background-color: #fff7ed; /* Very light orange hover background */
+    background-color: #fff7ed;
 }
 
 /* The actual checkbox square */
 .checkbox-wrapper input[type='checkbox'] {
     width: 20px;
     height: 20px;
-    accent-color: var(--color-primary); /* Your Orange! */
-    margin-top: 3px; /* visual tweak to align with text top */
-    flex-shrink: 0; /* Prevents checkbox from getting squished */
+    accent-color: var(--color-primary);
+    margin-top: 3px;
+    flex-shrink: 0;
 }
 
 .checkbox-text {
@@ -177,11 +172,16 @@ input[type='radio'] {
     line-height: 1.5;
 }
 
-input[type='date'] {
+/* input[type='date'] {
     width: 50%;
     max-width: 350px;
     text-align: center;
     cursor: pointer;
     align-self: flex-start;
+    margin-left: 15px;
     box-sizing: border-box;
+} */
+.allery-container {
+    display: flex;
+    justify-content: center;
 }
