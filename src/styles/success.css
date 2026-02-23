@@ -49,6 +49,7 @@
     margin-top: 20px;
     padding: 10px;
     background-color: hsl(51, 19%, 96%);
+    max-width: 300px;
 }
 .card-image {
     justify-content: center;
