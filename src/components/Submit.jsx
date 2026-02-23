@@ -250,7 +250,7 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
             <div className="button-wrapper">
                 {' '}
                 <button onClick={onPrevious} className="previous-button button">
-                    Previous
+                    戻る
                 </button>
                 <button
                     className="form button submit"
@@ -261,7 +261,7 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                         color: 'white',
                     }}
                 >
-                    {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                    {isSubmitting ? '提出しています...' : '提出する'}
                 </button>
             </div>
         </>

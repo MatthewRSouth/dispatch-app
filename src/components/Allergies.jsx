@@ -11,7 +11,7 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
                     </h1>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group allergy-container">
                     <label htmlFor="">
                         Does your child have any allergies?
                     </label>
