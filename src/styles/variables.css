@@ -8,11 +8,12 @@
     --color-text-light: #8c8b88; /* Light Grey (for placeholders) */
     --color-white: #ffffff;
     --color-error: #e74c3c;
-    --success-color:#6fc276
+    --success-color: #6fc276;
 
     /* Spacing & Borders */
     --radius-sm: 8px;
     --radius-md: 12px;
+    --radius-lg: 16px;
     --radius-full: 50px; /* For rounded buttons */
 
     /* Shadows (adds depth like the "Card" look) */

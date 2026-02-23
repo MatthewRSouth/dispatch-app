@@ -171,16 +171,10 @@ input[type='radio'] {
     color: #333;
     line-height: 1.5;
 }
-
-/* input[type='date'] {
-    width: 50%;
-    max-width: 350px;
-    text-align: center;
-    cursor: pointer;
+input[type='date'] {
+    max-width: 50%;
     align-self: flex-start;
-    margin-left: 15px;
-    box-sizing: border-box;
-} */
+}
 .allery-container {
     display: flex;
     justify-content: center;
