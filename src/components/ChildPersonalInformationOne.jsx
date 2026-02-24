@@ -7,6 +7,7 @@ export default function ChildPersonalInfoOne({
 }) {
     const [contactPhoneError, setContactPhoneError] = useState('');
     const [englishNameError, setEnglishNameError] = useState('');
+    const [furiganaNameError, setFuriganaNameError] = useState('');
 
     const handleEnglishNameBlur = (e) => {
         const value = e.target.value;
@@ -22,6 +23,21 @@ export default function ChildPersonalInfoOne({
             setEnglishNameError('英語文字のみを入力してください');
         } else {
             setEnglishNameError('');
+        }
+    };
+
+    const handleFuriganaBlur = (e) => {
+        const value = e.target.value;
+        if (!value) {
+            setFuriganaNameError('');
+            return;
+        }
+
+        const isValid = /^[ァ-ンヴー\s]+$/.test(value);
+        if (!isValid) {
+            setFuriganaNameError('カタカナのみを入力してください');
+        } else {
+            setFuriganaNameError('');
         }
     };
 
@@ -49,7 +65,8 @@ export default function ChildPersonalInfoOne({
         data.childAddress?.length > 0 &&
         data.childContactNumber?.length > 8 &&
         !contactPhoneError &&
-        !englishNameError;
+        !englishNameError &&
+        !furiganaNameError;
 
     function handleLocalChange(e) {
         handleChange(e);
@@ -63,6 +80,15 @@ export default function ChildPersonalInfoOne({
             } else {
                 const isValid = /^[a-zA-Z\s]+$/.test(value);
                 if (isValid) setEnglishNameError('');
+            }
+        }
+        //Furigana Check
+        if (name === 'childNameFurigana' && furiganaNameError) {
+            if (value === '') {
+                setFuriganaNameError('');
+            } else {
+                const isValid = /^[ァ-ンヴー\s]+$/;
+                if (isValid) setFuriganaNameError('');
             }
         }
 
@@ -132,12 +158,36 @@ export default function ChildPersonalInfoOne({
                     id="childNameFurigana"
                     name="childNameFurigana"
                     value={data.childNameFurigana}
-                    onChange={handleChange}
+                    onBlur={handleFuriganaBlur}
+                    onChange={handleLocalChange}
                     placeholder="ヤマダ　タロウ"
                 />
             </div>
+            {furiganaNameError && (
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        width: '100%',
+                        marginTop: '0',
+                    }}
+                >
+                    {' '}
+                    <span
+                        style={{
+                            color: 'red',
+                            fontSize: '0.8rem',
+                        }}
+                    >
+                        {furiganaNameError}
+                    </span>{' '}
+                </div>
+            )}
             <div className="form-group">
-                <label htmlFor="childNameKanji">漢字 </label>
+                <label htmlFor="childNameKanji">
+                    漢字（漢字がない場合は英語）
+                </label>
                 <input
                     autoComplete="off"
                     type="text"

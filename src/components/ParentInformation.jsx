@@ -11,91 +11,127 @@ export default function ParentInformation({
     const [fatherPhoneError, setFatherPhoneError] = useState('');
     const [motherPhoneError, setMotherPhoneError] = useState('');
     const [emailError, setEmailError] = useState('');
+    const [fatherFuriganaError, setFatherFuriganaError] = useState('');
+    const [motherFuriganaError, setMotherFuriganaError] = useState('');
 
-    const handleEmailBlur = (e) => {
-        const value = e.target.value;
-
-        if (!value) {
-            setEmailError('');
-            return;
-        }
-
-        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-
-        if (!isValid) {
-            setEmailError('有効なEメールを入力してください');
-        } else {
-            setEmailError('');
-        }
-    };
-
-    const handlePhoneBlur = (e) => {
+    function handleLocalBlur(e) {
         const { name, value } = e.target;
 
-        if (!value) {
-            if (name === 'fatherPhoneNumber') setFatherPhoneError('');
-            if (name === 'motherPhoneNumber') setMotherPhoneError('');
-            return;
+        const validateInput = (errorMessage, regex, setErrorFn) => {
+            if (value === '') {
+                setErrorFn('');
+                return;
+            }
+            if (!regex.test(value)) {
+                setErrorFn(errorMessage);
+            } else {
+                setErrorFn('');
+            }
+        };
+
+        //Routes
+        if (name === 'fatherPhoneNumber') {
+            validateInput(
+                '有効な電話番号を入力してください（0-9と-）',
+                /^[0-9\-\s]+$/,
+                setFatherPhoneError
+            );
+        }
+        if (name === 'motherPhoneNumber') {
+            validateInput(
+                '有効な電話番号を入力してください（0-9と-）',
+                /^[0-9\-\s]+$/,
+                setMotherPhoneError
+            );
+        }
+        if (name === 'fatherNameFurigana') {
+            validateInput(
+                'カタカナのみを入力ください',
+                /^[ァ-ンヴー\s]+$/,
+                setFatherFuriganaError
+            );
+        }
+        if (name === 'motherNameFurigana') {
+            validateInput(
+                'カタカナのみを入力ください',
+                /^[ァ-ンヴー\s]+$/,
+                setMotherFuriganaError
+            );
+        }
+        if (name === 'emailAddress') {
+            validateInput(
+                '有効なEメールを入力してください',
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                setEmailError
+            );
+        }
+    }
+
+    function handleLocalChange(e) {
+        // 1. Send data to global state
+        handleChange(e);
+
+        const { name, value } = e.target;
+
+        // 2. THE HELPER: We write the logic exactly once!
+        const clearIfFixed = (activeError, regex, setErrorFn) => {
+            if (activeError) {
+                if (value === '' || regex.test(value)) {
+                    setErrorFn('');
+                }
+            }
+        };
+
+        // 3. ROUTE THE TRAFFIC: Pass the right regex and state to the helper
+        if (name === 'emailAddress') {
+            clearIfFixed(
+                emailError,
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                setEmailError
+            );
         }
 
-        const isValid = /^[0-9\-\s]+$/.test(value);
-        const errorMessage = isValid
-            ? ''
-            : '有効な電話番号を入力してください（0-9と-）';
         if (name === 'fatherPhoneNumber') {
-            setFatherPhoneError(errorMessage);
-        } else if (name === 'motherPhoneNumber') {
-            setMotherPhoneError(errorMessage);
+            clearIfFixed(fatherPhoneError, /^[0-9\-\s]+$/, setFatherPhoneError);
         }
-    };
+
+        if (name === 'motherPhoneNumber') {
+            clearIfFixed(motherPhoneError, /^[0-9\-\s]+$/, setMotherPhoneError);
+        }
+
+        if (name === 'fatherNameFurigana') {
+            clearIfFixed(
+                fatherFuriganaError,
+                /^[ァ-ンヴー\s]+$/,
+                setFatherFuriganaError
+            );
+        }
+
+        if (name === 'motherNameFurigana') {
+            clearIfFixed(
+                motherFuriganaError,
+                /^[ァ-ンヴー\s]+$/,
+                setMotherFuriganaError
+            );
+        }
+    }
 
     const isFatherComplete =
         data.fatherNameFurigana?.length > 0 &&
         data.fatherNameKanji?.length > 0 &&
         data.fatherPhoneNumber?.length > 5 &&
-        !fatherPhoneError;
+        !fatherPhoneError &&
+        !fatherFuriganaError;
     const isMotherComplete =
         data.motherNameFurigana?.length > 0 &&
         data.motherNameKanji?.length > 0 &&
         data.motherPhoneNumber?.length > 5 &&
-        !motherPhoneError;
+        !motherPhoneError &&
+        !motherFuriganaError;
+
     const isEmailComplete = data.emailAddress?.includes('@') && !emailError;
     const canProceed =
         (isFatherComplete || isMotherComplete) && isEmailComplete;
-
-    function handleLocalChange(e) {
-        handleChange(e);
-
-        const { name, value } = e.target;
-
-        //Email Check
-        if (name === 'emailAddress' && emailError) {
-            if (value === '') {
-                setEmailError('');
-            } else {
-                const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-                if (isValid) setEmailError('');
-            }
-        }
-        //father phone
-        if (name === 'fatherPhoneNumber' && fatherPhoneError) {
-            if (value === '') {
-                setFatherPhoneError('');
-            } else {
-                const isValid = /^[0-9\-\s]+$/.test(value);
-                if (isValid) setFatherPhoneError('');
-            }
-        }
-        //Mother Phone
-        if (name === 'motherPhoneNumber' && motherPhoneError) {
-            if (value === '') {
-                setMotherPhoneError('');
-            } else {
-                const isValid = /^[0-9\-\s]+$/.test(value);
-                if (isValid) setMotherPhoneError('');
-            }
-        }
-    }
 
     return (
         <>
@@ -116,17 +152,46 @@ export default function ParentInformation({
                         id="fatherNameFurigana"
                         name="fatherNameFurigana"
                         value={data.fatherNameFurigana}
-                        onChange={handleChange}
+                        onChange={handleLocalChange}
+                        onBlur={handleLocalBlur}
+                        style={{
+                            borderColor: fatherFuriganaError ? '#ff0f0f' : '',
+                            backgroundColor: fatherFuriganaError
+                                ? '#fee2e2'
+                                : '',
+                        }}
                         placeholder="例)　ヤマダ　タロウ"
                     />
-                    <label htmlFor="fatherNameKanji">漢字</label>
+                    {fatherFuriganaError && (
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                width: '90%',
+                            }}
+                        >
+                            {' '}
+                            <span
+                                style={{
+                                    color: 'red',
+                                    fontSize: '0.8rem',
+                                }}
+                            >
+                                {fatherFuriganaError}
+                            </span>{' '}
+                        </div>
+                    )}
+                    <label htmlFor="fatherNameKanji">
+                        漢字（漢字がない場合は英語）
+                    </label>
                     <input
                         autoComplete="name"
                         type="text"
                         id="fatherNameKanji"
                         name="fatherNameKanji"
                         value={data.fatherNameKanji}
-                        onChange={handleChange}
+                        onChange={handleLocalChange}
                         placeholder="例)　山田　太郎"
                     />
                 </div>
@@ -144,7 +209,7 @@ export default function ParentInformation({
                         value={data.fatherPhoneNumber}
                         onChange={handleLocalChange}
                         maxLength="15"
-                        onBlur={handlePhoneBlur}
+                        onBlur={handleLocalBlur}
                         style={{
                             borderColor: fatherPhoneError ? '#ff0f0f' : '',
                             backgroundColor: fatherPhoneError ? '#fee2e2' : '',
@@ -181,10 +246,39 @@ export default function ParentInformation({
                         id="motherNameFurigana"
                         name="motherNameFurigana"
                         value={data.motherNameFurigana}
-                        onChange={handleChange}
+                        onChange={handleLocalChange}
+                        onBlur={handleLocalBlur}
+                        style={{
+                            borderColor: motherFuriganaError ? '#ff0f0f' : '',
+                            backgroundColor: motherFuriganaError
+                                ? '#fee2e2'
+                                : '',
+                        }}
                         placeholder="例)　ヤマダ　ハナコ"
                     />
-                    <label htmlFor="motherNameKanji">漢字</label>
+                    {motherFuriganaError && (
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                textAlign: 'center',
+                                width: '90%',
+                            }}
+                        >
+                            {' '}
+                            <span
+                                style={{
+                                    color: 'red',
+                                    fontSize: '0.8rem',
+                                }}
+                            >
+                                {motherFuriganaError}
+                            </span>{' '}
+                        </div>
+                    )}
+                    <label htmlFor="motherNameKanji">
+                        漢字（漢字がない場合は英語）
+                    </label>
                     <input
                         autoComplete="name"
                         type="text"
@@ -208,12 +302,12 @@ export default function ParentInformation({
                         id="motherPhoneNumber"
                         name="motherPhoneNumber"
                         value={data.motherPhoneNumber}
-                        onBlur={handlePhoneBlur}
+                        onBlur={handleLocalBlur}
                         style={{
                             borderColor: motherPhoneError ? '#ff0f0f' : '',
                             backgroundColor: motherPhoneError ? '#fee2e2' : '',
                         }}
-                        onChange={handleChange}
+                        onChange={handleLocalChange}
                         placeholder="例）090-1234-5678"
                     />
                     {motherPhoneError && (
@@ -246,7 +340,7 @@ export default function ParentInformation({
                         type="email"
                         autoCapitalize="none"
                         name="emailAddress"
-                        onBlur={handleEmailBlur}
+                        onBlur={handleLocalBlur}
                         value={data.emailAddress}
                         onChange={handleLocalChange}
                         placeholder="example@email.com"
