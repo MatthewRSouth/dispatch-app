@@ -3,6 +3,8 @@ import './Footer';
 import successMark from '../assets/check-circle-svgrepo-com (2).svg';
 import yenMark from '../assets/yen-circle-svgrepo-com.svg';
 import websiteQrCode from '../assets/hoshida-dispatch-qr-code.png';
+import lineQrCode from '../assets/hoshida-dispatch-line-QR.JPG';
+import LogInScreen from './LogInScreen';
 
 function Card({ image, title, description, number, alt }) {
     return (
@@ -44,6 +46,7 @@ export default function SuccessMessage({ onPrevious }) {
                 <h2>今後の流れについて</h2>
                 <Card
                     number={'1'}
+                    image={lineQrCode}
                     alt="Line QR Code"
                     title="Line 登録"
                     description="LINE登録後は、お子様の氏名をフルネームで送ってください。今後のお問い合わせはLINEをご利用下さい"
