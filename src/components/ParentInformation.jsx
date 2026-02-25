@@ -142,6 +142,10 @@ export default function ParentInformation({
                         Guardian Information <br />
                         保護者情報
                     </h1>
+                    <p className="main-header-description">
+                        保護者情報は1名様分のみ必須となりますが、<br></br>
+                        2名様分ご入力いただくことも可能です。
+                    </p>
                 </div>
                 <h4 className="sub-header">Guardian Information 保護者情報</h4>
                 <div className="form-group">
@@ -208,7 +212,7 @@ export default function ParentInformation({
                         name="fatherPhoneNumber"
                         value={data.fatherPhoneNumber}
                         onChange={handleLocalChange}
-                        maxLength="15"
+                        maxLength="14"
                         onBlur={handleLocalBlur}
                         style={{
                             borderColor: fatherPhoneError ? '#ff0f0f' : '',
@@ -298,7 +302,7 @@ export default function ParentInformation({
                         type="tel"
                         inputMode="numeric"
                         pattern="[0-9]"
-                        maxLength="15"
+                        maxLength="14"
                         id="motherPhoneNumber"
                         name="motherPhoneNumber"
                         value={data.motherPhoneNumber}

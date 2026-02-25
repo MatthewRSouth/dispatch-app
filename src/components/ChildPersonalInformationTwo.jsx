@@ -23,7 +23,7 @@ export default function ChildPersonalInfoTwo({
                 <div className="form-group">
                     <div className="radio-group">
                         {' '}
-                        <h4 className="sub-header">Sex 性別：</h4>
+                        <h4 className="sub-header sex-label">Sex 性別</h4>
                         <div className="radio-options child-gender-options">
                             <label htmlFor="childSexMale">Male 男 </label>
                             <input
