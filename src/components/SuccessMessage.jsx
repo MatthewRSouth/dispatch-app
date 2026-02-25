@@ -38,7 +38,7 @@ export default function SuccessMessage({ onPrevious }) {
                     をいただきます。折り返し<br></br>メールをお送りします。
                     <br></br>
                     <br></br>
-                    <strong>下にある情報もご一読ください.</strong>
+                    <strong>下記の情報もご確認ください</strong>
                 </p>
                 <hr className="header-line" />
             </header>
