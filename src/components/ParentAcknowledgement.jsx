@@ -41,7 +41,6 @@ export default function ParentAcknowledgement({
                             私はこの入会申込書に記述した内容について事実と相違ないことを誓います。
                         </p>
                     </div>
-
                     {/* 2. The Interaction (Checkbox + Label) */}
                     <label className="checkbox-wrapper">
                         <input

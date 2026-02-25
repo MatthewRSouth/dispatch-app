@@ -199,10 +199,13 @@ export default function ChildPersonalInfoOne({
                 />
             </div>
             <div className="form-group">
-                <h4 className="sub-header">
-                    Address and Contact Number <br></br> 　住所と緊急連絡番号
+                <h4 className="sub-header address-contact">
+                    Address and<br></br> Contact Number <br></br>{' '}
+                    　住所と緊急連絡番号
                 </h4>
-                <label htmlFor="childAddress">Address 住所 </label>
+                <label className="no-margin-label" htmlFor="childAddress">
+                    Address 住所{' '}
+                </label>
                 <br />
                 <textarea
                     autoComplete="street-address"
@@ -216,7 +219,7 @@ export default function ChildPersonalInfoOne({
                 ></textarea>
             </div>
             <div className="form-group">
-                <label htmlFor="childContactNumber">
+                <label className="no-margin-label" htmlFor="childContactNumber">
                     Contact Number 緊急連絡番号
                 </label>{' '}
                 <br />
@@ -227,7 +230,7 @@ export default function ChildPersonalInfoOne({
                     value={data.childContactNumber}
                     onChange={handleLocalChange}
                     onBlur={handlePhoneBlur}
-                    maxLength="15"
+                    maxLength="14"
                     style={{
                         borderColor: contactPhoneError ? '#ff0f0f' : '',
                         backgroundColor: contactPhoneError ? '#fee2e2' : '',

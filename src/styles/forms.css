@@ -75,10 +75,19 @@ textarea:focus {
 .main-header {
     font-size: 1.9rem;
     font-weight: 700;
+    text-align: center;
+}
+.main-header-description {
+    width: 97%;
+    padding: 8px;
+    margin: 0;
 }
 .sub-header {
     font-size: 1.25rem;
     margin-bottom: 0px;
+}
+.address-contact {
+    text-align: center;
 }
 ::placeholder {
     color: #9ca3af;
@@ -92,13 +101,13 @@ label {
     align-self: flex-start;
     margin-left: 10px;
 }
-
-/* radio-buttons */
+.no-margin-label {
+    margin-bottom: -15px;
+}
 .radio-group {
     display: flex;
     align-items: flex-start;
-
-    width: 100%;
+    width: 95%;
 }
 .radio-options {
     display: flex;
@@ -178,4 +187,11 @@ input[type='date'] {
 .allery-container {
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: 390px) {
+    .legal-text-box,
+    .acknowledgement-legal-text {
+        width: 85%;
+    }
 }

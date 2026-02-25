@@ -53,6 +53,7 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
         <>
             <div className="image-upload-wrapper">
                 <h1>写真のアップロード</h1>
+                <p>お子様の写真をアップロードしてください</p>
                 <div className="image-upload-container">
                     <label className="image-upload-box">
                         <input
@@ -73,7 +74,8 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
                             <div className="placeholder-content">
                                 <span className="upload-icon">📸</span>
                                 <p className="upload-text">
-                                    タップして<br></br>写真を選択下さい
+                                    こちらにタップして<br></br>
+                                    写真を選択下さい
                                 </p>
                                 <small className="upload-hint">
                                     顔がはっきり見える写真
