@@ -4,12 +4,15 @@ export default function ParentAcknowledgement({
     onNext,
     onPrevious,
 }) {
+    const today = new Date().toISOString().split('T')[0];
+    const isValidSignDate = data.signDate === today;
+
     const isFormComplete =
         data.agreesToAcknowledgement === true &&
         data.signature?.length > 0 &&
-        data.signDate?.length > 0;
+        data.signDate?.length > 0 &&
+        isValidSignDate;
 
-    const today = new Date().toISOString().split('T')[0];
     return (
         <>
             <div>
