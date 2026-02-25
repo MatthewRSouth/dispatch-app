@@ -124,11 +124,7 @@ export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
                         transition: 'background-color 0.3s ease',
                     }}
                 >
-                    {isSuccess
-                        ? 'Success! Redirecting...'
-                        : isLoading
-                        ? 'Verifying'
-                        : 'Login'}
+                    {isSuccess ? '成功!' : isLoading ? '確認' : 'ログイン'}
                 </button>
             </div>
         </div>
