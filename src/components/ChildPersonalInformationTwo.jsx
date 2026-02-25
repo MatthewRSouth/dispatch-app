@@ -4,15 +4,18 @@ export default function ChildPersonalInfoTwo({
     onNext,
     onPrevious,
 }) {
+    const today = new Date().toISOString().split('T')[0];
+    const isValidDOB = data.childDateOfBirth && data.childDateOfBirth <= today;
+
     const isFormComplete =
         data.childSex?.length > 0 &&
+        isValidDOB &&
         data.childDateOfBirth?.length > 0 &&
         data.childNationality?.length > 0 &&
         data.childBloodType?.length > 0 &&
         data.childSchool?.length > 0 &&
         data.childCourse?.length > 0;
 
-    const today = new Date().toISOString().split('T')[0];
     return (
         <div>
             <div className="form-wrapper">

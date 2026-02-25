@@ -142,8 +142,8 @@ export default function ChildPersonalInfoOne({
                     {' '}
                     <span
                         style={{
-                            color: 'red',
                             fontSize: '0.8rem',
+                            color: 'red',
                         }}
                     >
                         {englishNameError}
@@ -151,12 +151,16 @@ export default function ChildPersonalInfoOne({
                 </div>
             )}
             <div className="form-group">
-                <label htmlFor="childNameFurigana">フリガナ </label>
+                <label htmlFor="childNameFurigana">フリガナ</label>
                 <input
                     autoComplete="off"
                     type="text"
                     id="childNameFurigana"
                     name="childNameFurigana"
+                    style={{
+                        borderColor: furiganaNameError ? '#ff0f0f' : '',
+                        backgroundColor: furiganaNameError ? '#fee2e2' : '',
+                    }}
                     value={data.childNameFurigana}
                     onBlur={handleFuriganaBlur}
                     onChange={handleLocalChange}
@@ -176,8 +180,8 @@ export default function ChildPersonalInfoOne({
                     {' '}
                     <span
                         style={{
-                            color: 'red',
                             fontSize: '0.8rem',
+                            color: 'red',
                         }}
                     >
                         {furiganaNameError}
