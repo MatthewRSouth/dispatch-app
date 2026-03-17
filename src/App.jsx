@@ -70,6 +70,8 @@ function App() {
         agreesToAcknowledgement: false, // Checkbox defaults to boolean
         signature: '',
         signDate: '',
+        //Step 9: Contract Acknowledgement
+        agreesToContract: false,
     });
 
     const SUBMIT_STEP = 11;
@@ -178,7 +180,7 @@ function App() {
                     />
                 )}
                 {currentStep === 9 && (
-                    <Submit
+                    <UserContract
                         data={formData}
                         handleChange={handleInput}
                         onNext={nextStep}

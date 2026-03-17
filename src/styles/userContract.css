@@ -1,0 +1,64 @@
+/* 1. The Main Container */
+.contract-container {
+    /* Stops the text from stretching too wide (around 800px is perfect for reading) */
+    max-width: 800px;
+
+    /* Centers the container horizontally on the screen */
+    margin: 40px auto;
+
+    /* Adds breathing room inside the box so text doesn't hit the edges */
+    padding: 40px;
+
+    /* Optional: Gives it a subtle "physical paper" look */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+    /* Keeps the font clean and legible */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 2. Section Spacing */
+.contract-section {
+    margin-bottom: 32px;
+}
+
+.contract-section h3 {
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    color: #1a202c;
+}
+
+/* 3. The Lists */
+.rules-list {
+    margin-left: 20px; /* Indents the main rules */
+}
+
+.rule-item {
+    margin-bottom: 16px;
+}
+
+.rule-item p {
+    margin: 0 0 8px 0;
+}
+
+.subrules-list {
+    margin-top: 8px;
+    margin-left: 20px;
+    /* Changes subrules from 1,2,3 to a,b,c so it's clearly a sub-list */
+    list-style-type: lower-alpha;
+}
+
+.subrules-list li {
+    margin-bottom: 4px;
+    color: #4a5568; /* Slightly lighter text for subrules to create visual hierarchy */
+}
+
+.agreement-wrapper {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
