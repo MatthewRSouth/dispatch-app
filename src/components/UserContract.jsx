@@ -16,6 +16,10 @@ export default function UserContract({
             </div>
 
             <div className="contract-container">
+                <p className="top-paragraph">
+                    本規約は、Hoshida International
+                    Dispatch（以下「当園」といいます。）の利用規約です。登録会員のお子様（以下「お子様」）には、その保護者が事前に本規約に定める内容を承諾の上、入会のお申し込みを頂いております。入会申込書を提出された時点で、お子様およびその保護者は本規約に同意されたものと見なされます。
+                </p>
                 {contractData.map((section) => (
                     <div key={section.id} className="contract-section">
                         <h3>{section.title}</h3>
