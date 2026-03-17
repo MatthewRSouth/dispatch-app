@@ -69,6 +69,7 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Server upload failed');
             }
+            localStorage.setItem('hoshidaRegistered', 'true');
 
             // If we get here, it worked!
             onNext();
