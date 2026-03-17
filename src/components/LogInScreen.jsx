@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const SUBMIT_URL = '/api/verify';
 
-export default function LogInScreen({ data, handleChange, onNext, skipToEnd }) {
+export default function LogInScreen({ data, handleChange, onNext }) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isSuccess, setIsSuccess] = useState(false);
