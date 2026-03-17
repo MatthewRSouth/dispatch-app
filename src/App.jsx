@@ -22,7 +22,14 @@ import './styles/buttons.css';
 
 function App() {
     //1. Current step/page state
-    const [currentStep, setCurrentStep] = useState(1);
+    const [currentStep, setCurrentStep] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const isRegistered = localStorage.getItem('hoshidaRegistered');
+            // If they submitted, lock them to step 11 (SuccessMessage)
+            return isRegistered ? 11 : 1;
+        }
+        return 1;
+    });
     const [isEditMode, setIsEditMode] = useState(false);
 
     //2. Master Data save
