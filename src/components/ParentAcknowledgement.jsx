@@ -39,6 +39,12 @@ export default function ParentAcknowledgement({
                             私は行政の指導や園の判断によって臨時休業になった際、授業が行われない期間の返金はいたしかねる旨を理解し、同意します。
                         </p>
                         <p>
+                            I’ve read and agree to the terms stated in the user
+                            agreement
+                            <br />
+                            私は下記利用規約に記載された条件を読み、同意します。
+                        </p>
+                        <p>
                             I declare that the information given in this
                             application form is true and accurate <br />
                             私はこの入会申込書に記述した内容について事実と相違ないことを誓います。

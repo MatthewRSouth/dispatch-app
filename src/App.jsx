@@ -10,6 +10,7 @@ import ParentAcknowledgement from './components/ParentAcknowledgement';
 import ParentInformation from './components/ParentInformation';
 import Submit from './components/Submit';
 import SuccessMessage from './components/SuccessMessage';
+import UserContract from './components/UserContract';
 import Footer from './components/Footer';
 
 import './App.css';
@@ -23,10 +24,6 @@ function App() {
     //1. Current step/page state
     const [currentStep, setCurrentStep] = useState(1);
     const [isEditMode, setIsEditMode] = useState(false);
-
-    const handleSkip = () => {
-        setCurrentStep(8);
-    };
 
     //2. Master Data save
     const [formData, setFormData] = useState({
@@ -73,9 +70,11 @@ function App() {
         agreesToAcknowledgement: false, // Checkbox defaults to boolean
         signature: '',
         signDate: '',
+        //Step 9: Contract Acknowledgement
+        agreesToContract: false,
     });
 
-    const SUBMIT_STEP = 9;
+    const SUBMIT_STEP = 11;
     function nextStep() {
         if (isEditMode) {
             setCurrentStep(SUBMIT_STEP);
@@ -118,7 +117,6 @@ function App() {
                         onNext={nextStep}
                         data={formData}
                         handleChange={handleInput}
-                        skipToEnd={handleSkip}
                     />
                 )}
                 {currentStep === 2 && (
@@ -182,7 +180,7 @@ function App() {
                     />
                 )}
                 {currentStep === 9 && (
-                    <Submit
+                    <UserContract
                         data={formData}
                         handleChange={handleInput}
                         onNext={nextStep}
@@ -191,6 +189,15 @@ function App() {
                     />
                 )}
                 {currentStep === 10 && (
+                    <Submit
+                        data={formData}
+                        handleChange={handleInput}
+                        onNext={nextStep}
+                        onPrevious={previousStep}
+                        onEdit={edit}
+                    />
+                )}
+                {currentStep === 11 && (
                     <SuccessMessage onPrevious={previousStep} />
                 )}
             </main>
