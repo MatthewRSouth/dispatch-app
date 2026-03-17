@@ -6,6 +6,9 @@ export default function UserContract({
 }) {
     return (
         <>
+            <div className="header-wrapper">
+                <h1 className="main-header">User Contract</h1>
+            </div>
             <div className="button-wrapper">
                 {' '}
                 <button className="previous-button button" onClick={onPrevious}>
