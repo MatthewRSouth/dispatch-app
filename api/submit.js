@@ -121,6 +121,8 @@ export default async function handler(req, res) {
             data.childDateOfBirth || '', // Col O
             data.childNationality || '', // Col P
             data.childBloodType || '', // Col Q
+            data.joinMonth || '', //col AD
+            data.joinYear || '', //col AE
 
             // 5. Medical & Extras
             data.hasAllergies || 'No', // Col R
