@@ -138,8 +138,9 @@ export default async function handler(req, res) {
             fileLink, // Col Z (Image Link)
             data.childCourse || '', //col AB
             data.childSchool || '', //col AC
-            data.joinMonth || '', //col AD
-            data.joinYear || '', //col AE
+            '', //Spacer for email sent
+            data.joinMonth || '', //col AE
+            data.joinYear || '', //col AF
         ];
         const MAX_RETRIES = 3;
         let success = false;
