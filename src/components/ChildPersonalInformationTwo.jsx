@@ -14,7 +14,9 @@ export default function ChildPersonalInfoTwo({
         data.childNationality?.length > 0 &&
         data.childBloodType?.length > 0 &&
         data.childSchool?.length > 0 &&
-        data.childCourse?.length > 0;
+        data.childCourse?.length > 0 &&
+        data.joinMonth?.length > 0 &&
+        data.joinYear?.length > 0;
 
     return (
         <div>
