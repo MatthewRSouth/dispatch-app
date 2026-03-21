@@ -121,8 +121,6 @@ export default async function handler(req, res) {
             data.childDateOfBirth || '', // Col O
             data.childNationality || '', // Col P
             data.childBloodType || '', // Col Q
-            data.joinMonth || '', //col AD
-            data.joinYear || '', //col AE
 
             // 5. Medical & Extras
             data.hasAllergies || 'No', // Col R
@@ -140,6 +138,8 @@ export default async function handler(req, res) {
             fileLink, // Col Z (Image Link)
             data.childCourse || '', //col AB
             data.childSchool || '', //col AC
+            data.joinMonth || '', //col AD
+            data.joinYear || '', //col AE
         ];
         const MAX_RETRIES = 3;
         let success = false;
