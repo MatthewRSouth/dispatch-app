@@ -14,7 +14,9 @@ export default function ChildPersonalInfoTwo({
         data.childNationality?.length > 0 &&
         data.childBloodType?.length > 0 &&
         data.childSchool?.length > 0 &&
-        data.childCourse?.length > 0;
+        data.childCourse?.length > 0 &&
+        data.joinMonth?.length > 0 &&
+        data.joinYear?.length > 0;
 
     return (
         <div>
@@ -114,11 +116,16 @@ export default function ChildPersonalInfoTwo({
                     </select>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group join-time-wrapper">
                     <label htmlFor="joinMonth">
-                        Planned Month to Join　入会希望月
+                        Join Month　<br></br>入会希望月
                     </label>
-                    <select name="joinMonth" id="joinMonth">
+                    <select
+                        name="joinMonth"
+                        id="joinMonth"
+                        value={data.joinMonth}
+                        onChange={handleChange}
+                    >
                         <option value="">--Select--</option>
                         <option value="１月">１月</option>
                         <option value="2月">2月</option>
@@ -129,12 +136,17 @@ export default function ChildPersonalInfoTwo({
                         <option value="7月">7月</option>
                         <option value="8月">8月</option>
                         <option value="9月">9月</option>
-                        <option value="10月">１0月</option>
-                        <option value="11月">１1月</option>
-                        <option value="12月">１2月</option>
+                        <option value="10月">10月</option>
+                        <option value="11月">11月</option>
+                        <option value="12月">12月</option>
                     </select>
                     <label htmlFor="joinYear">年</label>
-                    <input type="text" name="joinYear" />
+                    <input
+                        type="text"
+                        name="joinYear"
+                        value={data.joinYear}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
             <div className="button-wrapper">
