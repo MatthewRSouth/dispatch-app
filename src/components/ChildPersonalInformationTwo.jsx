@@ -113,6 +113,29 @@ export default function ChildPersonalInfoTwo({
                         <option value="80回">80回</option>
                     </select>
                 </div>
+
+                <div className="form-group">
+                    <label htmlFor="joinMonth">
+                        Planned Month to Join　入会希望月
+                    </label>
+                    <select name="joinMonth" id="joinMonth">
+                        <option value="">--Select--</option>
+                        <option value="１月">１月</option>
+                        <option value="2月">2月</option>
+                        <option value="3月">3月</option>
+                        <option value="4月">4月</option>
+                        <option value="5月">5月</option>
+                        <option value="6月">6月</option>
+                        <option value="7月">7月</option>
+                        <option value="8月">8月</option>
+                        <option value="9月">9月</option>
+                        <option value="10月">１0月</option>
+                        <option value="11月">１1月</option>
+                        <option value="12月">１2月</option>
+                    </select>
+                    <label htmlFor="joinYear">年</label>
+                    <input type="text" name="joinYear" />
+                </div>
             </div>
             <div className="button-wrapper">
                 {' '}
