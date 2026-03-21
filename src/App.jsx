@@ -65,6 +65,8 @@ function App() {
         childBloodType: '',
         childSchool: '',
         childCourse: '',
+        joinMonth: '',
+        joinYear: '',
 
         // Step 6: Allergies
         hasAllergies: '',

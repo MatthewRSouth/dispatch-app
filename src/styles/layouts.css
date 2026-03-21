@@ -75,3 +75,12 @@
 .review-spacer {
     margin-top: 20px;
 }
+
+.join-time-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.join-time-wrapper input {
+    width: 100px;
+    align-self: flex-start;
+}
