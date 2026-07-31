@@ -1,3 +1,4 @@
+import PageTitle from './reusable/PageTitle';
 export default function AdditionalInformation({
     data,
     handleChange,
@@ -6,12 +7,9 @@ export default function AdditionalInformation({
 }) {
     return (
         <div>
-            <div className="header-wrapper">
-                <h1 className="main-header">
-                    Additional Information<br></br>　その他
-                </h1>
-            </div>
-
+            <PageTitle>
+                Additional Information<br></br>その他
+            </PageTitle>
             <div className="form-group">
                 <label htmlFor="AdditionalInformation">
                     連絡事項があれば記載ください

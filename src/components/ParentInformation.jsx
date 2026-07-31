@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PageTitle from './reusable/PageTitle';
 
 export default function ParentInformation({
     data,
@@ -135,17 +136,13 @@ export default function ParentInformation({
     return (
         <>
             <div className="form-wrapper">
-                <div className="header-wrapper">
-                    {' '}
-                    <h1 className="main-header">
-                        Guardian Information <br />
-                        保護者情報
-                    </h1>
-                    <p className="main-header-description">
-                        保護者情報は1名様分のみ必須となりますが、<br></br>
-                        2名様分ご入力いただくことも可能です。
-                    </p>
-                </div>
+                <PageTitle
+                    description={`保護者情報は1名様分のみ必須となりますが
+                    2名様分ご入力いただくことも可能です。`}
+                >
+                    Guardian Information <br />
+                    保護者情報
+                </PageTitle>
                 <h4 className="sub-header">Guardian Information 保護者情報</h4>
                 <div className="form-group">
                     <label htmlFor="fatherNameFurigana">フリガナ</label>
