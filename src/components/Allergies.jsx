@@ -7,7 +7,7 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
             <div className="form-wrapper">
                 <div className="header-wrapper">
                     <h1 className="main-header">
-                        Allergies　<br></br>アレルギー
+                        Allergies<br></br>アレルギー
                     </h1>
                 </div>
 
@@ -26,7 +26,7 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
                                     onChange={handleChange}
                                     checked={data.hasAllergies === 'あり'}
                                 />
-                                Yes　有り
+                                Yes 有り
                             </label>
                             <label className="allergy-option" htmlFor="">
                                 <input
@@ -36,7 +36,7 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
                                     onChange={handleChange}
                                     checked={data.hasAllergies === 'なし'}
                                 />
-                                No　無い
+                                No 無い
                             </label>
                         </div>
                     </div>

@@ -83,7 +83,7 @@ function App() {
         agreesToContract: false,
     });
 
-    const SUBMIT_STEP = 11;
+    const SUBMIT_STEP = 10;
     function nextStep() {
         if (isEditMode) {
             setCurrentStep(SUBMIT_STEP);

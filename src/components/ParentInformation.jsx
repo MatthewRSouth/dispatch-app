@@ -1,4 +1,3 @@
-import { use } from 'react';
 import { useState } from 'react';
 
 export default function ParentInformation({
@@ -15,6 +14,7 @@ export default function ParentInformation({
     const [motherFuriganaError, setMotherFuriganaError] = useState('');
 
     function handleLocalBlur(e) {
+        //This function tells the user they are using the incorrect character type and returns the error.
         const { name, value } = e.target;
 
         const validateInput = (errorMessage, regex, setErrorFn) => {
@@ -34,35 +34,35 @@ export default function ParentInformation({
             validateInput(
                 '有効な電話番号を入力してください（0-9と-）',
                 /^[0-9\-\s]+$/,
-                setFatherPhoneError
+                setFatherPhoneError,
             );
         }
         if (name === 'motherPhoneNumber') {
             validateInput(
                 '有効な電話番号を入力してください（0-9と-）',
                 /^[0-9\-\s]+$/,
-                setMotherPhoneError
+                setMotherPhoneError,
             );
         }
         if (name === 'fatherNameFurigana') {
             validateInput(
                 'カタカナのみを入力ください',
                 /^[ァ-ンヴー\s]+$/,
-                setFatherFuriganaError
+                setFatherFuriganaError,
             );
         }
         if (name === 'motherNameFurigana') {
             validateInput(
                 'カタカナのみを入力ください',
                 /^[ァ-ンヴー\s]+$/,
-                setMotherFuriganaError
+                setMotherFuriganaError,
             );
         }
         if (name === 'emailAddress') {
             validateInput(
                 '有効なEメールを入力してください',
                 /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                setEmailError
+                setEmailError,
             );
         }
     }
@@ -73,7 +73,7 @@ export default function ParentInformation({
 
         const { name, value } = e.target;
 
-        // 2. THE HELPER: We write the logic exactly once!
+        //If the error is fixed, the error is cleared.
         const clearIfFixed = (activeError, regex, setErrorFn) => {
             if (activeError) {
                 if (value === '' || regex.test(value)) {
@@ -82,12 +82,11 @@ export default function ParentInformation({
             }
         };
 
-        // 3. ROUTE THE TRAFFIC: Pass the right regex and state to the helper
         if (name === 'emailAddress') {
             clearIfFixed(
                 emailError,
                 /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                setEmailError
+                setEmailError,
             );
         }
 
@@ -103,7 +102,7 @@ export default function ParentInformation({
             clearIfFixed(
                 fatherFuriganaError,
                 /^[ァ-ンヴー\s]+$/,
-                setFatherFuriganaError
+                setFatherFuriganaError,
             );
         }
 
@@ -111,7 +110,7 @@ export default function ParentInformation({
             clearIfFixed(
                 motherFuriganaError,
                 /^[ァ-ンヴー\s]+$/,
-                setMotherFuriganaError
+                setMotherFuriganaError,
             );
         }
     }

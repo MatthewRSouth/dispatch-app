@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         try {
             const apiKey = process.env.BIGDATACLOUD_API_KEY;
             const verifyUrl = `https://api.bigdatacloud.net/data/email-verify?emailAddress=${encodeURIComponent(
-                emailToTest
+                emailToTest,
             )}&key=${apiKey}`;
 
             const response = await fetch(verifyUrl);
@@ -29,7 +29,10 @@ export default async function handler(req, res) {
                 });
             }
         } catch (error) {
-            console.warn('BigDataCloud API Failed, but continuing submission');
+            console.warn(
+                'BigDataCloud API Failed, but continuing submission',
+                error,
+            );
         }
     }
 
@@ -38,10 +41,10 @@ export default async function handler(req, res) {
     await new Promise((resolve) => setTimeout(resolve, initalDelay));
 
     try {
-        // 2. Authenticate with OAuth 2.0 (The New Way)
+        // 2. Authenticate with OAuth 2.0
         const auth = new google.auth.OAuth2(
             process.env.GOOGLE_CLIENT_ID,
-            process.env.GOOGLE_CLIENT_SECRET
+            process.env.GOOGLE_CLIENT_SECRET,
         );
 
         // This effectively "logs in" as you using the refresh token
@@ -54,6 +57,8 @@ export default async function handler(req, res) {
 
         if (image) {
             const drive = google.drive({ version: 'v3', auth });
+
+            //convertToBase64 reads the file with FileReader — which is async and fires an onload event — and I wrap that in a promise so I can await it and get the base64 string, which we send as JSON. The backend later converts that base64 back into a buffer to store the real file in Drive."
 
             // Convert Base64 string back to a file buffer
             const base64Data = image.split(',')[1];
@@ -83,7 +88,7 @@ export default async function handler(req, res) {
                 } catch (error) {
                     console.warn(
                         `Drive upload attempt ${attempt} failed: `,
-                        error.message
+                        error.message,
                     );
                     if (attempt === 2) throw new Error('Google drive is busy.');
                     await new Promise((res) => setTimeout(res, 1000));
@@ -91,7 +96,7 @@ export default async function handler(req, res) {
             }
         }
 
-        // 4. Save to Sheets (Corrected to match your Sheet Headers)
+        // 4. Save to Sheets
         const sheets = google.sheets({ version: 'v4', auth });
 
         const rowValues = [
@@ -99,12 +104,12 @@ export default async function handler(req, res) {
             data.username || '', // Col A (username)
             data.password || '', // Col B (password)
 
-            // 2. Father Info (Furigana FIRST in your sheet)
+            // 2. Father Info (Furigana)
             data.fatherNameFurigana || '', // Col C
             data.fatherNameKanji || '', // Col D
             data.fatherPhoneNumber || '', // Col E
 
-            // 3. Mother Info (Furigana FIRST in your sheet)
+            // 3. Mother Info (Furigana)
             data.motherNameFurigana || '', // Col F
             data.motherNameKanji || '', // Col G
             data.motherPhoneNumber || '', // Col H
@@ -159,11 +164,11 @@ export default async function handler(req, res) {
             } catch (error) {
                 console.warn(
                     `sheets API Attempt ${attempt} failed`,
-                    error.message
+                    error.message,
                 );
                 if (attempt === MAX_RETRIES) {
                     throw new Error(
-                        'Google Sheets is extremely busy. Please try submitting again.'
+                        'Google Sheets is extremely busy. Please try submitting again.',
                     );
                 }
 

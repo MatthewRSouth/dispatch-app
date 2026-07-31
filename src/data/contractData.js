@@ -1,7 +1,7 @@
 export const contractData = [
     {
         id: 1,
-        title: '第1条【入会手続き】', // Added the missing 】
+        title: '第1条【入会手続き】',
         rules: [
             {
                 text: '入会をご希望のお子様の保護者は、本規約を確認・同意頂き、入会月費用および翌月の授業料をお支払いいただいた時点で入会申込完了とさせて頂きます。',

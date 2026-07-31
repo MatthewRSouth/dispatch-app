@@ -11,29 +11,28 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
 
         if (file) {
             try {
-                // 1. Configure Compression
+                
                 const options = {
                     maxSizeMB: 0.5,
                     maxWidthOrHeight: 1024,
                     useWebWorker: true,
                 };
 
-                // 2. Compress (Returns a Blob)
+                
                 const compressedBlob = await imageCompression(file, options);
 
-                // ✅ 3. THE FIX: Convert Blob back to a proper File
-                // We reuse the original file's name and type so the App doesn't get confused.
+            
                 const compressedFile = new File([compressedBlob], file.name, {
                     type: file.type,
                 });
 
-                // 4. Preview
+                
                 setPreview((prevUrl) => {
                     if (prevUrl) URL.revokeObjectURL(prevUrl);
                     return URL.createObjectURL(compressedFile);
                 });
 
-                // 5. Send the proper File object up
+                
                 if (onImageSelect) {
                     onImageSelect(compressedFile);
                 }
