@@ -1,6 +1,5 @@
 import { useState } from 'react';
-
-// 1. Point to your new API route (Internal Server)
+//points to the API route
 const SUBMIT_URL = '/api/submit';
 //Helper: ReviewRow Component
 function ReviewRow({ label, value }) {
@@ -55,10 +54,9 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
                 image: base64Image, // Send the string, not the file object
             };
 
-            // STEP C: Send to your Server
+            //send to the server
             const response = await fetch(SUBMIT_URL, {
                 method: 'POST',
-                // We REMOVED 'no-cors' so we can actually see if it succeeds!
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -71,7 +69,6 @@ export default function Submit({ data, onNext, onPrevious, onEdit }) {
             }
             localStorage.setItem('hoshidaRegistered', 'true');
 
-            // If we get here, it worked!
             onNext();
         } catch (err) {
             console.error('Submission Error', err);

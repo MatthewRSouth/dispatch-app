@@ -1,11 +1,14 @@
 export default async function verify(req, res) {
+    // This function verifies the user for signin
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
 
     //Request Body
-    const { username, password } = req.body;
+
     try {
+        const { username, password } = req.body ?? {};
+
         const ourPassword = process.env.LOGINPASSWORD;
         const ourUsername = process.env.LOGINUSERNAME;
 
