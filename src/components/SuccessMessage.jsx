@@ -1,5 +1,5 @@
 import '../styles/success.css';
-import './Footer';
+import Footer from '../ui/Footer';
 import successMark from '../assets/check-circle-svgrepo-com (2).svg';
 import yenMark from '../assets/yen-circle-svgrepo-com.svg';
 import websiteQrCode from '../assets/hoshida-dispatch-qr-code.png';
@@ -23,7 +23,7 @@ function Card({ image, title, description, number, alt }) {
     );
 }
 
-export default function SuccessMessage({ onPrevious }) {
+export default function SuccessMessage() {
     return (
         <>
             <header className="header-container">

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import '../styles/buttons.css';
 import '../styles/image-upload.css';
 import imageCompression from 'browser-image-compression';
+import PageTitle from './reusable/PageTitle';
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
 
 export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
     const [preview, setPreview] = useState(null);
@@ -11,28 +13,23 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
 
         if (file) {
             try {
-                
                 const options = {
                     maxSizeMB: 0.5,
                     maxWidthOrHeight: 1024,
                     useWebWorker: true,
                 };
 
-                
                 const compressedBlob = await imageCompression(file, options);
 
-            
                 const compressedFile = new File([compressedBlob], file.name, {
                     type: file.type,
                 });
 
-                
                 setPreview((prevUrl) => {
                     if (prevUrl) URL.revokeObjectURL(prevUrl);
                     return URL.createObjectURL(compressedFile);
                 });
 
-                
                 if (onImageSelect) {
                     onImageSelect(compressedFile);
                 }
@@ -51,8 +48,9 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
     return (
         <>
             <div className="image-upload-wrapper">
-                <h1>写真のアップロード</h1>
-                <p>お子様の写真をアップロードしてください</p>
+                <PageTitle description="お子様の写真をアップロードしてください">
+                    写真のアップロード
+                </PageTitle>
                 <div className="image-upload-container">
                     <label className="image-upload-box">
                         <input
@@ -91,18 +89,11 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
                     )}
                 </div>
             </div>
-            <div className="button-wrapper">
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!preview}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={preview}
+            ></PrevAndNextButtons>
         </>
     );
 }

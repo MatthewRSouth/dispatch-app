@@ -1,3 +1,7 @@
+import RadioOptions from './reusable/RadioOptions';
+import PageTitle from './reusable/PageTitle';
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
+
 export default function Allergies({ data, handleChange, onNext, onPrevious }) {
     const isFormComplete =
         data.hasAllergies === 'なし' ||
@@ -5,39 +9,34 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
     return (
         <>
             <div className="form-wrapper">
-                <div className="header-wrapper">
-                    <h1 className="main-header">
-                        Allergies<br></br>アレルギー
-                    </h1>
-                </div>
+                <PageTitle description="">
+                    Allergies<br></br>アレルギー
+                </PageTitle>
 
                 <div className="form-group allergy-container">
-                    <label htmlFor="">
-                        Does your child have any allergies?
-                    </label>
-                    <label htmlFor="">アレルギーはありますか?</label>
+                    <label>Does your child have any allergies?</label>
+                    <label>アレルギーはありますか?</label>
+
                     <div className="radio-group">
                         <div className="radio-options">
-                            <label className="allergy-option" htmlFor="">
-                                <input
-                                    type="radio"
-                                    name="hasAllergies"
-                                    value="あり"
-                                    onChange={handleChange}
-                                    checked={data.hasAllergies === 'あり'}
-                                />
+                            <RadioOptions
+                                className="allergy-option"
+                                name="hasAllergies"
+                                value="あり"
+                                handleChange={handleChange}
+                                checked={data.hasAllergies === 'あり'}
+                            >
                                 Yes 有り
-                            </label>
-                            <label className="allergy-option" htmlFor="">
-                                <input
-                                    type="radio"
-                                    name="hasAllergies"
-                                    value="なし"
-                                    onChange={handleChange}
-                                    checked={data.hasAllergies === 'なし'}
-                                />
-                                No 無い
-                            </label>
+                            </RadioOptions>
+                            <RadioOptions
+                                className="allergy-option"
+                                name="hasAllergies"
+                                value="なし"
+                                handleChange={handleChange}
+                                checked={data.hasAllergies === 'なし'}
+                            >
+                                No 無し
+                            </RadioOptions>
                         </div>
                     </div>
                 </div>
@@ -59,19 +58,11 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
                     ></textarea>
                 </div>
             </div>
-            <div className="button-wrapper allergy-button-wrapper">
-                {' '}
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!isFormComplete}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={isFormComplete}
+            ></PrevAndNextButtons>
         </>
     );
 }

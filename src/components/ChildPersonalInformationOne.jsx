@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
+import InputError from '../ui/InputError';
 export default function ChildPersonalInfoOne({
     data,
     handleChange,
@@ -112,7 +114,7 @@ export default function ChildPersonalInfoOne({
             </div>
 
             <div className="form-group">
-                <h4 className="sub-header">Child’s Name お子様の氏名　</h4>
+                <h4 className="sub-header">Child’s Name お子様の氏名</h4>
                 <label htmlFor="childNameEnglish">英語表記 </label>
                 <input
                     autoComplete="off"
@@ -130,25 +132,7 @@ export default function ChildPersonalInfoOne({
                 />
             </div>
             {englishNameError && (
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        textAlign: 'center',
-                        width: '100%',
-                        marginTop: '0',
-                    }}
-                >
-                    {' '}
-                    <span
-                        style={{
-                            fontSize: '0.8rem',
-                            color: 'red',
-                        }}
-                    >
-                        {englishNameError}
-                    </span>{' '}
-                </div>
+                <InputError error={englishNameError}></InputError>
             )}
             <div className="form-group">
                 <label htmlFor="childNameFurigana">フリガナ</label>
@@ -168,25 +152,7 @@ export default function ChildPersonalInfoOne({
                 />
             </div>
             {furiganaNameError && (
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        textAlign: 'center',
-                        width: '100%',
-                        marginTop: '0',
-                    }}
-                >
-                    {' '}
-                    <span
-                        style={{
-                            fontSize: '0.8rem',
-                            color: 'red',
-                        }}
-                    >
-                        {furiganaNameError}
-                    </span>{' '}
-                </div>
+                <InputError error={furiganaNameError}></InputError>
             )}
             <div className="form-group">
                 <label htmlFor="childNameKanji">
@@ -205,7 +171,7 @@ export default function ChildPersonalInfoOne({
             <div className="form-group">
                 <h4 className="sub-header address-contact">
                     Address and<br></br> Contact Number <br></br>{' '}
-                    　住所と緊急連絡番号
+                    住所と緊急連絡番号
                 </h4>
                 <label className="no-margin-label" htmlFor="childAddress">
                     Address 住所{' '}
@@ -242,40 +208,14 @@ export default function ChildPersonalInfoOne({
                     placeholder="例）090-1234-5678"
                 />
                 {contactPhoneError && (
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            textAlign: 'center',
-                            width: '100%',
-                            marginTop: '0',
-                        }}
-                    >
-                        {' '}
-                        <span
-                            style={{
-                                color: 'red',
-                                fontSize: '0.8rem',
-                            }}
-                        >
-                            {contactPhoneError}
-                        </span>{' '}
-                    </div>
+                    <InputError error={contactPhoneError}></InputError>
                 )}
             </div>
-            <div className="button-wrapper">
-                {' '}
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!childFormComplete}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={childFormComplete}
+            ></PrevAndNextButtons>
         </div>
     );
 }

@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import PageTitle from './reusable/PageTitle';
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
+import InputError from '../ui/InputError';
 
 export default function ParentInformation({
     data,
@@ -135,17 +138,13 @@ export default function ParentInformation({
     return (
         <>
             <div className="form-wrapper">
-                <div className="header-wrapper">
-                    {' '}
-                    <h1 className="main-header">
-                        Guardian Information <br />
-                        保護者情報
-                    </h1>
-                    <p className="main-header-description">
-                        保護者情報は1名様分のみ必須となりますが、<br></br>
-                        2名様分ご入力いただくことも可能です。
-                    </p>
-                </div>
+                <PageTitle
+                    description={`保護者情報は1名様分のみ必須となりますが
+                    2名様分ご入力いただくことも可能です。`}
+                >
+                    Guardian Information <br />
+                    保護者情報
+                </PageTitle>
                 <h4 className="sub-header">Guardian Information 保護者情報</h4>
                 <div className="form-group">
                     <label htmlFor="fatherNameFurigana">フリガナ</label>
@@ -166,24 +165,7 @@ export default function ParentInformation({
                         placeholder="例)　ヤマダ　タロウ"
                     />
                     {fatherFuriganaError && (
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                width: '90%',
-                            }}
-                        >
-                            {' '}
-                            <span
-                                style={{
-                                    color: 'red',
-                                    fontSize: '0.8rem',
-                                }}
-                            >
-                                {fatherFuriganaError}
-                            </span>{' '}
-                        </div>
+                        <InputError error={fatherFuriganaError}></InputError>
                     )}
                     <label htmlFor="fatherNameKanji">
                         漢字（漢字がない場合は英語）
@@ -220,24 +202,7 @@ export default function ParentInformation({
                         placeholder="例）090-1234-5678"
                     />
                     {fatherPhoneError && (
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                width: '90%',
-                            }}
-                        >
-                            {' '}
-                            <span
-                                style={{
-                                    color: 'red',
-                                    fontSize: '0.8rem',
-                                }}
-                            >
-                                {fatherPhoneError}
-                            </span>{' '}
-                        </div>
+                        <InputError error={fatherPhoneError}></InputError>
                     )}
                 </div>
                 <h4 className="sub-header">Guardian Information 保護者情報</h4>
@@ -260,24 +225,7 @@ export default function ParentInformation({
                         placeholder="例)　ヤマダ　ハナコ"
                     />
                     {motherFuriganaError && (
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                width: '90%',
-                            }}
-                        >
-                            {' '}
-                            <span
-                                style={{
-                                    color: 'red',
-                                    fontSize: '0.8rem',
-                                }}
-                            >
-                                {motherFuriganaError}
-                            </span>{' '}
-                        </div>
+                        <InputError error={motherFuriganaError}></InputError>
                     )}
                     <label htmlFor="motherNameKanji">
                         漢字（漢字がない場合は英語）
@@ -314,30 +262,12 @@ export default function ParentInformation({
                         placeholder="例）090-1234-5678"
                     />
                     {motherPhoneError && (
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                width: '90%',
-                            }}
-                        >
-                            {' '}
-                            <span
-                                style={{
-                                    color: 'red',
-                                    fontSize: '0.8rem',
-                                }}
-                            >
-                                {motherPhoneError}
-                            </span>{' '}
-                        </div>
+                        <InputError error={motherPhoneError}></InputError>
                     )}
                 </div>{' '}
                 <div className="form-group">
                     <h4 htmlFor="" className="sub-header">
-                        Email Address　Eメール{' '}
-                        <span className="required"></span>
+                        Email Address Eメール <span className="required"></span>
                     </h4>
                     <input
                         type="email"
@@ -353,40 +283,14 @@ export default function ParentInformation({
                         }}
                     />
                 </div>
-                {emailError && (
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            textAlign: 'center',
-                            width: '90%',
-                        }}
-                    >
-                        {' '}
-                        <span
-                            style={{
-                                color: 'red',
-                                fontSize: '0.8rem',
-                            }}
-                        >
-                            {emailError}
-                        </span>{' '}
-                    </div>
-                )}
+                {emailError && <InputError error={emailError}></InputError>}
             </div>
 
-            <div className="button-wrapper">
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!canProceed}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={canProceed}
+            ></PrevAndNextButtons>
         </>
     );
 }
