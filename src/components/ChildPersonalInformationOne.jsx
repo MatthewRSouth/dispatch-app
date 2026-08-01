@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
 export default function ChildPersonalInfoOne({
     data,
     handleChange,
@@ -112,7 +113,7 @@ export default function ChildPersonalInfoOne({
             </div>
 
             <div className="form-group">
-                <h4 className="sub-header">Child’s Name お子様の氏名　</h4>
+                <h4 className="sub-header">Child’s Name お子様の氏名</h4>
                 <label htmlFor="childNameEnglish">英語表記 </label>
                 <input
                     autoComplete="off"
@@ -205,7 +206,7 @@ export default function ChildPersonalInfoOne({
             <div className="form-group">
                 <h4 className="sub-header address-contact">
                     Address and<br></br> Contact Number <br></br>{' '}
-                    　住所と緊急連絡番号
+                    住所と緊急連絡番号
                 </h4>
                 <label className="no-margin-label" htmlFor="childAddress">
                     Address 住所{' '}
@@ -263,19 +264,11 @@ export default function ChildPersonalInfoOne({
                     </div>
                 )}
             </div>
-            <div className="button-wrapper">
-                {' '}
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!childFormComplete}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={childFormComplete}
+            ></PrevAndNextButtons>
         </div>
     );
 }

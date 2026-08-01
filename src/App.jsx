@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
+import Header from './ui/Header';
 import AdditionalInformation from './components/AdditionalInformation';
 import Allergies from './components/Allergies';
 import ChildPersonalInfoOne from './components/ChildPersonalInformationOne';
@@ -11,7 +11,7 @@ import ParentInformation from './components/ParentInformation';
 import Submit from './components/Submit';
 import SuccessMessage from './components/SuccessMessage';
 import UserContract from './components/UserContract';
-import Footer from './components/Footer';
+import Footer from './ui/Footer';
 
 import './App.css';
 import './styles/variables.css';

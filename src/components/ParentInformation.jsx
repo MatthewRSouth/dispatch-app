@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PageTitle from './reusable/PageTitle';
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
 
 export default function ParentInformation({
     data,
@@ -333,8 +334,7 @@ export default function ParentInformation({
                 </div>{' '}
                 <div className="form-group">
                     <h4 htmlFor="" className="sub-header">
-                        Email Address　Eメール{' '}
-                        <span className="required"></span>
+                        Email Address Eメール <span className="required"></span>
                     </h4>
                     <input
                         type="email"
@@ -372,18 +372,11 @@ export default function ParentInformation({
                 )}
             </div>
 
-            <div className="button-wrapper">
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!canProceed}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={canProceed}
+            ></PrevAndNextButtons>
         </>
     );
 }

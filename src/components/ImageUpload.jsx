@@ -3,6 +3,7 @@ import '../styles/buttons.css';
 import '../styles/image-upload.css';
 import imageCompression from 'browser-image-compression';
 import PageTitle from './reusable/PageTitle';
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
 
 export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
     const [preview, setPreview] = useState(null);
@@ -88,18 +89,11 @@ export default function ImageUpload({ onImageSelect, onNext, onPrevious }) {
                     )}
                 </div>
             </div>
-            <div className="button-wrapper">
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!preview}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={preview}
+            ></PrevAndNextButtons>
         </>
     );
 }

@@ -1,3 +1,4 @@
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
 export default function ChildPersonalInfoTwo({
     data,
     handleChange,
@@ -118,7 +119,7 @@ export default function ChildPersonalInfoTwo({
 
                 <div className="form-group join-time-wrapper">
                     <label htmlFor="joinMonth">
-                        Join Month　<br></br>入会希望月
+                        Join Month<br></br>入会希望月
                     </label>
                     <select
                         name="joinMonth"
@@ -149,19 +150,11 @@ export default function ChildPersonalInfoTwo({
                     />
                 </div>
             </div>
-            <div className="button-wrapper">
-                {' '}
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!isFormComplete}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={isFormComplete}
+            ></PrevAndNextButtons>
         </div>
     );
 }

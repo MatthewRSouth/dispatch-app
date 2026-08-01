@@ -1,5 +1,6 @@
 import RadioOptions from './reusable/RadioOptions';
 import PageTitle from './reusable/PageTitle';
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
 
 export default function Allergies({ data, handleChange, onNext, onPrevious }) {
     const isFormComplete =
@@ -57,19 +58,11 @@ export default function Allergies({ data, handleChange, onNext, onPrevious }) {
                     ></textarea>
                 </div>
             </div>
-            <div className="button-wrapper allergy-button-wrapper">
-                {' '}
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!isFormComplete}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={isFormComplete}
+            ></PrevAndNextButtons>
         </>
     );
 }

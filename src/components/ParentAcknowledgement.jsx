@@ -1,3 +1,4 @@
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
 export default function ParentAcknowledgement({
     data,
     handleChange,
@@ -15,7 +16,7 @@ export default function ParentAcknowledgement({
 
     return (
         <>
-            <div>
+            <>
                 <div className="header-wrapper">
                     {' '}
                     <h1 className="main-header">
@@ -97,23 +98,12 @@ export default function ParentAcknowledgement({
                     />
                 </div>
 
-                <div className="button-wrapper">
-                    {' '}
-                    <button
-                        className="previous-button button"
-                        onClick={onPrevious}
-                    >
-                        戻る
-                    </button>
-                    <button
-                        className="next-button button"
-                        onClick={onNext}
-                        disabled={!isFormComplete}
-                    >
-                        次へ
-                    </button>
-                </div>
-            </div>
+                <PrevAndNextButtons
+                    onNext={onNext}
+                    onPrevious={onPrevious}
+                    isFormComplete={isFormComplete}
+                ></PrevAndNextButtons>
+            </>
         </>
     );
 }

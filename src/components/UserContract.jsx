@@ -1,6 +1,7 @@
 import { contractData } from '../data/contractData';
 import '../styles/userContract.css';
 import '../styles/forms.css';
+import PrevAndNextButtons from './reusable/PrevAndNextButtons';
 
 export default function UserContract({
     data,
@@ -36,7 +37,7 @@ export default function UserContract({
                                                     <li key={subIndex}>
                                                         {subrule}
                                                     </li>
-                                                )
+                                                ),
                                             )}
                                         </ol>
                                     )}
@@ -61,19 +62,11 @@ export default function UserContract({
                     </span>
                 </label>
             </div>
-            <div className="button-wrapper">
-                {' '}
-                <button className="previous-button button" onClick={onPrevious}>
-                    戻る
-                </button>
-                <button
-                    className="next-button button"
-                    onClick={onNext}
-                    disabled={!isFormComplete}
-                >
-                    次へ
-                </button>
-            </div>
+            <PrevAndNextButtons
+                onNext={onNext}
+                onPrevious={onPrevious}
+                isFormComplete={isFormComplete}
+            ></PrevAndNextButtons>
         </div>
     );
 }
