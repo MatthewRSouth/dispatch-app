@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PageTitle from './reusable/PageTitle';
 import PrevAndNextButtons from './reusable/PrevAndNextButtons';
+import InputError from '../ui/InputError';
 
 export default function ParentInformation({
     data,
@@ -164,24 +165,7 @@ export default function ParentInformation({
                         placeholder="例)　ヤマダ　タロウ"
                     />
                     {fatherFuriganaError && (
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                width: '90%',
-                            }}
-                        >
-                            {' '}
-                            <span
-                                style={{
-                                    color: 'red',
-                                    fontSize: '0.8rem',
-                                }}
-                            >
-                                {fatherFuriganaError}
-                            </span>{' '}
-                        </div>
+                        <InputError error={fatherFuriganaError}></InputError>
                     )}
                     <label htmlFor="fatherNameKanji">
                         漢字（漢字がない場合は英語）
@@ -218,24 +202,7 @@ export default function ParentInformation({
                         placeholder="例）090-1234-5678"
                     />
                     {fatherPhoneError && (
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                width: '90%',
-                            }}
-                        >
-                            {' '}
-                            <span
-                                style={{
-                                    color: 'red',
-                                    fontSize: '0.8rem',
-                                }}
-                            >
-                                {fatherPhoneError}
-                            </span>{' '}
-                        </div>
+                        <InputError error={fatherPhoneError}></InputError>
                     )}
                 </div>
                 <h4 className="sub-header">Guardian Information 保護者情報</h4>
@@ -258,24 +225,7 @@ export default function ParentInformation({
                         placeholder="例)　ヤマダ　ハナコ"
                     />
                     {motherFuriganaError && (
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                width: '90%',
-                            }}
-                        >
-                            {' '}
-                            <span
-                                style={{
-                                    color: 'red',
-                                    fontSize: '0.8rem',
-                                }}
-                            >
-                                {motherFuriganaError}
-                            </span>{' '}
-                        </div>
+                        <InputError error={motherFuriganaError}></InputError>
                     )}
                     <label htmlFor="motherNameKanji">
                         漢字（漢字がない場合は英語）
@@ -312,24 +262,7 @@ export default function ParentInformation({
                         placeholder="例）090-1234-5678"
                     />
                     {motherPhoneError && (
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                textAlign: 'center',
-                                width: '90%',
-                            }}
-                        >
-                            {' '}
-                            <span
-                                style={{
-                                    color: 'red',
-                                    fontSize: '0.8rem',
-                                }}
-                            >
-                                {motherPhoneError}
-                            </span>{' '}
-                        </div>
+                        <InputError error={motherPhoneError}></InputError>
                     )}
                 </div>{' '}
                 <div className="form-group">
@@ -350,26 +283,7 @@ export default function ParentInformation({
                         }}
                     />
                 </div>
-                {emailError && (
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            textAlign: 'center',
-                            width: '90%',
-                        }}
-                    >
-                        {' '}
-                        <span
-                            style={{
-                                color: 'red',
-                                fontSize: '0.8rem',
-                            }}
-                        >
-                            {emailError}
-                        </span>{' '}
-                    </div>
-                )}
+                {emailError && <InputError error={emailError}></InputError>}
             </div>
 
             <PrevAndNextButtons

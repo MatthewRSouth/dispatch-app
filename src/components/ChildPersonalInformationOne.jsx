@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PrevAndNextButtons from './reusable/PrevAndNextButtons';
+import InputError from '../ui/InputError';
 export default function ChildPersonalInfoOne({
     data,
     handleChange,
@@ -131,25 +132,7 @@ export default function ChildPersonalInfoOne({
                 />
             </div>
             {englishNameError && (
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        textAlign: 'center',
-                        width: '100%',
-                        marginTop: '0',
-                    }}
-                >
-                    {' '}
-                    <span
-                        style={{
-                            fontSize: '0.8rem',
-                            color: 'red',
-                        }}
-                    >
-                        {englishNameError}
-                    </span>{' '}
-                </div>
+                <InputError error={englishNameError}></InputError>
             )}
             <div className="form-group">
                 <label htmlFor="childNameFurigana">フリガナ</label>
@@ -169,25 +152,7 @@ export default function ChildPersonalInfoOne({
                 />
             </div>
             {furiganaNameError && (
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        textAlign: 'center',
-                        width: '100%',
-                        marginTop: '0',
-                    }}
-                >
-                    {' '}
-                    <span
-                        style={{
-                            fontSize: '0.8rem',
-                            color: 'red',
-                        }}
-                    >
-                        {furiganaNameError}
-                    </span>{' '}
-                </div>
+                <InputError error={furiganaNameError}></InputError>
             )}
             <div className="form-group">
                 <label htmlFor="childNameKanji">
@@ -243,25 +208,7 @@ export default function ChildPersonalInfoOne({
                     placeholder="例）090-1234-5678"
                 />
                 {contactPhoneError && (
-                    <div
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            textAlign: 'center',
-                            width: '100%',
-                            marginTop: '0',
-                        }}
-                    >
-                        {' '}
-                        <span
-                            style={{
-                                color: 'red',
-                                fontSize: '0.8rem',
-                            }}
-                        >
-                            {contactPhoneError}
-                        </span>{' '}
-                    </div>
+                    <InputError error={contactPhoneError}></InputError>
                 )}
             </div>
             <PrevAndNextButtons
